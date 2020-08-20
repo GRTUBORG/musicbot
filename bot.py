@@ -76,7 +76,7 @@ async def version(ctx):
 #музыка с ютуба
 
 @Bot.command()
-async def play(ctx, url: str):
+async def play(ctx, url):
     song_there = os.path.isfile('song.mp3')
     try:
         if song_there:
@@ -113,12 +113,7 @@ async def play(ctx, url: str):
 async def join(ctx):
     global voice
     channel = ctx.message.author.voice.channel
-    voice = get(Bot.voice_clients, guild = ctx.guild)
-    if voice and voice.is_connected():
-        await voice.move_to(channel)
-    else:
-        voice = await channel.connect()
-        await ctx.send(f'Я присоединился к {channel}')
+    await Bot.join_voice_channel(channel)
         
 @Bot.command()
 async def leave(ctx):
