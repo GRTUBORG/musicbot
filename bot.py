@@ -10,7 +10,7 @@ import json
 import requests
 import typing
 from Cybernator import Paginator as pag 
-
+from discord import FFmpegPCMAudio
 
 
 #ссылка на него же - яндекс.диск: https://yadi.sk/d/osZvfRlApkFIGA
@@ -78,6 +78,9 @@ async def version(ctx):
 @Bot.command()
 async def join(ctx):
     channel = ctx.message.author.voice.channel
+    if not channel:
+        await ctx.send("You are not connected to a voice channel")
+        return
     voice = get(bot.voice_clients, guild=ctx.guild)
     if voice and voice.is_connected():
         await voice.move_to(channel)
@@ -88,19 +91,17 @@ async def join(ctx):
         await voice.move_to(channel)
     else:
         voice = await channel.connect()
-        print(f"The bot has connected to {channel}\n")
-    await ctx.send(f"Зашёл в {channel}")
+    await ctx.send(f"Joined {channel}")
 
 @Bot.command()
-async def disconnect(ctx):
+async def leave(ctx):
     channel = ctx.message.author.voice.channel
-    voice = get(Bot.voice_clients, guild=ctx.guild)
+    voice = get(bot.voice_clients, guild=ctx.guild)
     if voice and voice.is_connected():
         await voice.disconnect()
-        await ctx.send(f"Готово, я ливнул из {channel}")
+        await ctx.send(f"Left {channel}")
     else:
-        print("Bot was told to leave voice channel, but was not in one")
-        await ctx.send("Меня нет в коннектах, ты чево...")
+        await ctx.send("Don't think I am in a voice channel")
 
 @Bot.command()
 async def play(ctx, url: str):
@@ -108,13 +109,12 @@ async def play(ctx, url: str):
     try:
         if song_there:
             os.remove("song.mp3")
-            print("old file deleted")
     except PermissionError:
-        print("Музыка уже играет!")
-        await ctx.send("Музыка уже играет!")
+        await ctx.send("Wait for the current playing music end or use the 'stop' command")
         return
-    await ctx.send("Подождите секунду, скоро начну :)")
-    voice = get(Bot.voice_clients, guild=ctx.guild)
+    await ctx.send("Getting everything ready, playing audio soon")
+    print("Someone wants to play music let me get that ready for them...")
+    voice = get(bot.voice_clients, guild=ctx.guild)
     ydl_opts = {
         'format': 'bestaudio/best',
         'postprocessors': [{
@@ -124,16 +124,13 @@ async def play(ctx, url: str):
         }],
     }
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        print("Downloading audio now\n")
         ydl.download([url])
     for file in os.listdir("./"):
         if file.endswith(".mp3"):
-            name = file
-            os.rename(file, "song.mp3")
-    voice.play(discord.FFmpegPCMAudio("song.mp3"), after=lambda e: print("Музыка закончилась"))
-    nname = name.rsplit("-", 2)
-    await ctx.send(f"Проигрываю: {nname[0]}")
-    print("playing\n")
+            os.rename(file, 'song.mp3')
+    voice.play(discord.FFmpegPCMAudio("song.mp3"))
+    voice.volume = 100
+    voice.is_playing()
 
 
 #помощь user
