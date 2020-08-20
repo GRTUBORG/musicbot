@@ -26,3 +26,4 @@ PyNaCl
 multidict
 Cybernator
 pyflakes
+discord.py[voice]
