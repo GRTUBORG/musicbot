@@ -102,11 +102,12 @@ async def play(ctx, url: str):
             name = file
             print(f'[logs] Создаю новое название файлу {file}')
             os.rename(file, 'song.mp3')
+    
     voice.play(discord.FFmpegPCMAudio('song.mp3'), after = lambda e: print(f'[logs] {name}, музыка закончила своё проигрывание'))
-    voice.source = discord.PCMVolumeTransformer(voice.source)
-    voice.source.volume = 100
-    song_name = name.rsplit('-', 2)
-    await ctx.send(f'Сейчас играет {song_name[0]}')
+    
+    nname = name.rsplit("-", 2)
+    await ctx.send(f"We play: {nname[0]}")
+    print("playing\n")
     
 @Bot.command()
 async def join(ctx):
