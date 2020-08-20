@@ -178,7 +178,7 @@ async def help(ctx):
                         '*сокращения/синонимы*: `p`;\n'
                         '`/leave` - кикает бота с гс канала, для использования, Вы должны быть в канале с ботом\n'
                         '*сокращения/синонимы*: `l`;\n')
-    embeds= [embed1, embed2, embed3]
+    embeds= [embed1, embed2, embed3, embed4]
     message= await ctx.send(embed=  embed1)
     page = pag(Bot, message, only= ctx.author, use_more= False, timeout= 1*3600, embeds= embeds)
     await page.start()
