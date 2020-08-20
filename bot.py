@@ -1,15 +1,16 @@
 import discord
-from discord.ext import commands
-from discord.ext.commands import Bot
 import asyncio
 import os
 import random
 import youtube_dl
-from discord.utils import get
 import json
 import requests
 import typing
-from Cybernator import Paginator as pag 
+from discord.ext import commands
+from discord.ext.commands import Bot
+from discord.utils import get
+from Cybernator import Paginator as pag
+from discord import Spotify
 
 
 
@@ -61,7 +62,14 @@ async def on_message(message):
         emb = discord.Embed(title="Замечено оскорбление!", description= f'Прошу дать по попе {author.mention}', color=0x4ace40)
         message = await channel.send(embed=emb)
      
+#spootify кто что слушает
 
+@Bot.command()
+async def spotify(ctx, user: discord.Member=None):
+    user = user or ctx.author
+    for activity in user.activities:
+        if isinstance(activity, Spotify):
+            await ctx.send(f"{user} слушает {activity.title}, by {activity.artist}")
 
 #актуальная версия бота
 
