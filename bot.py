@@ -6,12 +6,12 @@ import youtube_dl
 import json
 import requests
 import typing
+
 from discord.ext import commands
 from discord.ext.commands import Bot
 from discord.utils import get
 from Cybernator import Paginator as pag
 from discord import Spotify
-
 
 
 #ссылка на него же - яндекс.диск: https://yadi.sk/d/osZvfRlApkFIGA
@@ -22,7 +22,7 @@ players = {}
 
 Bot = commands.Bot(command_prefix = "/")
 Bot.remove_command('help')
-bad_words = ['сервер говно', 'бот говно', 'админы говно', 'satoemari лох', 'крыса лох', 'пидорский сервер', 'администрация говно']
+bad_words = ['сервер говно', 'бот говно', 'админы говно', 'satoemari лох', 'крыса лох', 'пидорский сервер', 'администрация говно', 'dnc говно', 'дно сервер', 'вы все лохи']
 
 
 
@@ -31,7 +31,7 @@ bad_words = ['сервер говно', 'бот говно', 'админы го�
 @Bot.event
 async def on_ready():
     await Bot.change_presence(activity= discord.Activity(type= discord.ActivityType.watching, name= "за Dark Neon City 👀"))
-    print("Бот в онлайне!")
+    print("Бот в онлайне! Радуйся!")
 
 
 
@@ -62,7 +62,7 @@ async def on_message(message):
         emb = discord.Embed(title="Замечено оскорбление!", description= f'Прошу дать по попе {author.mention}', color=0x4ace40)
         message = await channel.send(embed=emb)
      
-#spootify кто что слушает
+#spootify, кто что слушает
 
 @Bot.command(aliases=['spot', 's'])
 async def spotify(ctx, user: discord.Member=None):
@@ -177,7 +177,7 @@ async def help(ctx):
 
 #не, ну это бан!
 
-@Bot.command(aliases=['p', 'pzdc'])
+@Bot.command(aliases=['pzdc'])
 async def pizdec(ctx):
     await ctx.message.delete()
     await ctx.send(':regional_indicator_p: :regional_indicator_i: :regional_indicator_z: :regional_indicator_d: :regional_indicator_e: :regional_indicator_c:')
@@ -243,7 +243,7 @@ async def say(ctx,  *, arg):
 
 #математика (простые операции)
 
-@Bot.command(aliases=['m']) 
+@Bot.command() 
 async def math(ctx,  a:  int,  b:  int): 
     embed= discord.Embed(title= "Простая математика", color= 0x4ace40)
     embed.add_field(name= "Сумма: ", value= a + b, inline=False)
@@ -281,7 +281,7 @@ async def hello(ctx):
 
 #удаление сообщений
 
-@Bot.command()
+@Bot.command(aliases=['cm'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
 async def clear_member(ctx, user: discord.Member, amount = 15):
     await ctx.message.delete()
@@ -289,7 +289,7 @@ async def clear_member(ctx, user: discord.Member, amount = 15):
     author = ctx.message.author
     await ctx.send(embed = discord.Embed(description = f'✅ {author.mention}, *удаление сообщений юзера прошло успешно!*', color=0x4ace40))
 
-@Bot.command()
+@Bot.command(aliases=['c'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
 async def clear(ctx, amount = 30): 
     await ctx.message.delete()
@@ -337,7 +337,7 @@ async def on_member_join(member):
 
 #кик пользователя
 
-@Bot.command()
+@Bot.command(aliases=['k'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
 async def kick(ctx, member: discord.Member, *, reason = None):
     channel = Bot.get_channel(526464840672346112) #логи
@@ -369,7 +369,7 @@ async def court(ctx, member: discord.Member):
 
 #аватарка
 
-@Bot.command()
+@Bot.command(aliases=['ava'])
 async def avatar(ctx, *,  avamember: discord.Member):
     userAvatarUrl = avamember.avatar_url
     embed = discord.Embed(description= f"Аватарка пользователя {avamember.mention}", color=0x4ace40)
@@ -380,7 +380,7 @@ async def avatar(ctx, *,  avamember: discord.Member):
 
 #бан и мут пользователя
 
-@Bot.command()
+@Bot.command(aliases=['tb'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "dmoder", "moder")
 async def tempban(ctx, user: discord.User, duration: int, *, reason= None):
     channel = Bot.get_channel(526464840672346112) #логи
@@ -405,7 +405,7 @@ async def tempban_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         await ctx.send('Вы забыли указать аргумент!')
 
-@Bot.command()
+@Bot.command(aliases=['b'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
 async def ban(ctx, member: discord.Member, *, reason= None):
     channel = Bot.get_channel(526464840672346112) #логи
@@ -424,7 +424,7 @@ async def ban_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         await ctx.send('Вы забыли указать аргумент!')
 
-@Bot.command()
+@Bot.command(aliases=['m'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "dmoder", "moder")
 async def mute(ctx, member: discord.Member, duration: int):
     author = ctx.message.author
@@ -449,7 +449,7 @@ async def mute_error(ctx, error):
 
 #узнать длину строки (сообщения)
 
-@Bot.command() 
+@Bot.command(aliases=['len']) 
 async def length(ctx): 
     embed= discord.Embed(color=0x4ace40)
     embed.add_field(name="Длина твоего сообщения вместе с командой равна:", value= '{}'.format(len(ctx.message.content)))
