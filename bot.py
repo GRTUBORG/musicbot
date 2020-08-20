@@ -78,8 +78,7 @@ async def version(ctx):
 @Bot.command()
 async def join(ctx):
     channel = ctx.message.author.voice.channel
-    voice = get(Bot.voice_clients, guild=ctx.guild)
-    author = message.author
+    voice = get(bot.voice_clients, guild=ctx.guild)
     if voice and voice.is_connected():
         await voice.move_to(channel)
     else:
@@ -90,7 +89,7 @@ async def join(ctx):
     else:
         voice = await channel.connect()
         print(f"The bot has connected to {channel}\n")
-    await ctx.send(f"{author.mention}, я присоединился к каналу!")
+    await ctx.send(f"Зашёл в {channel}")
 
 @Bot.command()
 async def disconnect(ctx):
