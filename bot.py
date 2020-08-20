@@ -113,6 +113,12 @@ async def play(ctx, url):
 async def join(ctx):
     global voice
     channel = ctx.message.author.voice.channel
+    voice = get(Bot.voice_clients, guild = ctx.guild)
+    if voice and voice.is_connected():
+        await voice.move_to(channel)
+    else:
+        voice = await channel.connect()
+        await ctx.send(f'Я присоединился к {channel}')
     await Bot.join_voice_channel(channel)
         
 @Bot.command()
