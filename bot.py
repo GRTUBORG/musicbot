@@ -64,7 +64,7 @@ async def on_message(message):
      
 #spootify кто что слушает
 
-@Bot.command()
+@Bot.command(aliases=['spot', 's'])
 async def spotify(ctx, user: discord.Member=None):
     user = user or ctx.author
     for activity in user.activities:
@@ -73,7 +73,7 @@ async def spotify(ctx, user: discord.Member=None):
 
 #актуальная версия бота
 
-@Bot.command()
+@Bot.command(aliases=['v'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
 async def version(ctx):
     emb = discord.Embed(title="Актуальная версия бота", description= '__Апдейт был 19.08.2020 до v. 2.4__. \n' 'Исправлен вывод команды `/help`. Теперь она представлена как некая "книга". \n **Посмотрите!**', color=0x4ace40)
@@ -83,7 +83,7 @@ async def version(ctx):
 
 #музыка с ютуба
 
-@Bot.command()
+@Bot.command(aliases=['p'])
 async def play(ctx, url):
     song_there = os.path.isfile('song.mp3')
     try:
@@ -117,7 +117,7 @@ async def play(ctx, url):
     await ctx.send(f"We play: {nname[0]}")
     print("playing\n")
     
-@Bot.command()
+@Bot.command(aliases=['j'])
 async def join(ctx):
     global voice
     channel = ctx.message.author.voice.channel
@@ -129,7 +129,7 @@ async def join(ctx):
         await ctx.send(f'Я присоединился к {channel}')
     await Bot.join_voice_channel(channel)
         
-@Bot.command()
+@Bot.command(aliases=['l'])
 async def leave(ctx):
     channel = ctx.message.author.voice.channel
     voice = get(Bot.voice_clients, guild = ctx.guild)
@@ -243,7 +243,7 @@ async def say(ctx,  *, arg):
 
 #математика (простые операции)
 
-@Bot.command() 
+@Bot.command(aliases=['m']) 
 async def math(ctx,  a:  int,  b:  int): 
     embed= discord.Embed(title= "Простая математика", color= 0x4ace40)
     embed.add_field(name= "Сумма: ", value= a + b, inline=False)
@@ -257,7 +257,7 @@ async def math(ctx,  a:  int,  b:  int):
 
 #информация о юзере
 
-@Bot.command()
+@Bot.command(aliases=['i', 'information'])
 async def info(ctx, member: discord.Member):
     embed=discord.Embed(title= "Info", color=0x4ace40)
     embed.add_field(name= "❓ Когда присоединился: ", value= member.joined_at)
