@@ -76,7 +76,7 @@ async def version(ctx):
 #музыка с ютуба
 
 @Bot.command()
-async def play(ctx. url: str):
+async def play(ctx, url: str):
     song_there = os.path.isfile('song.mp3')
     try:
         if song_there:
