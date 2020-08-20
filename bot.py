@@ -104,7 +104,7 @@ async def play(ctx, url: str):
             os.rename(file, 'song.mp3')
     voice.play(discord.FFmpegPCMAudio('song.mp3'), after = lambda e: print(f'[logs] {name}, музыка закончила своё проигрывание'))
     voice.source = discord.PCMVolumeTransformer(voice.source)
-    voice.source.volume = 0.07
+    voice.source.volume = 100
     song_name = name.rsplit('-', 2)
     await ctx.send(f'Сейчас играет {song_name[0]}')
     
