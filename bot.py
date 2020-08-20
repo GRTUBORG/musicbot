@@ -10,7 +10,7 @@ import json
 import requests
 import typing
 from Cybernator import Paginator as pag 
-from discord import FFmpegPCMAudio
+
 
 
 #ссылка на него же - яндекс.диск: https://yadi.sk/d/osZvfRlApkFIGA
@@ -76,63 +76,61 @@ async def version(ctx):
 #музыка с ютуба
 
 @Bot.command()
+async def play(ctx. url: str):
+    song_there = os.path.isfile('song.mp3')
+    try:
+        if song_there:
+            os.remove('song.mp3')
+            print('[logs] Старый файл успешно удалён')
+    except PermissionError:
+        print('[logs] Не удалось удалить файл') 
+    await ctx.send('Минуточку ожидания')
+    voice = get(Bot.voice_clients, guild = ctx.guild)
+    ydl_opts = {
+        'format' : 'bestaudio/best',
+        'postprocessors' : [{
+            'key' : 'FFmpegExtractAudio',
+            'preferredcodec' : 'mp3',
+            'preferredquality' : '192'
+        }],
+    }  
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        print ('[logs] Начинаю загрузку музыки...')
+        ydl.download([url])
+    for file in os.listdir('./'):
+        if file.endswith('.mp3'):
+            name = file
+            print(f'[logs] Создаю новое название файлу {file}')
+            os.rename(file, 'song.mp3')
+    voice.play(discord.FFmpegPCMAudio('song.mp3'), after = lambda e: print(f'[logs] {name}, музыка закончила своё проигрывание'))
+    voice.source = discord.PCMVolumeTransformer(voice.source)
+    voice.source.volume = 0.07
+    song_name = name.rsplit('-', 2)
+    await ctx.send(f'Сейчас играет {song_name[0]}')
+    
+@Bot.command()
 async def join(ctx):
+    global voice
     channel = ctx.message.author.voice.channel
-    if not channel:
-        await ctx.send("You are not connected to a voice channel")
-        return
-    voice = get(bot.voice_clients, guild=ctx.guild)
+    voice = get(Bot.voice_clients, guild = ctx.guild)
     if voice and voice.is_connected():
         await voice.move_to(channel)
     else:
         voice = await channel.connect()
-    await voice.disconnect()
-    if voice and voice.is_connected():
-        await voice.move_to(channel)
-    else:
-        voice = await channel.connect()
-    await ctx.send(f"Joined {channel}")
-
+        await ctx.send(f'Я присоединился к {channel}')
+        
 @Bot.command()
 async def leave(ctx):
     channel = ctx.message.author.voice.channel
-    voice = get(bot.voice_clients, guild=ctx.guild)
+    voice = get(Bot.voice_clients, guild = ctx.guild)
     if voice and voice.is_connected():
         await voice.disconnect()
-        await ctx.send(f"Left {channel}")
     else:
-        await ctx.send("Don't think I am in a voice channel")
-
-@Bot.command()
-async def play(ctx, url: str):
-    song_there = os.path.isfile("song.mp3")
-    try:
-        if song_there:
-            os.remove("song.mp3")
-    except PermissionError:
-        await ctx.send("Wait for the current playing music end or use the 'stop' command")
-        return
-    await ctx.send("Getting everything ready, playing audio soon")
-    print("Someone wants to play music let me get that ready for them...")
-    voice = get(bot.voice_clients, guild=ctx.guild)
-    ydl_opts = {
-        'format': 'bestaudio/best',
-        'postprocessors': [{
-            'key': 'FFmpegExtractAudio',
-            'preferredcodec': 'mp3',
-            'preferredquality': '192',
-        }],
-    }
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        ydl.download([url])
-    for file in os.listdir("./"):
-        if file.endswith(".mp3"):
-            os.rename(file, 'song.mp3')
-    voice.play(discord.FFmpegPCMAudio("song.mp3"))
-    voice.volume = 100
-    voice.is_playing()
-
-
+        voice = await channel.connect()
+        await ctx.send(f'Я отключился от {channel}')
+        
+        
+        
 #помощь user
 
 @Bot.command()
