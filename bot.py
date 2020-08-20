@@ -51,27 +51,6 @@ async def on_command_error(ctx, error):
 
 @Bot.event
 async def on_message(message):
-
-    #система опыта при отправке сообщений
-    with open('lvl.json', 'r') as f:
-        users= json.load(f)
-    async def update_data(users, user):
-        if not user in users:
-            users[user] = {}
-            users[user]['exp'] = 0
-    async def add_exp(users, user, exp):
-        users[user]['exp'] += exp
-    await update_data(users, str(message.author.id))
-    await add_exp(users, str(message.author.id), 0.001)
-    async def add_role(users, user):
-        exper = users[user]['exp']
-        max_exper = 50
-        if exper > max_exper:
-            await message.channel.send(f'{message.author.mention} апнул свой уровень! Выдайте ему роль `@Cyber`!')
-    await add_role(users, str(message.author.id))
-    with open('lvl.json', 'w') as f:
-        json.dump(users, f)
-
     #фильтрация чата и отправка нарушителя в спец. чат
     channel = Bot.get_channel(644599042869035019)
     author = message.author
