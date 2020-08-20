@@ -143,7 +143,7 @@ async def leave(ctx):
         
 #помощь user
 
-@Bot.command()
+@Bot.command(aliases=['h'])
 async def help(ctx):
     author = ctx.message.author
     channel1 = Bot.get_channel(526099119874375710)
@@ -177,7 +177,7 @@ async def help(ctx):
 
 #не, ну это бан!
 
-@Bot.command()
+@Bot.command(aliases=['p', 'pzdc'])
 async def pizdec(ctx):
     await ctx.message.delete()
     await ctx.send(':regional_indicator_p: :regional_indicator_i: :regional_indicator_z: :regional_indicator_d: :regional_indicator_e: :regional_indicator_c:')
@@ -197,7 +197,7 @@ async def author(ctx):
     message = await ctx.send(embed=emb)
     await message.add_reaction('☝')
 
-@Bot.command()
+@Bot.command(aliases=['git', 'GitHub'])
 async def github(ctx):
     embed=discord.Embed(color=0x4ace40, title= 'GitHub разработчика:')
     embed.set_image(url = 'https://i.ibb.co/j42cxmr/qr-code.png')
@@ -207,7 +207,7 @@ async def github(ctx):
 
 #помощь admin
 
-@Bot.command()
+@Bot.command(aliases=['ha'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "dmoder", "moder")
 async def help_adm(ctx):
     await ctx.message.delete()
@@ -234,7 +234,7 @@ async def help_adm(ctx):
 
 #попугайчик
 
-@Bot.command()
+@Bot.command(aliases=['repeat'])
 async def say(ctx,  *, arg):
     await ctx.message.delete()
     await ctx.send(arg)
