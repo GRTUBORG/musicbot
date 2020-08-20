@@ -31,7 +31,7 @@ bad_words = ['сервер говно', 'бот говно', 'админы го�
 @Bot.event
 async def on_ready():
     await Bot.change_presence(activity= discord.Activity(type= discord.ActivityType.watching, name= "за Dark Neon City 👀"))
-    print("Бот в онлайне! Радуйся!")
+    print("Бот в онлайне!")
 
 
 
