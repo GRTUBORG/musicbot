@@ -14,9 +14,6 @@ from Cybernator import Paginator as pag
 from discord import Spotify
 
 
-#ссылка на него же - яндекс.диск: https://yadi.sk/d/osZvfRlApkFIGA
-
-
 players = {}
 
 
@@ -73,6 +70,8 @@ async def spotify(ctx, user: discord.Member = None):
         if isinstance(activity, Spotify):
             await ctx.send(f"{user} слушает {activity.title}, by {activity.artist}")
 
+            
+            
 #актуальная версия бота
 
 @Bot.command(aliases = ['v'])
@@ -484,6 +483,7 @@ async def length(ctx):
     await ctx.send(embed = embed)
 
 
+    
 #отправка личных сообщений
 
 @Bot.command()
@@ -493,10 +493,6 @@ async def message(ctx, member: discord.Member, *, arg):
     emb = discord.Embed(title = 'Личное сообщение', description = f'*Тебе сообщение с сервера Dark Neon City от* {author.mention}: ' + arg, color = 0x4ace40)
     emb.set_footer(text = "supports by quantprod")
     message = await member.send(embed = emb)
-
-
-
-#коннект к каналу
 
 
 
