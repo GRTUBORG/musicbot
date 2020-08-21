@@ -38,7 +38,6 @@ async def on_ready():
 
 @Bot.event
 async def on_member_join(member):
-    role1 = discord.utils.get(message.guild.roles, name = 'Unit')
     role = discord.utils.get(member.guild.roles, name = 'Unit')  # САМА РОЛЬ КОТОРУЮ ВЫДАЕМ
     await member.add_roles(role) # ДОБАВЛЯЕМ РОЛЬ
     channel1 = Bot.get_channel(526099119874375710) #правила
@@ -51,7 +50,7 @@ async def on_member_join(member):
     embed.add_field(name = "Приветственное сообщение", value = "Добро пожаловать в Dark Neon City!\n"
     f"Перед тем, как пользоваться сервером, прочитай {channel1.mention}. Это обязательно, а то атата!)\n"
     '\n'
-    f'Тебе дана роль {role1.mention}, поэтому, пока что, тебе доступны не все функции сервера. Но ты можешь участвовать в ивентах, чтобы повысить свой ранг!\n'
+    f'Тебе дана роль {role}, поэтому, пока что, тебе доступны не все функции сервера. Но ты можешь участвовать в ивентах, чтобы повысить свой ранг!\n'
     '\n'
     "Для тебя открыты все комнаты в доме unit'ов, выбирай любую которая не занята, зови друзей на сервер и наслаждайтесь общением благодаря качественной связи!\n"
     '\n'
