@@ -50,7 +50,7 @@ async def on_member_join(member):
     embed.add_field(name = "Приветственное сообщение", value = "Добро пожаловать в Dark Neon City!\n"
     f"Перед тем, как пользоваться сервером, прочитай {channel1.mention}. Это обязательно, а то атата!)\n"
     '\n'
-    f"Тебе дана роль `@Unit`, поэтому, пока что, тебе доступны не все функции сервера. Но ты можешь участвовать в ивентах, чтобы повысить свой ранг!\n"
+    'Тебе дана роль @Unit, поэтому, пока что, тебе доступны не все функции сервера. Но ты можешь участвовать в ивентах, чтобы повысить свой ранг!\n'
     '\n'
     "Для тебя открыты все комнаты в доме unit'ов, выбирай любую которая не занята, зови друзей на сервер и наслаждайтесь общением благодаря качественной связи!\n"
     '\n'
@@ -122,9 +122,26 @@ async def version(ctx):
     await ctx.send(embed = embed)
 #==============================================================#
 
-@Bot.command()
-async def test(ctx):
-    await ctx.send('@here')
+
+
+#КАКОЙ-ТО КОД, Я БЕЗ ПОНЯТИЯ О ЧЁМ ОН))
+
+@Bot.command(aliases = ['miss'])
+async def missing(ctx, channel : str = None, useDiscordID : bool = False):
+    memberlist = []
+    for member in message.guild.members:
+        toAppend = ''
+        if "barcode" in [y.name.lower() for y in member.roles]:
+            if member.nick is None:
+                toAppend = member.name
+           else:
+                toAppend = member.nick
+            if useDiscordID:
+                toAppend = f'{str(member)} : {toAppend}'
+            memberlist.append(toAppend)
+#==============================================================#
+
+
 
 #МУЗЫКА С ЮТУБА
 
