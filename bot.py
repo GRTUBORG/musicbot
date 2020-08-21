@@ -30,7 +30,7 @@ bad_words = ['сервер говно', 'бот говно', 'админы го�
 
 @Bot.event
 async def on_ready():
-    await Bot.change_presence(activity= discord.Activity(type= discord.ActivityType.watching, name= "за Dark Neon City 👀"))
+    await Bot.change_presence(activity = discord.Activity(type= discord.ActivityType.watching, name = "за Dark Neon City 👀"))
     print("Бот в онлайне!")
 
 
@@ -46,8 +46,8 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         author = ctx.message.author
         embed=discord.Embed(color = 0x4ace40)
-        embed.add_field(name= 'Ошибка выполнения команды!', value= f':x: *Внимание, {author.mention}! Данной команды __не существует__, либо у Вас __нет прав__ на её использование!*')
-        embed.set_footer(text="supports by quantprod")
+        embed.add_field(name = 'Ошибка выполнения команды!', value = f':x: *Внимание, {author.mention}! Данной команды __не существует__, либо у Вас __нет прав__ на её использование!*')
+        embed.set_footer(text = "supports by quantprod")
         await ctx.send(embed = embed)
 
 @Bot.event
@@ -59,13 +59,15 @@ async def on_message(message):
     msg = message.content.lower()
     if msg in bad_words:
         await message.delete()
-        emb = discord.Embed(title="Замечено оскорбление!", description= f'Прошу дать по попе {author.mention}', color=0x4ace40)
-        message = await channel.send(embed=emb)
+        emb = discord.Embed(title = "Замечено оскорбление!", description = f'Прошу дать по попе {author.mention}', color = 0x4ace40)
+        message = await channel.send(embed = emb)
      
+    
+   
 #spootify, кто что слушает
 
-@Bot.command(aliases=['spot', 's'])
-async def spotify(ctx, user: discord.Member=None):
+@Bot.command(aliases = ['spot', 's'])
+async def spotify(ctx, user: discord.Member = None):
     user = user or ctx.author
     for activity in user.activities:
         if isinstance(activity, Spotify):
@@ -73,17 +75,17 @@ async def spotify(ctx, user: discord.Member=None):
 
 #актуальная версия бота
 
-@Bot.command(aliases=['v'])
+@Bot.command(aliases = ['v'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
 async def version(ctx):
-    emb = discord.Embed(title="Актуальная версия бота", description= '__Апдейт был 19.08.2020 до v. 2.4__. \n' 'Исправлен вывод команды `/help`. Теперь она представлена как некая "книга". \n **Посмотрите!**', color=0x4ace40)
-    await ctx.send(embed=emb)
+    emb = discord.Embed(title = "Актуальная версия бота", description= '__Апдейт был 21.08.2020 до v. 2.6__. \n' 'Добавлены сокращения к командам. \n **Посмотрите, вызвав команду `/help`, или же `/h`!**', color=0x4ace40)
+    await ctx.send(embed = emb)
 
 
 
 #музыка с ютуба
 
-@Bot.command(aliases=['p'])
+@Bot.command(aliases = ['p'])
 async def play(ctx, url):
     song_there = os.path.isfile('song.mp3')
     try:
@@ -143,11 +145,11 @@ async def leave(ctx):
         
 #помощь user
 
-@Bot.command(aliases=['h'])
+@Bot.command(aliases = ['h'])
 async def help(ctx):
     author = ctx.message.author
     channel1 = Bot.get_channel(526099119874375710)
-    embed1= discord.Embed(title= 'Помощь, страница 1', description= f'Йо, {author.mention}! Держи список команд:\n'
+    embed1 = discord.Embed(title = 'Помощь, страница 1', description = f'Йо, {author.mention}! Держи список команд:\n'
                         '\n'
                         '`/spotify [@пользователь]` - узнай, что слушает юзер в данный момент, введя лишь одну команду\n'
                         '*сокращения/синонимы*: `/spot`, `/s`\n'
@@ -160,7 +162,7 @@ async def help(ctx):
                         '**ВНИМАНИЕ! Числа нужно вводить ЧЕРЕЗ пробел:**\n'
                         '__ввели__ `/math 3 4`, __вывод дал Embed с операциями__;\n'
                         )
-    embed2= discord.Embed(title= 'Помощь, cтраница 2', description=
+    embed2 = discord.Embed(title = 'Помощь, cтраница 2', description =
                         '`/length [строка]` - узнать длину строки\n'
                         '*сокращения/синонимы*: `/len`;\n'
                         '\n'
@@ -173,7 +175,7 @@ async def help(ctx):
                         '`/say [ваш текст]` - бот повторит за вами всё то, что вы ему напишете\n'
                         '*сокращения/синонимы*: `/repeat`;\n'
                         )
-    embed3= discord.Embed(title= 'Помощь, страница 3', description= 
+    embed3 = discord.Embed(title = 'Помощь, страница 3', description = 
                         '`/hello` - ну-ка быстро посмотри :)\n'
                         '\n'
                         '`/info [@пользователь]` - узнай регистрацию пользователя!;\n'
@@ -181,7 +183,8 @@ async def help(ctx):
                         '`/message [@пользователь] [текст сообщения]` - отправка сообщения любому юзеру с помощью бота;\n'
                         '\n'
                         '`/ping` - проверка скорости реакции бота;\n')
-    embed4= discord.Embed(title= 'Помощь, страница 4, beta-команды', description='`/join` - для использования данной команды Вы должны зайти в гс канал\n'
+    embed4 = discord.Embed(title = 'Помощь, страница 4, beta-команды', description = 
+                        '`/join` - для использования данной команды Вы должны зайти в гс канал\n'
                         '*сокращения/синонимы*: `/j`;\n'
                         '\n'
                         '`/play [ссылка на видео из ютуб]` - проигрывание звуковой дорожки из видео\n'
@@ -189,16 +192,18 @@ async def help(ctx):
                         '\n'
                         '`/leave` - кикает бота с гс канала, для использования, Вы должны быть в канале с ботом\n'
                         '*сокращения/синонимы*: `/l`;\n')
-    embeds= [embed1, embed2, embed3, embed4]
-    message= await ctx.send(embed=  embed1)
-    page = pag(Bot, message, only= ctx.author, use_more= False, timeout= 1*3600, embeds= embeds)
+    embed5 = discord.Embed(title = 'Помощь, страница 4, команды в стадии разработки', description = 
+                        '*пока таких команд нет, ожидайте выходов новых обновлений бота*')
+    embeds = [embed1, embed2, embed3, embed4, embed5]
+    message = await ctx.send(embed =  embed1)
+    page = pag(Bot, message, only = ctx.author, use_more = False, timeout = 1*3600, embeds = embeds)
     await page.start()
 
 
 
 #не, ну это бан!
 
-@Bot.command(aliases=['pzdc'])
+@Bot.command(aliases = ['pzdc'])
 async def pizdec(ctx):
     await ctx.message.delete()
     await ctx.send(':regional_indicator_p: :regional_indicator_i: :regional_indicator_z: :regional_indicator_d: :regional_indicator_e: :regional_indicator_c:')
@@ -210,17 +215,17 @@ async def pizdec(ctx):
 @Bot.command()
 async def author(ctx):
     await ctx.message.delete()
-    emb = discord.Embed(title=f'Авторы:',
-                        description='**Разработчик:** https://vk.com/d.blinov79\n'
+    emb = discord.Embed(title = f'Авторы:',
+                        description = '**Разработчик:** https://vk.com/d.blinov79\n'
                         '**С подачи:** https://vk.com/code_authora_174',
-                        color=0x4ace40)
+                        color = 0x4ace40)
     emb.set_footer(text="supports by quantprod")
     message = await ctx.send(embed=emb)
     await message.add_reaction('☝')
 
-@Bot.command(aliases=['git', 'GitHub'])
+@Bot.command(aliases = ['git', 'GitHub'])
 async def github(ctx):
-    embed=discord.Embed(color=0x4ace40, title= 'GitHub разработчика:')
+    embed = discord.Embed(color = 0x4ace40, title = 'GitHub разработчика:')
     embed.set_image(url = 'https://i.ibb.co/j42cxmr/qr-code.png')
     await ctx.send(embed = embed)
 
@@ -228,63 +233,64 @@ async def github(ctx):
 
 #помощь admin
 
-@Bot.command(aliases=['ha'])
+@Bot.command(aliases = ['ha'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "dmoder", "moder")
 async def help_adm(ctx):
     await ctx.message.delete()
     channel1 = Bot.get_channel(526099119874375710)
     author = ctx.message.author
-    emb = discord.Embed(title='Команды для администрации', description= f'Привет, {author.mention}! Вот список команд, доступных тебе:\n'
-    'Все команды юзеров, плюс команды администрации, такие как:\n'
-    '\n'
-    '`/clear [количество сообщений]` - очистка канала (полностью);\n'
-    '`/say [сообщение, которое нужно повторить]` - "повторитель" всего и вся на свете;\n'
-    '`/clear_member [@пользователь]` - очистка сообщений конкретного пользователя;\n'
-    '`/kick [@пользователь]` - кик пользователя;\n'
-    '`/court [@пользователь] [время в секундах]` - выдача роли подсудимого;\n'
-    '`/tempban [@пользователь] [время в секундах] [причина]` - временный бан пользователя;\n'
-    '`/ban [@пользователь] [причина]` - перма нафиг!\n'
-    '`/mute [@пользователь] [время]` - мут пользователя \n'
-    '\n'
-    f'Кстати говоря, советую ознакомиться с правилами: {channel1.mention}', 
-    color=0x4ace40)
-    emb.set_footer(text="supports by quantprod")
-    message = await ctx.author.send(embed=emb)
+    emb = discord.Embed(title = 'Команды для администрации', description = 
+                        f'Привет, {author.mention}! Вот список команд, доступных тебе:\n'
+                        'Все команды юзеров, плюс команды администрации, такие как:\n'
+                        '\n'
+                        '`/clear [количество сообщений]` - очистка канала (полностью);\n'
+                        '`/say [сообщение, которое нужно повторить]` - "повторитель" всего и вся на свете;\n'
+                        '`/clear_member [@пользователь]` - очистка сообщений конкретного пользователя;\n'
+                        '`/kick [@пользователь]` - кик пользователя;\n'
+                        '`/court [@пользователь] [время в секундах]` - выдача роли подсудимого;\n'
+                        '`/tempban [@пользователь] [время в секундах] [причина]` - временный бан пользователя;\n'
+                        '`/ban [@пользователь] [причина]` - перма нафиг!\n'
+                        '`/mute [@пользователь] [время]` - мут пользователя \n'
+                        '\n'
+                        f'Кстати говоря, советую ознакомиться с правилами: {channel1.mention}', 
+                        color = 0x4ace40)
+    emb.set_footer(text = "supports by quantprod")
+    message = await ctx.author.send(embed = emb)
 
 
 
 #попугайчик
 
-@Bot.command(aliases=['repeat'])
+@Bot.command(aliases = ['repeat'])
 async def say(ctx,  *, arg):
     await ctx.message.delete()
     await ctx.send(arg)
 
 
-
+ 
 #математика (простые операции)
 
 @Bot.command() 
 async def math(ctx,  a:  int,  b:  int): 
-    embed= discord.Embed(title= "Простая математика", color= 0x4ace40)
-    embed.add_field(name= "Сумма: ", value= a + b, inline=False)
-    embed.add_field(name= "Разность: ", value= a - b, inline=False)
-    embed.add_field(name= "Деление: ", value= a / b, inline=False)
-    embed.add_field(name= "Умножение: ", value= a * b, inline=False)
-    embed.set_footer(text= "supports by quantprod")
-    await ctx.send(embed= embed)
+    embed= discord.Embed(title = "Простая математика", color = 0x4ace40)
+    embed.add_field(name = "Сумма: ", value= a + b, inline = False)
+    embed.add_field(name = "Разность: ", value= a - b, inline = False)
+    embed.add_field(name = "Деление: ", value= a / b, inline = False)
+    embed.add_field(name = "Умножение: ", value= a * b, inline = False)
+    embed.set_footer(text = "supports by quantprod")
+    await ctx.send(embed = embed)
   
 
 
 #информация о юзере
 
-@Bot.command(aliases=['i', 'information'])
+@Bot.command(aliases = ['i', 'information'])
 async def info(ctx, member: discord.Member):
-    embed=discord.Embed(title= "Info", color=0x4ace40)
-    embed.add_field(name= "❓ Когда присоединился: ", value= member.joined_at)
-    embed.add_field(name= "❓ Имя юзера: ", value= member.display_name)
-    embed.set_footer(text= "supports by quantprod")
-    await ctx.send(embed= embed)
+    embed = discord.Embed(title = "Info", color = 0x4ace40)
+    embed.add_field(name = "❓ Когда присоединился: ", value = member.joined_at)
+    embed.add_field(name = "❓ Имя юзера: ", value = member.display_name)
+    embed.set_footer(text = "supports by quantprod")
+    await ctx.send(embed = embed)
 
 
 
@@ -294,21 +300,21 @@ async def info(ctx, member: discord.Member):
 async def hello(ctx):
     await ctx.message.delete()
     author = ctx.message.author
-    emb = discord.Embed(title= 'Dark Neon City', description= f'👋 Привет, {author.mention}! Рад видеть тебя на Dark Neon City!', color=0x4ace40)
-    emb.set_footer(text= "supports by quantprod")
-    message = await ctx.send(embed= emb)
+    emb = discord.Embed(title = 'Dark Neon City', description = f'👋 Привет, {author.mention}! Рад видеть тебя на Dark Neon City!', color = 0x4ace40)
+    emb.set_footer(text = "supports by quantprod")
+    message = await ctx.send(embed = emb)
 
 
 
 #удаление сообщений
 
-@Bot.command(aliases=['cm'])
+@Bot.command(aliases = ['c_m'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
 async def clear_member(ctx, user: discord.Member, amount = 15):
     await ctx.message.delete()
-    await ctx.channel.purge(limit = amount, check=lambda m: m.author==user)
+    await ctx.channel.purge(limit = amount, check = lambda m: m.author == user)
     author = ctx.message.author
-    await ctx.send(embed = discord.Embed(description = f'✅ {author.mention}, *удаление сообщений юзера прошло успешно!*', color=0x4ace40))
+    await ctx.send(embed = discord.Embed(description = f'✅ {author.mention}, *удаление сообщений юзера прошло успешно!*', color = 0x4ace40))
 
 @Bot.command(aliases=['c'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
@@ -316,7 +322,7 @@ async def clear(ctx, amount = 30):
     await ctx.message.delete()
     await ctx.channel.purge(limit = amount)
     author = ctx.message.author
-    await ctx.send(embed = discord.Embed(description = f'✅ {author.mention}, *удаление сообщений прошло успешно!*', color=0x4ace40))
+    await ctx.send(embed = discord.Embed(description = f'✅ {author.mention}, *удаление сообщений прошло успешно!*', color = 0x4ace40))
 
 
 
@@ -324,7 +330,7 @@ async def clear(ctx, amount = 30):
 
 @Bot.event
 async def on_member_join(member):
-    role = discord.utils.get(member.guild.roles, name='Unit') # САМА РОЛЬ КОТОРУЮ ВЫДАЕМ
+    role = discord.utils.get(member.guild.roles, name = 'Unit') # САМА РОЛЬ КОТОРУЮ ВЫДАЕМ
     await member.add_roles(role) # ДОБАВЛЯЕМ РОЛЬ
     channel1 = Bot.get_channel(526099119874375710) #правила
     channel2 = Bot.get_channel(528281293306462248) #смскер
@@ -332,8 +338,8 @@ async def on_member_join(member):
     channel4 = Bot.get_channel(541231102333943832) #news
     channel5 = Bot.get_channel(741002854898073660) #доска-почёта
     channel6 = Bot.get_channel(733727409672683550) #предложения
-    embed=discord.Embed(color=0x4ace40)
-    embed.add_field(name="Приветственное сообщение", value="Добро пожаловать в Dark Neon City!\n"
+    embed = discord.Embed(color = 0x4ace40)
+    embed.add_field(name = "Приветственное сообщение", value = "Добро пожаловать в Dark Neon City!\n"
     f"Перед тем, как пользоваться сервером, прочитай {channel1.mention}. Это обязательно, а то атата!)\n"
     '\n'
     f"Тебе дана роль `@Unit`, поэтому, пока что, тебе доступны не все функции сервера. Но ты можешь участвовать в ивентах, чтобы повысить свой ранг!\n"
@@ -351,23 +357,23 @@ async def on_member_join(member):
     f"Так же можешь подкинуть идеи в {channel6.mention}\n"
     '\n'
     "С наилучшими пожеланиями, администрация сервера!")
-    embed.set_footer(text="supports by quantprod")
-    await member.send(embed=embed)
+    embed.set_footer(text = "supports by quantprod")
+    await member.send(embed = embed)
 
 
 
 #кик пользователя
 
-@Bot.command(aliases=['k'])
+@Bot.command(aliases = ['k'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
 async def kick(ctx, member: discord.Member, *, reason = None):
     channel = Bot.get_channel(526464840672346112) #логи
     author = ctx.message.author
     await ctx.message.delete()
     await member.kick(reason = reason)
-    embed = discord.Embed(title= "Кик", description = f"✅ Пользователь {member.mention} был успешно кикнут пользователем {author.mention}", color=0x4ace40)
-    embed.set_footer(text= "supports by quantprod")
-    await ctx.send(embed= embed)
+    embed = discord.Embed(title = "Кик", description = f"✅ Пользователь {member.mention} был успешно кикнут пользователем {author.mention}", color = 0x4ace40)
+    embed.set_footer(text = "supports by quantprod")
+    await ctx.send(embed = embed)
     await channel.send(f'{author.mention} **кикнул пользователя** {member.mention} **по причине:** {reason}.')
 
 
@@ -379,21 +385,21 @@ async def kick(ctx, member: discord.Member, *, reason = None):
 async def court(ctx, member: discord.Member):
     channel = Bot.get_channel(526464840672346112) #логи
     author = ctx.message.author
-    role = discord.utils.get(ctx.guild.roles, name="urole0")
+    role = discord.utils.get(ctx.guild.roles, name = "urole0")
     await ctx.message.delete()
     await member.add_roles(role)
-    embed = discord.Embed(title= "Суд", description= f'✅ Пользователь {author.mention} выдал {member.mention} роль подсудимого! Кто-то скоро пойдёт на суд :)', color=0x4ace40)
-    message = await ctx.send(embed= embed)
+    embed = discord.Embed(title = "Суд", description= f'✅ Пользователь {author.mention} выдал {member.mention} роль подсудимого! Кто-то скоро пойдёт на суд :)', color = 0x4ace40)
+    message = await ctx.send(embed = embed)
     await channel.send(f'{author.mention} **выдал роль подсудимого юзеру** {member.mention}.')
 
 
 
 #аватарка
 
-@Bot.command(aliases=['ava'])
+@Bot.command(aliases = ['ava'])
 async def avatar(ctx, *,  avamember: discord.Member):
     userAvatarUrl = avamember.avatar_url
-    embed = discord.Embed(description= f"Аватарка пользователя {avamember.mention}", color=0x4ace40)
+    embed = discord.Embed(description = f"Аватарка пользователя {avamember.mention}", color = 0x4ace40)
     embed.set_image(url = userAvatarUrl)
     await ctx.send(embed = embed)
 
@@ -401,43 +407,43 @@ async def avatar(ctx, *,  avamember: discord.Member):
 
 #бан и мут пользователя
 
-@Bot.command(aliases=['tb'])
+@Bot.command(aliases = ['tb'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "dmoder", "moder")
 async def tempban(ctx, user: discord.User, duration: int, *, reason= None):
     channel = Bot.get_channel(526464840672346112) #логи
     author = ctx.message.author
     await ctx.message.delete()
     await ctx.guild.ban(user)
-    emb = discord.Embed(title= "Временный бан", description= f"{author.mention} забанил {user.mention}", color= 0x4ace40)
-    emb.add_field(name= "Срок бана (в часах):", value= duration)
-    emb.add_field(name= "По причине:", value= reason)
-    emb.set_footer(text= "supports by quantprod")
-    await ctx.send(embed= emb)
+    emb = discord.Embed(title = "Временный бан", description = f"{author.mention} забанил {user.mention}", color = 0x4ace40)
+    emb.add_field(name = "Срок бана (в часах):", value = duration)
+    emb.add_field(name = "По причине:", value = reason)
+    emb.set_footer(text = "supports by quantprod")
+    await ctx.send(embed = emb)
     await channel.send(f'{author.mention} **выдал временный бан** {user.mention}.')
     await asyncio.sleep(duration)
     await ctx.guild.unban(user)
     embed = discord.Embed(title= "Временный бан", description= f'Пользователь {user.mention} был выпущен из тюрьмы, просьба отправить ему приглашение на сервер (просто он инвалид и сам не может присоединиться)!\n'
-      'https://discord.gg/rjMDwaB', color= 0x4ace40)
-    embed.set_footer(text= "supports by quantprod")
-    await ctx.send(embed= embed)
+      'https://discord.gg/rjMDwaB', color = 0x4ace40)
+    embed.set_footer(text = "supports by quantprod")
+    await ctx.send(embed = embed)
 
 @tempban.error
 async def tempban_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         await ctx.send('Вы забыли указать аргумент!')
 
-@Bot.command(aliases=['b'])
+@Bot.command(aliases = ['b'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
-async def ban(ctx, member: discord.Member, *, reason= None):
+async def ban(ctx, member: discord.Member, *, reason = None):
     channel = Bot.get_channel(526464840672346112) #логи
-    await member.ban(reason= reason)
+    await member.ban(reason = reason)
     await ctx.message.delete()
     author = ctx.message.author
-    emb = discord.Embed(description= f'{author.mention} выдал {member.mention} перманент', color=0x4ace40)
-    emb.add_field(name= "Причина:", value= reason, inline = False)
-    emb.add_field(name= "Суд:", value= "см. причину", inline = False)
-    emb.set_footer(text= "supports by quantprod")
-    await ctx.send(embed= emb)
+    emb = discord.Embed(description = f'{author.mention} выдал {member.mention} перманент', color= 0x4ace40)
+    emb.add_field(name = "Причина:", value = reason, inline = False)
+    emb.add_field(name = "Суд:", value = "см. причину", inline = False)
+    emb.set_footer(text = "supports by quantprod")
+    await ctx.send(embed = emb)
     await channel.send(f'{author.mention} **выдал перманентный бан** {member.mention}. **Причина и суд:** {reason}')
 
 @ban.error
@@ -445,7 +451,7 @@ async def ban_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         await ctx.send('Вы забыли указать аргумент!')
 
-@Bot.command(aliases=['m'])
+@Bot.command(aliases = ['m'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "dmoder", "moder")
 async def mute(ctx, member: discord.Member, duration: int):
     author = ctx.message.author
@@ -454,12 +460,12 @@ async def mute(ctx, member: discord.Member, duration: int):
     await ctx.message.delete()
     await member.add_roles(role)
     await channel.send(f'{author.mention} **выдал мут** {member.mention}. **Время:** {duration} час')
-    emb = discord.Embed(description= f'*Пользователь {member.mention} был успешно замучен!*', color=0x4ace40)
-    await ctx.send(embed= emb)
+    emb = discord.Embed(description= f'*Пользователь {member.mention} был успешно замучен!*', color = 0x4ace40)
+    await ctx.send(embed = emb)
     await asyncio.sleep(duration * 3600)
     await member.remove_roles(role)
-    emb = discord.Embed(description= f'*Пользователь {member.mention} был успешно размучен! Напомните ему об этом :)*', color=0x4ace40)
-    await ctx.send(embed= emb)
+    emb = discord.Embed(description= f'*Пользователь {member.mention} был успешно размучен! Напомните ему об этом :)*', color = 0x4ace40)
+    await ctx.send(embed = emb)
 
 @mute.error
 async def mute_error(ctx, error):
@@ -470,12 +476,12 @@ async def mute_error(ctx, error):
 
 #узнать длину строки (сообщения)
 
-@Bot.command(aliases=['len']) 
+@Bot.command(aliases = ['len']) 
 async def length(ctx): 
-    embed= discord.Embed(color=0x4ace40)
-    embed.add_field(name="Длина твоего сообщения вместе с командой равна:", value= '{}'.format(len(ctx.message.content)))
-    embed.set_footer(text= "supports by quantprod")
-    await ctx.send(embed= embed)
+    embed = discord.Embed(color = 0x4ace40)
+    embed.add_field(name = "Длина твоего сообщения вместе с командой равна:", value = '{}'.format(len(ctx.message.content)))
+    embed.set_footer(text = "supports by quantprod")
+    await ctx.send(embed = embed)
 
 
 #отправка личных сообщений
@@ -484,9 +490,9 @@ async def length(ctx):
 async def message(ctx, member: discord.Member, *, arg):
     await ctx.message.delete()
     author = ctx.message.author
-    emb = discord.Embed(title= 'Личное сообщение', description= f'*Тебе сообщение с сервера Dark Neon City от* {author.mention}: ' + arg, color=0x4ace40)
-    emb.set_footer(text="supports by quantprod")
-    message = await member.send(embed= emb)
+    emb = discord.Embed(title = 'Личное сообщение', description = f'*Тебе сообщение с сервера Dark Neon City от* {author.mention}: ' + arg, color = 0x4ace40)
+    emb.set_footer(text = "supports by quantprod")
+    message = await member.send(embed = emb)
 
 
 
@@ -499,9 +505,9 @@ async def message(ctx, member: discord.Member, *, arg):
 @Bot.command()
 async def ping(ctx: commands.Context):
     author = ctx.message.author
-    emb = discord.Embed(title='Pong!', description= f'{author.mention} ''`{0}`'.format(round(Bot.latency, 1)), color=0x4ace40) 
-    emb.set_footer(text="supports by quantprod")
-    message = await ctx.send(embed=emb)
+    emb = discord.Embed(title ='Pong!', description = f'{author.mention} ''`{0}`'.format(round(Bot.latency, 1)), color = 0x4ace40) 
+    emb.set_footer(text = "supports by quantprod")
+    message = await ctx.send(embed = emb)
     await message.add_reaction('👌')
 
 
