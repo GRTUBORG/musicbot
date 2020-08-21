@@ -179,18 +179,14 @@ async def leave(ctx):  #КОМАНДА LEAVE БОТА ИЗ ГС КАНАЛА
         await ctx.send(f'Я отключился от {channel}')
 
 @Bot.command()
-async def stop(ctx):
+async def pause(ctx):
     voice = get(Bot.voice_clients, guild = ctx.guild)   
     if voice and voice.is_playing():
-        voice.stop()
+        voice.pause()
         await ctx.send("Музыка приостановлена...")
     else:
-        await ctx.send("Нет музыки для паузы :(")
-
-@Bot.command()
-async def start(ctx):
-    voice = get(Bot.voice_clients, guild = ctx.guild)
-    voice.resume()        
+        voice.resume()
+        await ctx.send("Продолжайте наслаждаться Вашей музыкой :)")      
 #==============================================================#
         
         
@@ -235,7 +231,7 @@ async def help(ctx):
                         '`/message [@пользователь] [текст сообщения]` - отправка сообщения любому юзеру с помощью бота;\n'
                         '\n'
                         '`/ping` - проверка скорости реакции бота;\n')
-    embed4 = discord.Embed(title = 'Помощь, страница 4, beta-команды', description = 
+    embed4 = discord.Embed(title = 'Помощь, страница 4', description = 
                         '`/join` - для использования данной команды Вы должны зайти в гс канал\n'
                         '*сокращения/синонимы*: `/j`;\n'
                         '\n'
@@ -244,6 +240,7 @@ async def help(ctx):
                         '\n'
                         '`/leave` - кикает бота с гс канала, для использования, Вы должны быть в канале с ботом\n'
                         '*сокращения/синонимы*: `/l`;\n')
+                        '`/pause` - пауза текущей песни, повторное использование возобновляет аудио.'
     embed5 = discord.Embed(title = 'Помощь, страница 4, команды в стадии разработки', description = 
                         '*пока таких команд нет, ожидайте выходов новых обновлений бота*')
     embeds = [embed1, embed2, embed3, embed4, embed5]
