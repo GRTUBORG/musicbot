@@ -134,9 +134,8 @@ async def play(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВ
         if song_there:
             os.remove('song.mp3')
             print('[logs] Старый файл успешно удалён')
-    except PermissionError:
-        print('[logs] Не удалось удалить файл') 
-    await ctx.send('Минуточку ожидания')
+    except PermissionError: 
+    await ctx.send('Минуточку ожидания...')
     voice = get(Bot.voice_clients, guild = ctx.guild)
     ydl_opts = {
         'format' : 'bestaudio/best',
@@ -152,14 +151,10 @@ async def play(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВ
     for file in os.listdir('./'):
         if file.endswith('.mp3'):
             name = file
-            print(f'[logs] Создаю новое название файлу {file}')
-            os.rename(file, 'song.mp3')
-    
+            os.rename(file, 'song.mp3') 
     voice.play(discord.FFmpegPCMAudio('song.mp3'), after = lambda e: print(f'[logs] {name}, музыка закончила своё проигрывание'))
-    
     nname = name.rsplit("-", 2)
-    await ctx.send(f"We play: {nname[0]}")
-    print("playing\n")
+    await ctx.send(f"Сейчас играет: {nname[0]}")
     
 @Bot.command(aliases = ['j', 'JOIN'])
 async def join(ctx):  #КОМАНДА ПОДКЛЮЧЕНИЯ БОТА К ГС КАНАЛУ
