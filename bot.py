@@ -42,7 +42,7 @@ async def on_command_error(ctx, error):
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         author = ctx.message.author
-        embed=discord.Embed(color = 0x4ace40)
+        embed = discord.Embed(color = 0x4ace40)
         embed.add_field(name = 'Ошибка выполнения команды!', value = f':x: *Внимание, {author.mention}! Данной команды __не существует__, либо у Вас __нет прав__ на её использование!*')
         embed.set_footer(text = "supports by quantprod")
         await ctx.send(embed = embed)
@@ -56,8 +56,8 @@ async def on_message(message):
     msg = message.content.lower()
     if msg in bad_words:
         await message.delete()
-        emb = discord.Embed(title = "Замечено оскорбление!", description = f'Прошу дать по попе {author.mention}', color = 0x4ace40)
-        message = await channel.send(embed = emb)
+        embed = discord.Embed(title = "Замечено оскорбление!", description = f'Прошу дать по попе {author.mention}', color = 0x4ace40)
+        message = await channel.send(embed = embed)
      
     
    
@@ -77,8 +77,8 @@ async def spotify(ctx, user: discord.Member = None):
 @Bot.command(aliases = ['v'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
 async def version(ctx):
-    emb = discord.Embed(title = "Актуальная версия бота", description= '__Апдейт был 21.08.2020 до v. 2.6__. \n' 'Добавлены сокращения к командам. \n **Посмотрите, вызвав команду `/help`, или же `/h`!**', color=0x4ace40)
-    await ctx.send(embed = emb)
+    embed = discord.Embed(title = "Актуальная версия бота", description= '__Апдейт был 21.08.2020 до v. 2.6__. \n' 'Добавлены сокращения к командам. \n **Посмотрите, вызвав команду `/help`, или же `/h`!**', color=0x4ace40)
+    await ctx.send(embed = embed)
 
 
 
@@ -214,12 +214,12 @@ async def pizdec(ctx):
 @Bot.command()
 async def author(ctx):
     await ctx.message.delete()
-    emb = discord.Embed(title = f'Авторы:',
+    embed = discord.Embed(title = f'Авторы:',
                         description = '**Разработчик:** https://vk.com/d.blinov79\n'
                         '**С подачи:** https://vk.com/code_authora_174',
                         color = 0x4ace40)
-    emb.set_footer(text = "supports by quantprod")
-    message = await ctx.send(embed = emb)
+    embed.set_footer(text = "supports by quantprod")
+    message = await ctx.send(embed = embed)
     await message.add_reaction('☝')
 
 @Bot.command(aliases = ['git', 'GitHub'])
@@ -238,7 +238,7 @@ async def help_adm(ctx):
     await ctx.message.delete()
     channel1 = Bot.get_channel(526099119874375710)
     author = ctx.message.author
-    emb = discord.Embed(title = 'Команды для администрации', description = 
+    embed = discord.Embed(title = 'Команды для администрации', description = 
                         f'Привет, {author.mention}! Вот список команд, доступных тебе:\n'
                         'Все команды юзеров, плюс команды администрации, такие как:\n'
                         '\n'
@@ -253,8 +253,8 @@ async def help_adm(ctx):
                         '\n'
                         f'Кстати говоря, советую ознакомиться с правилами: {channel1.mention}', 
                         color = 0x4ace40)
-    emb.set_footer(text = "supports by quantprod")
-    message = await ctx.author.send(embed = emb)
+    embed.set_footer(text = "supports by quantprod")
+    message = await ctx.author.send(embed = embed)
 
 
 
@@ -299,9 +299,9 @@ async def info(ctx, member: discord.Member):
 async def hello(ctx):
     await ctx.message.delete()
     author = ctx.message.author
-    emb = discord.Embed(title = 'Dark Neon City', description = f'👋 Привет, {author.mention}! Рад видеть тебя на Dark Neon City!', color = 0x4ace40)
-    emb.set_footer(text = "supports by quantprod")
-    message = await ctx.send(embed = emb)
+    embed = discord.Embed(title = 'Dark Neon City', description = f'👋 Привет, {author.mention}! Рад видеть тебя на Dark Neon City!', color = 0x4ace40)
+    embed.set_footer(text = "supports by quantprod")
+    message = await ctx.send(embed = embed)
 
 
 
@@ -439,11 +439,11 @@ async def ban(ctx, member: discord.Member, *, reason = None):
     await member.ban(reason = reason)
     await ctx.message.delete()
     author = ctx.message.author
-    emb = discord.Embed(description = f'{author.mention} выдал {member.mention} перманент', color= 0x4ace40)
-    emb.add_field(name = "Причина:", value = reason, inline = False)
-    emb.add_field(name = "Суд:", value = "см. причину", inline = False)
-    emb.set_footer(text = "supports by quantprod")
-    await ctx.send(embed = emb)
+    embed = discord.Embed(description = f'{author.mention} выдал {member.mention} перманент', color= 0x4ace40)
+    embed.add_field(name = "Причина:", value = reason, inline = False)
+    embed.add_field(name = "Суд:", value = "см. причину", inline = False)
+    embed.set_footer(text = "supports by quantprod")
+    await ctx.send(embed = embed)
     await channel.send(f'{author.mention} **выдал перманентный бан** {member.mention}. **Причина и суд:** {reason}')
 
 @ban.error
@@ -460,12 +460,12 @@ async def mute(ctx, member: discord.Member, duration: int):
     await ctx.message.delete()
     await member.add_roles(role)
     await channel.send(f'{author.mention} **выдал мут** {member.mention}. **Время:** {duration} час')
-    emb = discord.Embed(description= f'*Пользователь {member.mention} был успешно замучен!*', color = 0x4ace40)
-    await ctx.send(embed = emb)
+    embed = discord.Embed(description= f'*Пользователь {member.mention} был успешно замучен!*', color = 0x4ace40)
+    await ctx.send(embed = embed)
     await asyncio.sleep(duration * 3600)
     await member.remove_roles(role)
-    emb = discord.Embed(description= f'*Пользователь {member.mention} был успешно размучен! Напомните ему об этом :)*', color = 0x4ace40)
-    await ctx.send(embed = emb)
+    embed = discord.Embed(description= f'*Пользователь {member.mention} был успешно размучен! Напомните ему об этом :)*', color = 0x4ace40)
+    await ctx.send(embed = embed)
 
 @mute.error
 async def mute_error(ctx, error):
@@ -491,9 +491,9 @@ async def length(ctx):
 async def message(ctx, member: discord.Member, *, arg):
     await ctx.message.delete()
     author = ctx.message.author
-    emb = discord.Embed(title = 'Личное сообщение', description = f'*Тебе сообщение с сервера Dark Neon City от* {author.mention}: ' + arg, color = 0x4ace40)
-    emb.set_footer(text = "supports by quantprod")
-    message = await member.send(embed = emb)
+    embed = discord.Embed(title = 'Личное сообщение', description = f'*Тебе сообщение с сервера Dark Neon City от* {author.mention}: ' + arg, color = 0x4ace40)
+    embed.set_footer(text = "supports by quantprod")
+    message = await member.send(embed = embed)
 
 
 
@@ -502,9 +502,9 @@ async def message(ctx, member: discord.Member, *, arg):
 @Bot.command()
 async def ping(ctx: commands.Context):
     author = ctx.message.author
-    emb = discord.Embed(title ='Pong!', description = f'{author.mention} ''`{0}`'.format(round(Bot.latency, 1)), color = 0x4ace40) 
-    emb.set_footer(text = "supports by quantprod")
-    message = await ctx.send(embed = emb)
+    embed = discord.Embed(title ='Pong!', description = f'{author.mention} ''`{0}`'.format(round(Bot.latency, 1)), color = 0x4ace40) 
+    embed.set_footer(text = "supports by quantprod")
+    message = await ctx.send(embed = embed)
     await message.add_reaction('👌')
 
 
