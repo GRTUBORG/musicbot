@@ -101,16 +101,6 @@ async def on_message(message):
         embed = discord.Embed(title = "Замечено оскорбление!", description = f'Прошу дать по попе {author.mention}', color = 0x4ace40)
         message = await channel.send(embed = embed)
 #==============================================================#
-     
-    
-   
-#очередная тестовая команда
-
-@Bot.command()
-async def meme(ctx):
-    data = get('https://meme-api.herokuapp.com/gimme').json()
-    embed = (Embed(title=f":speech_balloon: r/{data['subreddit']} :", color=0x3498db).set_image(url=data['url']).set_footer(text=data['postLink']))
-    await ctx.send(embed=embed)
 
                    
                    
@@ -155,7 +145,7 @@ async def play(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВ
         'postprocessors' : [{
             'key' : 'FFmpegExtractAudio',
             'preferredcodec' : 'mp3',
-            'preferredquality' : '192'
+            'preferredquality' : '320'
         }],
     }  
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
@@ -253,6 +243,7 @@ async def help(ctx):
                         '\n'
                         '`/leave` - кикает бота с гс канала, для использования, Вы должны быть в канале с ботом\n'
                         '*сокращения/синонимы*: `/l`;\n'
+                        '\n'
                         '`/pause` - пауза текущей песни, повторное использование возобновляет аудио.')
     embed5 = discord.Embed(title = 'Помощь, страница 4, команды в стадии разработки', description = 
                         '*пока таких команд нет, ожидайте выходов новых обновлений бота*')
