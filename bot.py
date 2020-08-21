@@ -29,7 +29,46 @@ bad_words = ['сервер говно', 'бот говно', 'админы го�
 async def on_ready():
     await Bot.change_presence(activity = discord.Activity(type= discord.ActivityType.watching, name = "за Dark Neon City 👀"))
     print("Бот в онлайне!")
+#==============================================================#
+#==============================================================#
 
+
+    
+#выдача ролей
+
+@Bot.event
+async def on_member_join(member):
+    role = discord.utils.get(member.guild.roles, name = 'Unit') # САМА РОЛЬ КОТОРУЮ ВЫДАЕМ
+    await member.add_roles(role) # ДОБАВЛЯЕМ РОЛЬ
+    channel1 = Bot.get_channel(526099119874375710) #правила
+    channel2 = Bot.get_channel(528281293306462248) #смскер
+    channel3 = Bot.get_channel(687044254622941217) #info
+    channel4 = Bot.get_channel(541231102333943832) #news
+    channel5 = Bot.get_channel(741002854898073660) #доска-почёта
+    channel6 = Bot.get_channel(733727409672683550) #предложения
+    embed = discord.Embed(color = 0x4ace40)
+    embed.add_field(name = "Приветственное сообщение", value = "Добро пожаловать в Dark Neon City!\n"
+    f"Перед тем, как пользоваться сервером, прочитай {channel1.mention}. Это обязательно, а то атата!)\n"
+    '\n'
+    f"Тебе дана роль `@Unit`, поэтому, пока что, тебе доступны не все функции сервера. Но ты можешь участвовать в ивентах, чтобы повысить свой ранг!\n"
+    '\n'
+    "Для тебя открыты все комнаты в доме unit'ов, выбирай любую которая не занята, зови друзей на сервер и наслаждайтесь общением благодаря качественной связи!\n"
+    '\n'
+    f"Chill'овая беседка - самое уютное место для общения на различные темы! Заглядывай туда, в {channel2.mention}, или же в войс-чат под ним!\n"
+    '\n'
+    f"На сервере, как ты заметил, присутствуют боты, информацию о них можешь найти в {channel3.mention}.\n"
+    '\n'
+    "По интересующим вопросам обращайся к `@Смотрящий`.\n"
+    '\n'
+    f"Не забывай следить за новостями {channel4.mention} и обновлениями правил {channel1.mention}. Будь активен на сервере и однажды появишься на {channel5.mention}!\n"
+    '\n'
+    f"Так же можешь подкинуть идеи в {channel6.mention}\n"
+    '\n'
+    "С наилучшими пожеланиями, администрация сервера!")
+    embed.set_footer(text = "supports by quantprod")
+    await member.send(embed = embed)
+#==============================================================#
+#==============================================================#
 
 
 #обработчик ошибок
@@ -58,6 +97,8 @@ async def on_message(message):
         await message.delete()
         embed = discord.Embed(title = "Замечено оскорбление!", description = f'Прошу дать по попе {author.mention}', color = 0x4ace40)
         message = await channel.send(embed = embed)
+#==============================================================#
+#==============================================================#
      
     
    
@@ -69,6 +110,8 @@ async def spotify(ctx, user: discord.Member = None):
     for activity in user.activities:
         if isinstance(activity, Spotify):
             await ctx.send(f"{user} слушает {activity.title}, by {activity.artist}")
+#==============================================================#
+#==============================================================#
 
             
             
@@ -79,6 +122,8 @@ async def spotify(ctx, user: discord.Member = None):
 async def version(ctx):
     embed = discord.Embed(title = "Актуальная версия бота", description= '__Апдейт был 21.08.2020 до v. 2.6__. \n' 'Добавлены сокращения к командам. \n **Посмотрите, вызвав команду `/help`, или же `/h`!**', color=0x4ace40)
     await ctx.send(embed = embed)
+#==============================================================#
+#==============================================================#
 
 
 
@@ -118,7 +163,7 @@ async def play(ctx, url):
     await ctx.send(f"We play: {nname[0]}")
     print("playing\n")
     
-@Bot.command(aliases=['j'])
+@Bot.command(aliases = ['j'])
 async def join(ctx):
     global voice
     channel = ctx.message.author.voice.channel
@@ -130,7 +175,7 @@ async def join(ctx):
         await ctx.send(f'Я присоединился к {channel}')
     await Bot.join_voice_channel(channel)
         
-@Bot.command(aliases=['l'])
+@Bot.command(aliases = ['l'])
 async def leave(ctx):
     channel = ctx.message.author.voice.channel
     voice = get(Bot.voice_clients, guild = ctx.guild)
@@ -139,6 +184,8 @@ async def leave(ctx):
     else:
         voice = await channel.connect()
         await ctx.send(f'Я отключился от {channel}')
+#==============================================================#
+#==============================================================# 
         
         
         
@@ -197,6 +244,8 @@ async def help(ctx):
     message = await ctx.send(embed =  embed1)
     page = pag(Bot, message, only = ctx.author, use_more = False, timeout = 1*3600, embeds = embeds)
     await page.start()
+#==============================================================#
+#==============================================================#    
 
 
 
@@ -206,6 +255,8 @@ async def help(ctx):
 async def pizdec(ctx):
     await ctx.message.delete()
     await ctx.send(':regional_indicator_p: :regional_indicator_i: :regional_indicator_z: :regional_indicator_d: :regional_indicator_e: :regional_indicator_c:')
+#==============================================================#
+#==============================================================#
 
 
 
@@ -227,12 +278,14 @@ async def github(ctx):
     embed = discord.Embed(title = 'GitHub разработчика:', color = 0x4ace40)
     embed.set_image(url = 'https://i.ibb.co/j42cxmr/qr-code.png')
     await ctx.send(embed = embed)
+#==============================================================#
+#==============================================================#
 
 
 
 #помощь admin
 
-@Bot.command(aliases = ['ha'])
+@Bot.command(aliases = ['h_a'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "dmoder", "moder")
 async def help_adm(ctx):
     await ctx.message.delete()
@@ -255,6 +308,8 @@ async def help_adm(ctx):
                         color = 0x4ace40)
     embed.set_footer(text = "supports by quantprod")
     message = await ctx.author.send(embed = embed)
+#==============================================================#
+#==============================================================#
 
 
 
@@ -264,6 +319,8 @@ async def help_adm(ctx):
 async def say(ctx,  *, arg):
     await ctx.message.delete()
     await ctx.send(arg)
+#==============================================================#
+#==============================================================#
 
 
  
@@ -278,7 +335,9 @@ async def math(ctx,  a:  int,  b:  int):
     embed.add_field(name = "Умножение: ", value= a * b, inline = False)
     embed.set_footer(text = "supports by quantprod")
     await ctx.send(embed = embed)
-  
+#==============================================================#
+#==============================================================#
+
 
 
 #информация о юзере
@@ -290,6 +349,8 @@ async def info(ctx, member: discord.Member):
     embed.add_field(name = "❓ Имя юзера: ", value = member.display_name)
     embed.set_footer(text = "supports by quantprod")
     await ctx.send(embed = embed)
+#==============================================================#
+#==============================================================#
 
 
 
@@ -302,6 +363,8 @@ async def hello(ctx):
     embed = discord.Embed(title = 'Dark Neon City', description = f'👋 Привет, {author.mention}! Рад видеть тебя на Dark Neon City!', color = 0x4ace40)
     embed.set_footer(text = "supports by quantprod")
     message = await ctx.send(embed = embed)
+#==============================================================#
+#==============================================================#
 
 
 
@@ -315,65 +378,23 @@ async def clear_member(ctx, user: discord.Member, amount = 15):
     author = ctx.message.author
     await ctx.send(embed = discord.Embed(description = f'✅ {author.mention}, *удаление сообщений юзера прошло успешно!*', color = 0x4ace40))
 
-@Bot.command(aliases=['c'])
+@Bot.command(aliases = ['c'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
 async def clear(ctx, amount = 30): 
     await ctx.message.delete()
     await ctx.channel.purge(limit = amount)
     author = ctx.message.author
     await ctx.send(embed = discord.Embed(description = f'✅ {author.mention}, *удаление сообщений прошло успешно!*', color = 0x4ace40))
-
-
-
-#выдача ролей
-
-@Bot.event
-async def on_member_join(member):
-    role = discord.utils.get(member.guild.roles, name = 'Unit') # САМА РОЛЬ КОТОРУЮ ВЫДАЕМ
-    await member.add_roles(role) # ДОБАВЛЯЕМ РОЛЬ
-    channel1 = Bot.get_channel(526099119874375710) #правила
-    channel2 = Bot.get_channel(528281293306462248) #смскер
-    channel3 = Bot.get_channel(687044254622941217) #info
-    channel4 = Bot.get_channel(541231102333943832) #news
-    channel5 = Bot.get_channel(741002854898073660) #доска-почёта
-    channel6 = Bot.get_channel(733727409672683550) #предложения
-    embed = discord.Embed(color = 0x4ace40)
-    embed.add_field(name = "Приветственное сообщение", value = "Добро пожаловать в Dark Neon City!\n"
-    f"Перед тем, как пользоваться сервером, прочитай {channel1.mention}. Это обязательно, а то атата!)\n"
-    '\n'
-    f"Тебе дана роль `@Unit`, поэтому, пока что, тебе доступны не все функции сервера. Но ты можешь участвовать в ивентах, чтобы повысить свой ранг!\n"
-    '\n'
-    "Для тебя открыты все комнаты в доме unit'ов, выбирай любую которая не занята, зови друзей на сервер и наслаждайтесь общением благодаря качественной связи!\n"
-    '\n'
-    f"Chill'овая беседка - самое уютное место для общения на различные темы! Заглядывай туда, в {channel2.mention}, или же в войс-чат под ним!\n"
-    '\n'
-    f"На сервере, как ты заметил, присутствуют боты, информацию о них можешь найти в {channel3.mention}.\n"
-    '\n'
-    "По интересующим вопросам обращайся к `@Смотрящий`.\n"
-    '\n'
-    f"Не забывай следить за новостями {channel4.mention} и обновлениями правил {channel1.mention}. Будь активен на сервере и однажды появишься на {channel5.mention}!\n"
-    '\n'
-    f"Так же можешь подкинуть идеи в {channel6.mention}\n"
-    '\n'
-    "С наилучшими пожеланиями, администрация сервера!")
-    embed.set_footer(text = "supports by quantprod")
-    await member.send(embed = embed)
+#==============================================================#
+#==============================================================#
 
 
 
 #кик пользователя
 
-@Bot.command(aliases = ['k'])
-@commands.has_any_role("admin", "Смотрящий", "elite")
-async def kick(ctx, member: discord.Member, *, reason = None):
-    channel = Bot.get_channel(526464840672346112) #логи
-    author = ctx.message.author
-    await ctx.message.delete()
-    await member.kick(reason = reason)
-    embed = discord.Embed(title = "Кик", description = f"✅ Пользователь {member.mention} был успешно кикнут пользователем {author.mention}", color = 0x4ace40)
-    embed.set_footer(text = "supports by quantprod")
-    await ctx.send(embed = embed)
-    await channel.send(f'{author.mention} **кикнул пользователя** {member.mention} **по причине:** {reason}.')
+
+#==============================================================#
+#==============================================================#
 
 
 
@@ -390,10 +411,12 @@ async def court(ctx, member: discord.Member):
     embed = discord.Embed(title = "Суд", description= f'✅ Пользователь {author.mention} выдал {member.mention} роль подсудимого! Кто-то скоро пойдёт на суд :)', color = 0x4ace40)
     message = await ctx.send(embed = embed)
     await channel.send(f'{author.mention} **выдал роль подсудимого юзеру** {member.mention}.')
+#==============================================================#
+#==============================================================#
 
 
 
-#аватарка
+#АВАТАРКА
 
 @Bot.command(aliases = ['ava'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "Vip")
@@ -402,10 +425,24 @@ async def avatar(ctx, *,  avamember: discord.Member):
     embed = discord.Embed(description = f"Аватарка пользователя {avamember.mention}", color = 0x4ace40)
     embed.set_image(url = userAvatarUrl)
     await ctx.send(embed = embed)
+#==============================================================#
+#==============================================================#
 
 
 
-#бан и мут пользователя
+#БАН, МУТ ПОЛЬЗОВАТЕЛЯ И КИК ПОЛЬЗОВАТЕЛЯ
+
+@Bot.command(aliases = ['k'])
+@commands.has_any_role("admin", "Смотрящий", "elite")
+async def kick(ctx, member: discord.Member, *, reason = None):
+    channel = Bot.get_channel(526464840672346112) #логи
+    author = ctx.message.author
+    await ctx.message.delete()
+    await member.kick(reason = reason)
+    embed = discord.Embed(title = "Кик", description = f"✅ Пользователь {member.mention} был успешно кикнут пользователем {author.mention}", color = 0x4ace40)
+    embed.set_footer(text = "supports by quantprod")
+    await ctx.send(embed = embed)
+    await channel.send(f'{author.mention} **кикнул пользователя** {member.mention} **по причине:** {reason}.')
 
 @Bot.command(aliases = ['tb'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "dmoder", "moder")
@@ -471,6 +508,8 @@ async def mute(ctx, member: discord.Member, duration: int):
 async def mute_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         await ctx.send('Вы забыли указать аргумент!')
+#==============================================================#
+#==============================================================#
 
 
 
@@ -482,6 +521,8 @@ async def length(ctx):
     embed.add_field(name = "Длина твоего сообщения вместе с командой равна:", value = '{}'.format(len(ctx.message.content)))
     embed.set_footer(text = "supports by quantprod")
     await ctx.send(embed = embed)
+#==============================================================#
+#==============================================================#
 
 
     
@@ -494,6 +535,8 @@ async def message(ctx, member: discord.Member, *, arg):
     embed = discord.Embed(title = 'Личное сообщение', description = f'*Тебе сообщение с сервера Dark Neon City от* {author.mention}: ' + arg, color = 0x4ace40)
     embed.set_footer(text = "supports by quantprod")
     message = await member.send(embed = embed)
+#==============================================================#
+#==============================================================#
 
 
 
@@ -506,6 +549,8 @@ async def ping(ctx: commands.Context):
     embed.set_footer(text = "supports by quantprod")
     message = await ctx.send(embed = embed)
     await message.add_reaction('👌')
+#==============================================================#
+#==============================================================#
 
 
 
