@@ -124,28 +124,9 @@ async def version(ctx):
 
 
 
-#КАКОЙ-ТО КОД, Я БЕЗ ПОНЯТИЯ О ЧЁМ ОН))
-
-@Bot.command(aliases = ['miss'])
-async def missing(ctx, channel : str = None, useDiscordID : bool = False):
-    memberlist = []
-    for member in message.guild.members:
-        toAppend = ''
-        if "barcode" in [y.name.lower() for y in member.roles]:
-            if member.nick is None:
-                toAppend = member.name
-            else:
-                toAppend = member.nick
-            if useDiscordID:
-                toAppend = f'{str(member)} : {toAppend}'
-            memberlist.append(toAppend)
-#==============================================================#
-
-
-
 #МУЗЫКА С ЮТУБА
 
-@Bot.command(aliases = ['p'])
+@Bot.command(aliases = ['p', 'PLAY'])
 async def play(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВОЙ ДОРОЖКИ
     song_there = os.path.isfile('song.mp3')
     try:
@@ -179,7 +160,7 @@ async def play(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВ
     await ctx.send(f"We play: {nname[0]}")
     print("playing\n")
     
-@Bot.command(aliases = ['j'])
+@Bot.command(aliases = ['j', 'JOIN'])
 async def join(ctx):  #КОМАНДА ПОДКЛЮЧЕНИЯ БОТА К ГС КАНАЛУ
     global voice
     channel = ctx.message.author.voice.channel
@@ -191,7 +172,7 @@ async def join(ctx):  #КОМАНДА ПОДКЛЮЧЕНИЯ БОТА К ГС К
         await ctx.send(f'Я присоединился к {channel}')
     await Bot.join_voice_channel(channel)
         
-@Bot.command(aliases = ['l'])
+@Bot.command(aliases = ['l', 'LEAVE'])
 async def leave(ctx):  #КОМАНДА LEAVE БОТА ИЗ ГС КАНАЛА
     channel = ctx.message.author.voice.channel
     voice = get(Bot.voice_clients, guild = ctx.guild)
@@ -206,7 +187,7 @@ async def leave(ctx):  #КОМАНДА LEAVE БОТА ИЗ ГС КАНАЛА
         
 #ПОМОЩЬ USER
 
-@Bot.command(aliases = ['h'])
+@Bot.command(aliases = ['h', 'HELP'])
 async def help(ctx):
     author = ctx.message.author
     channel1 = Bot.get_channel(526099119874375710)
@@ -265,7 +246,7 @@ async def help(ctx):
 
 #НЕ, НУ ЭТО БАН!
 
-@Bot.command(aliases = ['pzdc'])
+@Bot.command(aliases = ['pzdc', 'PIZDEC'])
 async def pizdec(ctx):
     await ctx.message.delete()
     await ctx.send(':regional_indicator_p: :regional_indicator_i: :regional_indicator_z: :regional_indicator_d: :regional_indicator_e: :regional_indicator_c:')
@@ -275,7 +256,7 @@ async def pizdec(ctx):
 
 #ПАСХАЛОЧКА :)
 
-@Bot.command()
+@Bot.command(aliases = ['AUTHOR'])
 async def author(ctx):
     await ctx.message.delete()
     embed = discord.Embed(title = f'Авторы:',
@@ -297,7 +278,7 @@ async def github(ctx):
 
 #ПОМОЩЬ ADMIN
 
-@Bot.command(aliases = ['h_a'])
+@Bot.command(aliases = ['h_a', 'HELP_ADM'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "dmoder", "moder")
 async def help_adm(ctx):
     await ctx.message.delete()
@@ -326,7 +307,7 @@ async def help_adm(ctx):
 
 #ПОПУГАЙЧИК
 
-@Bot.command(aliases = ['repeat'])
+@Bot.command(aliases = ['repeat', 'SAY'])
 async def say(ctx,  *, arg):
     await ctx.message.delete()
     await ctx.send(arg)
@@ -336,7 +317,7 @@ async def say(ctx,  *, arg):
  
 #МАТЕМАТИКА (ПРОСТЫЕ ОПЕРАЦИИ)
 
-@Bot.command() 
+@Bot.command(aliases = ['MATH']) 
 async def math(ctx,  a:  int,  b:  int): 
     embed= discord.Embed(title = "Простая математика", color = 0x4ace40)
     embed.add_field(name = "Сумма: ", value= a + b, inline = False)
@@ -351,7 +332,7 @@ async def math(ctx,  a:  int,  b:  int):
 
 #ИНФОРМАЦИЯ О ЮЗЕРЕ
 
-@Bot.command(aliases = ['i', 'information'])
+@Bot.command(aliases = ['i', 'information', 'INFO', 'INFORMATION'])
 async def info(ctx, member: discord.Member):
     embed = discord.Embed(title = "Info", color = 0x4ace40)
     embed.add_field(name = "❓ Когда присоединился: ", value = member.joined_at)
@@ -364,7 +345,7 @@ async def info(ctx, member: discord.Member):
 
 #ПРИВЕТСТВИЕ
 
-@Bot.command()
+@Bot.command(aliases = ['HELLO'])
 async def hello(ctx):
     await ctx.message.delete()
     author = ctx.message.author
@@ -377,7 +358,7 @@ async def hello(ctx):
 
 #УДАЛЕНИЕ СООБЩЕНИЙ
 
-@Bot.command(aliases = ['c_m'])
+@Bot.command(aliases = ['c_m', 'CLEAR_MEMBER'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
 async def clear_member(ctx, user: discord.Member, amount = 15):  #СООБЩЕНИЯ ПОЛЬЗОВАТЕЛЯ
     await ctx.message.delete()
@@ -385,7 +366,7 @@ async def clear_member(ctx, user: discord.Member, amount = 15):  #СООБЩЕН
     author = ctx.message.author
     await ctx.send(embed = discord.Embed(description = f'✅ {author.mention}, *удаление сообщений юзера прошло успешно!*', color = 0x4ace40))
 
-@Bot.command(aliases = ['c'])
+@Bot.command(aliases = ['c', 'CLEAR'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
 async def clear(ctx, amount = 30):  #ВООБЩЕ ВСЕ СООБЩЕНИЯ
     await ctx.message.delete()
@@ -398,7 +379,7 @@ async def clear(ctx, amount = 30):  #ВООБЩЕ ВСЕ СООБЩЕНИЯ
 
 #РОЛЬ ПОДСУДИМОГО
 
-@Bot.command()
+@Bot.command(aliases = ['COURT'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "dmoder", "moder")
 async def court(ctx, member: discord.Member):
     channel = Bot.get_channel(526464840672346112) #логи
@@ -415,7 +396,7 @@ async def court(ctx, member: discord.Member):
 
 #АВАТАРКА
 
-@Bot.command(aliases = ['ava'])
+@Bot.command(aliases = ['ava', 'AVATAR'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "Vip")
 async def avatar(ctx, *,  avamember: discord.Member):
     userAvatarUrl = avamember.avatar_url
@@ -428,7 +409,7 @@ async def avatar(ctx, *,  avamember: discord.Member):
 
 #БАН, МУТ ПОЛЬЗОВАТЕЛЯ И КИК ПОЛЬЗОВАТЕЛЯ
 
-@Bot.command(aliases = ['k'])
+@Bot.command(aliases = ['k', 'KICK'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
 async def kick(ctx, member: discord.Member, *, reason = None):  #КИК
     channel = Bot.get_channel(526464840672346112) #LOGS
@@ -440,7 +421,7 @@ async def kick(ctx, member: discord.Member, *, reason = None):  #КИК
     await ctx.send(embed = embed)
     await channel.send(f'{author.mention} **кикнул пользователя** {member.mention} **по причине:** {reason}.')
 
-@Bot.command(aliases = ['tb'])
+@Bot.command(aliases = ['tb', 'TEMPBAN'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "dmoder", "moder")
 async def tempban(ctx, user: discord.User, duration: int, *, reason= None):  #ВРЕМЕННЫЙ БАН
     channel = Bot.get_channel(526464840672346112) #LOGS
@@ -465,7 +446,7 @@ async def tempban_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         await ctx.send('Вы забыли указать аргумент!')
 
-@Bot.command(aliases = ['b'])
+@Bot.command(aliases = ['b', 'BAN'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
 async def ban(ctx, member: discord.Member, *, reason = None):  #ПЕРМАНЕНТНЫЙ БАН
     channel = Bot.get_channel(526464840672346112) #логи
@@ -484,7 +465,7 @@ async def ban_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         await ctx.send('Вы забыли указать аргумент!')
 
-@Bot.command(aliases = ['m'])
+@Bot.command(aliases = ['m', 'MUTE'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "dmoder", "moder")
 async def mute(ctx, member: discord.Member, duration: int):  #МУТ
     author = ctx.message.author
@@ -510,7 +491,7 @@ async def mute_error(ctx, error):
 
 #УЗНАТЬ ДЛИНУ СТРОКИ (СООБЩЕНИЯ)
 
-@Bot.command(aliases = ['len']) 
+@Bot.command(aliases = ['len', 'LENGTH']) 
 async def length(ctx): 
     embed = discord.Embed(color = 0x4ace40)
     embed.add_field(name = "Длина твоего сообщения вместе с командой равна:", value = '{}'.format(len(ctx.message.content)))
