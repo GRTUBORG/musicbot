@@ -122,7 +122,9 @@ async def version(ctx):
     await ctx.send(embed = embed)
 #==============================================================#
 
-
+@Bot.command()
+async def test(ctx):
+    await ctx.send('@here')
 
 #МУЗЫКА С ЮТУБА
 
