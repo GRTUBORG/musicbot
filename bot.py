@@ -50,7 +50,7 @@ async def on_member_join(member):
     embed.add_field(name = "Приветственное сообщение", value = "Добро пожаловать в Dark Neon City!\n"
     f"Перед тем, как пользоваться сервером, прочитай {channel1.mention}. Это обязательно, а то атата!)\n"
     '\n'
-    'Тебе дана роль @Unit, поэтому, пока что, тебе доступны не все функции сервера. Но ты можешь участвовать в ивентах, чтобы повысить свой ранг!\n'
+    f'Тебе дана роль {role}, поэтому, пока что, тебе доступны не все функции сервера. Но ты можешь участвовать в ивентах, чтобы повысить свой ранг!\n'
     '\n'
     "Для тебя открыты все комнаты в доме unit'ов, выбирай любую которая не занята, зови друзей на сервер и наслаждайтесь общением благодаря качественной связи!\n"
     '\n'
@@ -58,7 +58,7 @@ async def on_member_join(member):
     '\n'
     f"На сервере, как ты заметил, присутствуют боты, информацию о них можешь найти в {channel3.mention}.\n"
     '\n'
-    "По интересующим вопросам обращайся к `@Смотрящий`.\n"
+    'По интересующим вопросам обращайся к @Смотрящий`.\n'
     '\n'
     f"Не забывай следить за новостями {channel4.mention} и обновлениями правил {channel1.mention}. Будь активен на сервере и однажды появишься на {channel5.mention}!\n"
     '\n'
@@ -82,7 +82,7 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         author = ctx.message.author
         embed = discord.Embed(color = 0x4ace40)
-        embed.add_field(name = 'Ошибка выполнения команды!', value = f':x: *Внимание, {author.mention}! Данной команды __не существует__, либо у Вас __нет прав__ на её использование!*')
+        embed.add_field(name = 'Ошибка выполнения команды!', value = f':x: *Внимание, {author.mention}! Данной команды __не существует__!*')
         embed.set_footer(text = "supports by quantprod")
         await ctx.send(embed = embed)
 
@@ -120,6 +120,7 @@ async def spotify(ctx, user: discord.Member = None):
 async def version(ctx):
     embed = discord.Embed(title = "Актуальная версия бота", description= '__Апдейт был 21.08.2020 до v. 2.6__. \n' 'Добавлены сокращения к командам. \n **Посмотрите, вызвав команду `/help`, или же `/h`!**', color=0x4ace40)
     await ctx.send(embed = embed)
+    await ctx.send('@everyone')
 #==============================================================#
 
 
