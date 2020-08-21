@@ -138,7 +138,9 @@ async def play(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВ
             os.remove('song.mp3')
             print('[logs] Старый файл успешно удалён')
     except PermissionError: 
-        await ctx.send('Минуточку ожидания...')
+        embed = discord.Embed(description = '*Минуточку ожидания...*', color = 0x4ace40)
+        embed.set_footer(text = "supports by quantprod")
+        await ctx.send(embed = embed)
     voice = get(Bot.voice_clients, guild = ctx.guild)
     ydl_opts = {
         'format' : 'bestaudio/best',
@@ -157,7 +159,9 @@ async def play(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВ
             os.rename(file, 'song.mp3') 
     voice.play(discord.FFmpegPCMAudio('song.mp3'), after = lambda e: print(f'[logs] {name}, музыка закончила своё проигрывание'))
     nname = name.rsplit("-", 2)
-    await ctx.send(f"Сейчас играет: {nname[0]}")
+    embed = discord.Embed(description = f'*Сейчас играет: {nname[0]}*', color = 0x4ace40)
+    embed.set_footer(text = "supports by quantprod")
+    await ctx.send(embed = embed)
     
 @Bot.command(aliases = ['j', 'JOIN'])
 async def join(ctx):  #КОМАНДА ПОДКЛЮЧЕНИЯ БОТА К ГС КАНАЛУ
@@ -168,7 +172,9 @@ async def join(ctx):  #КОМАНДА ПОДКЛЮЧЕНИЯ БОТА К ГС К
         await voice.move_to(channel)
     else:
         voice = await channel.connect()
-        await ctx.send(f'Я присоединился к {channel}')
+        embed = discord.Embed(description = f'Я присоединился к {channel}', color = 0x4ace40)
+        embed.set_footer(text = "supports by quantprod")
+        await ctx.send(embed = embed)
     await Bot.join_voice_channel(channel)
         
 @Bot.command(aliases = ['l', 'LEAVE'])
@@ -177,19 +183,26 @@ async def leave(ctx):  #КОМАНДА LEAVE БОТА ИЗ ГС КАНАЛА
     voice = get(Bot.voice_clients, guild = ctx.guild)
     if voice and voice.is_connected():
         await voice.disconnect()
+        embed = discord.Embed(description = f'Я отключился от {channel}', color = 0x4ace40)
+        embed.set_footer(text = "supports by quantprod")
+        await ctx.send(embed = embed)
     else:
         voice = await channel.connect()
-        await ctx.send(f'Я отключился от {channel}')
+        
 
 @Bot.command()
 async def pause(ctx):
     voice = get(Bot.voice_clients, guild = ctx.guild)   
     if voice and voice.is_playing():
         voice.pause()
-        await ctx.send("Музыка приостановлена...")
+        embed = discord.Embed(description = f'*Музыка приостановлена...*', color = 0x4ace40)
+        embed.set_footer(text = "supports by quantprod")
+        await ctx.send(embed = embed)
     else:
         voice.resume()
-        await ctx.send("Продолжайте наслаждаться Вашей музыкой :)")      
+        embed = discord.Embed(description = f'*Продолжайте наслаждаться Вашей музыкой :)*', color = 0x4ace40)
+        embed.set_footer(text = "supports by quantprod")
+        await ctx.send(embed = embed)    
 #==============================================================#
         
         
