@@ -244,6 +244,46 @@ async def help(ctx):
 
 
 
+#ПОМОЩЬ ADMIN
+
+@Bot.command(aliases = ['h_a', 'HELP_ADM'])
+@commands.has_any_role("admin", "Смотрящий", "elite", "dmoder", "moder")
+async def help_adm(ctx):
+    await ctx.message.delete()
+    channel1 = Bot.get_channel(526099119874375710)
+    author = ctx.message.author
+    embed = discord.Embed(title = 'Команды для администрации и высшей инстанции в том числе', description = 
+                        f'Привет, {author.mention}! Вот список команд, доступных тебе:\n'
+                        'Все команды юзеров, плюс команды администрации, такие как:\n'
+                        '\n'
+                        '`/clear [количество сообщений]` - очистка канала (полностью)\n'
+                        '*сокращения/синонимы*: `/c`;\n'
+                        '\n'
+                        '`/clear_member [@пользователь]` - очистка сообщений конкретного пользователя\n'
+                        '*сокращения/синонимы*: `/c_m`;\n'
+                        '\n'
+                        '`/kick [@пользователь]` - кик пользователя\n'
+                        '*сокращения/синонимы*: `/k`;\n'
+                        '\n'
+                        '`/court [@пользователь] [время в часах]` - выдача роли подсудимого;\n'
+                        '\n'
+                        '`/tempban [@пользователь] [время в часах] [причина]` - временный бан пользователя\n'
+                        '*сокращения/синонимы*: `/tb`;\n'
+                        '\n'
+                        '`/ban [@пользователь] [причина]` - перма нафиг!\n'
+                        '*сокращения/синонимы*: `/b`;\n'
+                        '\n'
+                        '`/mute [@пользователь] [время в часах] [причина]` - мут пользователя \n'
+                        '*сокращения/синонимы*: `/m`;\n'
+                        '\n'
+                        f'Кстати говоря, советую ознакомиться с правилами: {channel1.mention}', 
+                        color = 0x4ace40)
+    embed.set_footer(text = "supports by quantprod")
+    message = await ctx.author.send(embed = embed)
+#==============================================================#
+
+
+
 #НЕ, НУ ЭТО БАН!
 
 @Bot.command(aliases = ['pzdc', 'PIZDEC'])
@@ -272,35 +312,6 @@ async def github(ctx):
     embed = discord.Embed(title = 'GitHub разработчика:', color = 0x4ace40)
     embed.set_image(url = 'https://i.ibb.co/j42cxmr/qr-code.png')
     await ctx.send(embed = embed)
-#==============================================================#
-
-
-
-#ПОМОЩЬ ADMIN
-
-@Bot.command(aliases = ['h_a', 'HELP_ADM'])
-@commands.has_any_role("admin", "Смотрящий", "elite", "dmoder", "moder")
-async def help_adm(ctx):
-    await ctx.message.delete()
-    channel1 = Bot.get_channel(526099119874375710)
-    author = ctx.message.author
-    embed = discord.Embed(title = 'Команды для администрации', description = 
-                        f'Привет, {author.mention}! Вот список команд, доступных тебе:\n'
-                        'Все команды юзеров, плюс команды администрации, такие как:\n'
-                        '\n'
-                        '`/clear [количество сообщений]` - очистка канала (полностью);\n'
-                        '`/say [сообщение, которое нужно повторить]` - "повторитель" всего и вся на свете;\n'
-                        '`/clear_member [@пользователь]` - очистка сообщений конкретного пользователя;\n'
-                        '`/kick [@пользователь]` - кик пользователя;\n'
-                        '`/court [@пользователь] [время в секундах]` - выдача роли подсудимого;\n'
-                        '`/tempban [@пользователь] [время в секундах] [причина]` - временный бан пользователя;\n'
-                        '`/ban [@пользователь] [причина]` - перма нафиг!\n'
-                        '`/mute [@пользователь] [время]` - мут пользователя \n'
-                        '\n'
-                        f'Кстати говоря, советую ознакомиться с правилами: {channel1.mention}', 
-                        color = 0x4ace40)
-    embed.set_footer(text = "supports by quantprod")
-    message = await ctx.author.send(embed = embed)
 #==============================================================#
 
 
