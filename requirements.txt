@@ -27,3 +27,4 @@ multidict
 Cybernator
 pyflakes
 discord.py[voice] ~= 1.4.0
+colorlog
