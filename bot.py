@@ -7,11 +7,13 @@ import json
 import requests
 import typing
 
+from requests import get 
 from discord.ext import commands
 from discord.ext.commands import Bot
 from discord.utils import get
 from Cybernator import Paginator as pag
 from discord import Spotify
+from datetime import datetime
 
 
 players = {}
@@ -111,8 +113,36 @@ async def spotify(ctx, user: discord.Member = None):
             await ctx.send(f"{user} слушает {activity.title}, by {activity.artist}")
 #==============================================================#
 
-            
-            
+
+
+#погода в конкретном городе
+
+@Bot.command()         
+async def weather(self, ctx,  *, city):
+data = get(f"http://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&APPID=fb9df86d9c484eba8a69269cfb0beac9").json()
+cleared_data = {
+    'City': data['name'],
+    'Time': datetime.utcfromtimestamp(data['dt']).strftime('%H:%M:%S'),
+    'Weather': f"{data['weather'][0]['main']} - {data['weather'][0]['description']}",
+    'Temperature': f"{data['main']['temp']}°C",
+    'Feels like': f"{data['main']['feels_like']}°C",
+    'Min temperature': f"{data['main']['temp_min']}°C",
+    'Max temperature': f"{data['main']['temp_max']}°C",
+    'Humidity': f"{data['main']['humidity']}%",
+    'Pressure': f"{data['main']['pressure']}Pa",
+    'Clouds': f"{data['clouds']['all']}%",
+    'Wind': f"{data['wind']['speed']} km/h",
+    'Sunset': datetime.utcfromtimestamp(data['sys']['sunset']).strftime('%H:%M:%S'),
+    'Sunrise': datetime.utcfromtimestamp(data['sys']['sunrise']).strftime('%H:%M:%S'),
+    }
+embed = Embed(title=f":white_sun_small_cloud: Weather in {cleared_data['City']}", color=0x3498db)
+for key, value in cleared_data.items():
+    embed.add_field(name=key, value=value)
+    await ctx.send(embed=embed)
+#==============================================================#
+
+
+              
 #АКТУАЛЬНАЯ ВЕРСИЯ БОТА
 
 @Bot.command(aliases = ['v'])
