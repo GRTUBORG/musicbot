@@ -135,7 +135,7 @@ async def play(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВ
             os.remove('song.mp3')
             print('[logs] Старый файл успешно удалён')
     except PermissionError: 
-    await ctx.send('Минуточку ожидания...')
+        await ctx.send('Минуточку ожидания...')
     voice = get(Bot.voice_clients, guild = ctx.guild)
     ydl_opts = {
         'format' : 'bestaudio/best',
