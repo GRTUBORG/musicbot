@@ -103,6 +103,16 @@ async def on_message(message):
      
     
    
+#очередная тестовая команда
+
+@Bot.command()
+async def meme(ctx):
+    data = get('https://meme-api.herokuapp.com/gimme').json()
+    embed = (Embed(title=f":speech_balloon: r/{data['subreddit']} :", color=0x3498db).set_image(url=data['url']).set_footer(text=data['postLink']))
+    await ctx.send(embed=embed)
+
+                   
+                   
 #SPOTIFY, КТО ЧТО СЛУШАЕТ
 
 @Bot.command(aliases = ['spot', 's'])
