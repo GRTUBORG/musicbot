@@ -38,7 +38,7 @@ async def on_ready():
 
 @Bot.event
 async def on_member_join(member):
-    role = discord.utils.get(member.guild.roles, name = 'Unit') # САМА РОЛЬ КОТОРУЮ ВЫДАЕМ
+    role = discord.utils.get(member.guild.roles, id = 556790746317848580) # САМА РОЛЬ КОТОРУЮ ВЫДАЕМ
     await member.add_roles(role) # ДОБАВЛЯЕМ РОЛЬ
     channel1 = Bot.get_channel(526099119874375710) #правила
     channel2 = Bot.get_channel(528281293306462248) #смскер
