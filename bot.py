@@ -117,8 +117,8 @@ async def spotify(ctx, user: discord.Member = None):
 
 #погода в конкретном городе
 
-@Bot.command()         
-async def weather(self, ctx,  *, city):
+@Bot.command(aliases = ['w'])         
+async def weather(ctx,  *, city):
 data = get(f"http://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&APPID=fb9df86d9c484eba8a69269cfb0beac9").json()
 cleared_data = {
     'City': data['name'],
@@ -135,10 +135,10 @@ cleared_data = {
     'Sunset': datetime.utcfromtimestamp(data['sys']['sunset']).strftime('%H:%M:%S'),
     'Sunrise': datetime.utcfromtimestamp(data['sys']['sunrise']).strftime('%H:%M:%S'),
     }
-embed = Embed(title=f":white_sun_small_cloud: Weather in {cleared_data['City']}", color=0x3498db)
+embed = Embed(title = f":white_sun_small_cloud: Weather in {cleared_data['City']}", color=0x3498db)
 for key, value in cleared_data.items():
-    embed.add_field(name=key, value=value)
-    await ctx.send(embed=embed)
+    embed.add_field(name = key, value = value)
+    await ctx.send(embed = embed)
 #==============================================================#
 
 
