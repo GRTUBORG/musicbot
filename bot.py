@@ -218,13 +218,13 @@ async def author(ctx):
                         description = '**Разработчик:** https://vk.com/d.blinov79\n'
                         '**С подачи:** https://vk.com/code_authora_174',
                         color = 0x4ace40)
-    emb.set_footer(text="supports by quantprod")
-    message = await ctx.send(embed=emb)
+    emb.set_footer(text = "supports by quantprod")
+    message = await ctx.send(embed = emb)
     await message.add_reaction('☝')
 
 @Bot.command(aliases = ['git', 'GitHub'])
 async def github(ctx):
-    embed = discord.Embed(color = 0x4ace40, title = 'GitHub разработчика:')
+    embed = discord.Embed(title = 'GitHub разработчика:', color = 0x4ace40)
     embed.set_image(url = 'https://i.ibb.co/j42cxmr/qr-code.png')
     await ctx.send(embed = embed)
 
@@ -396,6 +396,7 @@ async def court(ctx, member: discord.Member):
 #аватарка
 
 @Bot.command(aliases = ['ava'])
+@commands.has_any_role("admin", "Смотрящий", "elite", "Vip")
 async def avatar(ctx, *,  avamember: discord.Member):
     userAvatarUrl = avamember.avatar_url
     embed = discord.Embed(description = f"Аватарка пользователя {avamember.mention}", color = 0x4ace40)
