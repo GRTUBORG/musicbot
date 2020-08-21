@@ -182,6 +182,20 @@ async def leave(ctx):  #КОМАНДА LEAVE БОТА ИЗ ГС КАНАЛА
     else:
         voice = await channel.connect()
         await ctx.send(f'Я отключился от {channel}')
+
+@Bot.command()
+async def stop(ctx):
+    voice = get(Bot.voice_clients, guild = ctx.guild)   
+    if voice and voice.is_playing():
+        voice.stop()
+        await ctx.send("Музыка приостановлена...")
+    else:
+        await ctx.send("Нет музыки для паузы :(")
+
+@Bot.command()
+async def start(ctx):
+    voice = get(Bot.voice_clients, guild = ctx.guild)
+    voice.resume()        
 #==============================================================#
         
         
