@@ -134,7 +134,7 @@ async def missing(ctx, channel : str = None, useDiscordID : bool = False):
         if "barcode" in [y.name.lower() for y in member.roles]:
             if member.nick is None:
                 toAppend = member.name
-           else:
+            else:
                 toAppend = member.nick
             if useDiscordID:
                 toAppend = f'{str(member)} : {toAppend}'
