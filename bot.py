@@ -15,6 +15,7 @@ from Cybernator import Paginator as pag
 from discord import Spotify
 from datetime import datetime
 from random import choice
+from PIL import Image, ImageFont, ImageDraw
 
 
 players = {}
