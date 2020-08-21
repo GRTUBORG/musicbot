@@ -23,7 +23,7 @@ bad_words = ['сервер говно', 'бот говно', 'админы го�
 
 
 
-#работает ли бот?
+#РАБОТАЕТ ЛИ БОТ?
 
 @Bot.event
 async def on_ready():
@@ -34,7 +34,7 @@ async def on_ready():
 
 
     
-#выдача ролей
+#ВЫДАЧА РОЛЕЙ
 
 @Bot.event
 async def on_member_join(member):
@@ -71,7 +71,7 @@ async def on_member_join(member):
 #==============================================================#
 
 
-#обработчик ошибок
+#ОБРАБОТЧИК ОШИБОК
 
 @Bot.event
 async def on_command_error(ctx, error):
@@ -102,7 +102,7 @@ async def on_message(message):
      
     
    
-#spootify, кто что слушает
+#SPOTIFY, КТО ЧТО СЛУШАЕТ
 
 @Bot.command(aliases = ['spot', 's'])
 async def spotify(ctx, user: discord.Member = None):
@@ -115,7 +115,7 @@ async def spotify(ctx, user: discord.Member = None):
 
             
             
-#актуальная версия бота
+#АКТУАЛЬНАЯ ВЕРСИЯ БОТА
 
 @Bot.command(aliases = ['v'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
@@ -127,7 +127,7 @@ async def version(ctx):
 
 
 
-#музыка с ютуба
+#МУЗЫКА С ЮТУБА
 
 @Bot.command(aliases = ['p'])
 async def play(ctx, url):
@@ -189,7 +189,7 @@ async def leave(ctx):
         
         
         
-#помощь user
+#ПОМОЩЬ USER
 
 @Bot.command(aliases = ['h'])
 async def help(ctx):
@@ -249,7 +249,7 @@ async def help(ctx):
 
 
 
-#не, ну это бан!
+#НЕ, НУ ЭТО БАН!
 
 @Bot.command(aliases = ['pzdc'])
 async def pizdec(ctx):
@@ -260,7 +260,7 @@ async def pizdec(ctx):
 
 
 
-#пасхалочка :)
+#ПАСХАЛОЧКА :)
 
 @Bot.command()
 async def author(ctx):
@@ -283,7 +283,7 @@ async def github(ctx):
 
 
 
-#помощь admin
+#ПОМОЩЬ ADMIN
 
 @Bot.command(aliases = ['h_a'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "dmoder", "moder")
@@ -313,7 +313,7 @@ async def help_adm(ctx):
 
 
 
-#попугайчик
+#ПОПУГАЙЧИК
 
 @Bot.command(aliases = ['repeat'])
 async def say(ctx,  *, arg):
@@ -324,7 +324,7 @@ async def say(ctx,  *, arg):
 
 
  
-#математика (простые операции)
+#МАТЕМАТИКА (ПРОСТЫЕ ОПЕРАЦИИ)
 
 @Bot.command() 
 async def math(ctx,  a:  int,  b:  int): 
@@ -340,7 +340,7 @@ async def math(ctx,  a:  int,  b:  int):
 
 
 
-#информация о юзере
+#ИНФОРМАЦИЯ О ЮЗЕРЕ
 
 @Bot.command(aliases = ['i', 'information'])
 async def info(ctx, member: discord.Member):
@@ -354,7 +354,7 @@ async def info(ctx, member: discord.Member):
 
 
 
-#приветствие
+#ПРИВЕТСТВИЕ
 
 @Bot.command()
 async def hello(ctx):
@@ -368,7 +368,7 @@ async def hello(ctx):
 
 
 
-#удаление сообщений
+#УДАЛЕНИЕ СООБЩЕНИЙ
 
 @Bot.command(aliases = ['c_m'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
@@ -390,15 +390,7 @@ async def clear(ctx, amount = 30):
 
 
 
-#кик пользователя
-
-
-#==============================================================#
-#==============================================================#
-
-
-
-#роль подсудимого
+#РОЛЬ ПОДСУДИМОГО
 
 @Bot.command()
 @commands.has_any_role("admin", "Смотрящий", "elite", "dmoder", "moder")
@@ -434,7 +426,7 @@ async def avatar(ctx, *,  avamember: discord.Member):
 
 @Bot.command(aliases = ['k'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
-async def kick(ctx, member: discord.Member, *, reason = None):
+async def kick(ctx, member: discord.Member, *, reason = None):  #КОМАНДА КИКА
     channel = Bot.get_channel(526464840672346112) #логи
     author = ctx.message.author
     await ctx.message.delete()
@@ -446,7 +438,7 @@ async def kick(ctx, member: discord.Member, *, reason = None):
 
 @Bot.command(aliases = ['tb'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "dmoder", "moder")
-async def tempban(ctx, user: discord.User, duration: int, *, reason= None):
+async def tempban(ctx, user: discord.User, duration: int, *, reason= None):  #КОМАНДА ВРЕМЕННОГО БАНА
     channel = Bot.get_channel(526464840672346112) #логи
     author = ctx.message.author
     await ctx.message.delete()
@@ -471,7 +463,7 @@ async def tempban_error(ctx, error):
 
 @Bot.command(aliases = ['b'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
-async def ban(ctx, member: discord.Member, *, reason = None):
+async def ban(ctx, member: discord.Member, *, reason = None):  #ПЕРМАНЕНТНЫЙ БАН
     channel = Bot.get_channel(526464840672346112) #логи
     await member.ban(reason = reason)
     await ctx.message.delete()
@@ -490,7 +482,7 @@ async def ban_error(ctx, error):
 
 @Bot.command(aliases = ['m'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "dmoder", "moder")
-async def mute(ctx, member: discord.Member, duration: int):
+async def mute(ctx, member: discord.Member, duration: int):  #КОМАНДА МУТА
     author = ctx.message.author
     channel = Bot.get_channel(526464840672346112) #логи
     role = discord.utils.get(ctx.guild.roles, name = "mute")
@@ -513,7 +505,7 @@ async def mute_error(ctx, error):
 
 
 
-#узнать длину строки (сообщения)
+#УЗНАТЬ ДЛИНУ СТРОКИ (СООБЩЕНИЯ)
 
 @Bot.command(aliases = ['len']) 
 async def length(ctx): 
