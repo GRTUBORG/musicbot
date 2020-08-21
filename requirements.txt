@@ -26,4 +26,4 @@ PyNaCl
 multidict
 Cybernator
 pyflakes
-discord.py[voice]
+discord.py[voice] ~= 1.4.0
