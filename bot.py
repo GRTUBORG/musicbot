@@ -159,7 +159,7 @@ async def play(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВ
             name = file
             os.rename(file, 'song.mp3') 
     voice.play(discord.FFmpegPCMAudio('song.mp3'), after = lambda e: print(f'[logs] {name}, музыка закончила своё проигрывание'))
-    
+    nname = name.rsplit("-", 4)
     embed = discord.Embed(description = f'Сейчас играет: {name[0]}', color = 0x4ace40)
     embed.set_footer(text = "supports by quantprod")
     await ctx.send(embed = embed)
