@@ -8,13 +8,18 @@ import requests
 import typing
 
 from requests import get 
+
 from discord.ext import commands
 from discord.ext.commands import Bot
 from discord.utils import get
-from Cybernator import Paginator as pag
 from discord import Spotify
+
+from Cybernator import Paginator as pag
+
 from datetime import datetime
+
 from random import choice
+
 from PIL import Image, ImageFont, ImageDraw
 
 
@@ -151,7 +156,7 @@ async def play(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВ
     }  
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         print ('[logs] Начинаю загрузку музыки...')
-        embed = discord.Embed(description = '*Минуточку ожидания. готовлю к воспроизведению твой трек...*', color = 0x4ace40)
+        embed = discord.Embed(description = '*Минуточку ожидания, готовлю к воспроизведению твой трек...*', color = 0x4ace40)
         await ctx.send(embed = embed)
         ydl.download([url])
     for file in os.listdir('./'):
