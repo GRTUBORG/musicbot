@@ -196,6 +196,12 @@ async def leave(ctx):  #КОМАНДА LEAVE БОТА ИЗ ГС КАНАЛА
         await message.add_reaction('✅')
     else:
         voice = await channel.connect()
+
+@Bot.command()
+async def volume(ctx, volume):
+    voice = get(Bot.voice_clients, guild=ctx.guild)
+    voice.volume = volume
+    await ctx.send("Установил новую громкость: " + volume)        
         
 
 @Bot.command()
