@@ -151,7 +151,7 @@ async def play(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВ
     }  
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         print ('[logs] Начинаю загрузку музыки...')
-        embed = discord.Embed(description = '*Минуточку ожидания...*', color = 0x4ace40)
+        embed = discord.Embed(description = '*Минуточку ожидания. готовлю к воспроизведению твой трек...*', color = 0x4ace40)
         await ctx.send(embed = embed)
         ydl.download([url])
     for file in os.listdir('./'):
@@ -198,13 +198,13 @@ async def pause(ctx):
     voice = get(Bot.voice_clients, guild = ctx.guild)   
     if voice and voice.is_playing():
         voice.pause()
-        embed = discord.Embed(description = f'*Музыка приостановлена...*', color = 0x4ace40)
+        embed = discord.Embed(description = f'*Музыка приостановлена и как бы зачем?...*', color = 0x4ace40)
         embed.set_footer(text = "supports by quantprod")
         message = await ctx.send(embed = embed)
         await message.add_reaction('👌')
     else:
         voice.resume()
-        embed = discord.Embed(description = f'*Продолжайте наслаждаться Вашей музыкой 😋*', color = 0x4ace40)
+        embed = discord.Embed(description = f'*Продолжай наслаждаться музыкой 😋*', color = 0x4ace40)
         embed.set_footer(text = "supports by quantprod")
         await ctx.send(embed = embed)    
 #==============================================================#
