@@ -564,7 +564,11 @@ async def ping(ctx: commands.Context):
     await message.add_reaction('👌')
 #==============================================================#
 
-
+@Bot.command()
+async def ping1(ctx):
+    ping_ = Bot.latency
+    ping =  round(ping_ * 1000)
+    await ctx.send(f"Пинг: `{ping}ms`")
 
 #СТАРТ БОТА
 
