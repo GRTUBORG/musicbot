@@ -153,6 +153,9 @@ async def play(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВ
     }  
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         print ('[logs] Начинаю загрузку музыки...')
+        embed = discord.Embed(description = '*Минуточку ожидания...*', color = 0x4ace40)
+        embed.set_footer(text = "supports by quantprod")
+        await ctx.send(embed = embed)
         ydl.download([url])
     for file in os.listdir('./'):
         if file.endswith('.mp3'):
@@ -553,23 +556,20 @@ async def message(ctx, member: discord.Member, *, arg):
 
 
 
-#ПИНГ (А МОЖЕТ И НЕТ)
+#ПИНГ
 
 @Bot.command()
-async def ping(ctx: commands.Context):
-    author = ctx.message.author
-    embed = discord.Embed(title ='Pong!', description = f'{author.mention} ''`{0}`'.format(round(Bot.latency, 1)), color = 0x4ace40) 
+async def ping(ctx):
+    ping_ = Bot.latency
+    ping = round(ping_ * 1000)
+    embed = discord.Embed(title ='Pong!', description = f"Твой пинг: `{ping}ms`", color = 0x4ace40)
     embed.set_footer(text = "supports by quantprod")
     message = await ctx.send(embed = embed)
     await message.add_reaction('👌')
 #==============================================================#
-
-@Bot.command()
-async def ping1(ctx):
-    ping_ = Bot.latency
-    ping =  round(ping_ * 1000)
-    await ctx.send(f"Пинг: `{ping}ms`")
-
+    
+    
+    
 #СТАРТ БОТА
 
  
