@@ -210,7 +210,51 @@ async def pause(ctx):
         embed.set_footer(text = "supports by quantprod")
         await ctx.send(embed = embed)    
         
+
         
+#ПОГОДА
+
+@Bot.command()
+async def weather(ctx, s_city):
+    await ctx.channel.purge(limit=1)
+    url = 'http://api.openweathermap.org/data/2.5/weather'
+    api_owm = ''
+    emb = discord.Embed(colour=discord.Color.green(), title='Погода в городе {}'.format(s_city))
+
+    try:
+        params = {'APPID': api_owm, 'q': s_city, 'units': 'metric'}
+        result = requests.get(url, params=params)
+        weather = result.json()
+
+        query = ("В городе " + str(weather["name"]) + " температура " + str(float(weather["main"]['temp'])) + "\n" +
+              "Максимальная температура " + str(float(weather['main']['temp_max'])) + "\n" +
+              "Минимальная температура " + str(float(weather['main']['temp_min'])) + "\n" +
+              "Скорость ветра " + str(float(weather['wind']['speed'])) + "\n" +
+              "Давление " + str(float(weather['main']['pressure'])) + "\n" +
+              "Влажность " + str(float(weather['main']['humidity'])) + "\n" +
+              "Видимость " + str(weather['visibility']) + "\n" +
+              "Описание " + str(weather['weather'][0]["description"]) + "\n")
+
+
+
+        if weather["main"]['temp'] < 10:
+            footer_w = "Сейчас холодно!"
+        elif weather["main"]['temp'] < 18:
+            footer_w = "Сейчас прохладно!"
+        elif weather["main"]['temp'] > 35:
+            footer_w = "Сейчас жарко!"
+        else:
+            footer_w = "Сейчас отличная температура!"
+
+        emb.set_footer(text=footer_w)
+
+    except:
+        query = ("Город " + s_city + " не найден")
+
+    emb.add_field(name='{}'.format(s_city), value=query)
+    await ctx.send(embed=emb)
+    
+
         
 #ПОМОЩЬ USER
 
