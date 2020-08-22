@@ -130,48 +130,7 @@ async def version(ctx):
     await ctx.send(embed = embed)
     await ctx.send('@everyone')
 
-@Bot.command(aliases = ['p', 'PLAY'])
-async def play1(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВОЙ ДОРОЖКИ
-    song_there = os.path.isfile('song.mp3')
-    try:
-        if song_there:
-            os.remove('song.mp3')
-            print('[logs] Старый файл успешно удалён')
-    except PermissionError: 
-        print('[logs] Не удалось удалить файл. Неизвестная причина...')
-    ydl_opts = {
-        'format' : 'bestaudio/best',
-        'postprocessors' : [{
-            'key' : 'FFmpegExtractAudio',
-            'preferredcodec' : 'mp3',
-            'preferredquality' : '320'
-        }],
-    }
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        print ('[logs] Начинаю загрузку музыки...')
-        channel = ctx.message.author.voice.channel
-        voice = get(Bot.voice_clients, guild = ctx.guild)
-        if voice and voice.is_connected():
-            await voice.move_to(channel)
-        else:
-            voice = await channel.connect()
-            embed = discord.Embed(description = f'Я присоединился к **{channel}**', color = 0x4ace40)
-            embed.set_footer(text = "supports by quantprod")
-            message = await ctx.send(embed = embed)
-            await message.add_reaction('✅')
-            await Bot.join_voice_channel(channel)
-        embed = discord.Embed(description = '*Минуточку ожидания, готовлю к воспроизведению твой трек...*', color = 0x4ace40)
-        await ctx.send(embed = embed)
-        ydl.download([url])
-    for file in os.listdir('./'):
-        if file.endswith('.mp3'):
-            name = file
-            os.rename(file, 'song.mp3') 
-    voice.play(discord.FFmpegPCMAudio('song.mp3'), after = lambda e: print(f'{name}, музыка закончила своё проигрывание'))
-    nname = name.rsplit('-', maxsplit = 1)
-    embed = discord.Embed(description = f'🎵 __Сейчас играет:__ **{nname[0]}**', color = 0x4ace40)
-    embed.set_footer(text = "supports by quantprod")
-    await ctx.send(embed = embed)
+    
 
 #МУЗЫКА С ЮТУБА
 
