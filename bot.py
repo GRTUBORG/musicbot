@@ -38,10 +38,8 @@ bad_words = ['сервер говно', 'бот говно', 'админы го�
 async def on_ready():
     await Bot.change_presence(activity = discord.Activity(type= discord.ActivityType.watching, name = "за Dark Neon City 👀"))
     print("Бот в онлайне!")
-#==============================================================#
 
-
-
+    
     
 #ВЫДАЧА РОЛЕЙ
 
@@ -76,7 +74,6 @@ async def on_member_join(member):
     "С наилучшими пожеланиями, администрация сервера!")
     embed.set_footer(text = "supports by quantprod")
     await member.send(embed = embed)
-#==============================================================#
 
 
 
@@ -106,7 +103,6 @@ async def on_message(message):
         await message.delete()
         embed = discord.Embed(title = "Замечено оскорбление!", description = f'Прошу дать по попе {author.mention}', color = 0x4ace40)
         message = await channel.send(embed = embed)
-#==============================================================#
 
                    
                    
@@ -118,7 +114,6 @@ async def spotify(ctx, user: discord.Member = None):
     for activity in user.activities:
         if isinstance(activity, Spotify):
             await ctx.send(f"{user} слушает {activity.title}, by {activity.artist}")
-#==============================================================#
 
 
 
@@ -130,7 +125,6 @@ async def version(ctx):
     embed = discord.Embed(title = "Актуальная версия бота", description= '__Апдейт был 21.08.2020 до v. 2.6__. \n' 'Добавлены сокращения к командам. \n **Посмотрите, вызвав команду `/help`, или же `/h`!**', color=0x4ace40)
     await ctx.send(embed = embed)
     await ctx.send('@everyone')
-#==============================================================#
 
 
 
@@ -211,7 +205,6 @@ async def pause(ctx):
         embed = discord.Embed(description = f'⏯️ *Продолжай наслаждаться музыкой 😋*', color = 0x4ace40)
         embed.set_footer(text = "supports by quantprod")
         await ctx.send(embed = embed)    
-#==============================================================#
         
         
         
@@ -272,7 +265,6 @@ async def help(ctx):
     message = await ctx.send(embed =  embed1)
     page = pag(Bot, message, only = ctx.author, use_more = False, timeout = 1*3600, embeds = embeds)
     await page.start()
-#==============================================================#  
 
 
 
@@ -312,7 +304,6 @@ async def help_adm(ctx):
                         color = 0x4ace40)
     embed.set_footer(text = "supports by quantprod")
     message = await ctx.author.send(embed = embed)
-#==============================================================#
 
 
 
@@ -321,8 +312,13 @@ async def help_adm(ctx):
 @Bot.command(aliases = ['pzdc', 'PIZDEC'])
 async def pizdec(ctx):
     await ctx.message.delete()
-    await ctx.send(':regional_indicator_p: :regional_indicator_i: :regional_indicator_z: :regional_indicator_d: :regional_indicator_e: :regional_indicator_c:')
-#==============================================================#
+    await ctx.send(':regional_indicator_p:'
+                   ':regional_indicator_i:' 
+                   ':regional_indicator_z:' 
+                   ':regional_indicator_d:' 
+                   ':regional_indicator_e:' 
+                   ':regional_indicator_c:\n'
+                   ':yasnimayuuu:')
 
 
 
