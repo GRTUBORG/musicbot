@@ -138,7 +138,6 @@ async def version(ctx):
 
 @Bot.command(aliases = ['p', 'PLAY'])
 async def play(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВОЙ ДОРОЖКИ
-    voice.volume = 100
     song_there = os.path.isfile('song.mp3')
     try:
         if song_there:
@@ -196,15 +195,8 @@ async def leave(ctx):  #КОМАНДА LEAVE БОТА ИЗ ГС КАНАЛА
         message = await ctx.send(embed = embed)
         await message.add_reaction('✅')
     else:
-        voice = await channel.connect()
-
-@Bot.command()
-async def volume(ctx, volume):
-    voice = get(Bot.voice_clients, guild=ctx.guild)
-    voice.volume = volume
-    await ctx.send("Установил новую громкость: " + volume)        
-        
-
+        voice = await channel.connect()       
+ 
 @Bot.command()
 async def pause(ctx):
     voice = get(Bot.voice_clients, guild = ctx.guild)   
