@@ -139,9 +139,7 @@ async def play(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВ
             os.remove('song.mp3')
             print('[logs] Старый файл успешно удалён')
     except PermissionError: 
-        embed = discord.Embed(description = '*Минуточку ожидания...*', color = 0x4ace40)
-        embed.set_footer(text = "supports by quantprod")
-        await ctx.send(embed = embed)
+        print('[logs] Не удалось удалить файл. Неизвестная причина...')
     voice = get(Bot.voice_clients, guild = ctx.guild)
     ydl_opts = {
         'format' : 'bestaudio/best',
@@ -163,7 +161,7 @@ async def play(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВ
             os.rename(file, 'song.mp3') 
     voice.play(discord.FFmpegPCMAudio('song.mp3'), after = lambda e: print(f'{name}, музыка закончила своё проигрывание'))
     nname = name.rsplit('-', maxsplit = 1)
-    embed = discord.Embed(description = f'Сейчас играет: **{nname[0]}**', color = 0x4ace40)
+    embed = discord.Embed(description = f'__Сейчас играет:__ **{nname[0]}**', color = 0x4ace40)
     embed.set_footer(text = "supports by quantprod")
     await ctx.send(embed = embed)
     
