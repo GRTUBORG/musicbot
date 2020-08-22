@@ -136,6 +136,18 @@ async def version(ctx):
 
 @Bot.command(aliases = ['p', 'PLAY'])
 async def play(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВОЙ ДОРОЖКИ
+    global voice
+    channel = ctx.message.author.voice.channel
+    voice = get(Bot.voice_clients, guild = ctx.guild)
+    if voice and voice.is_connected():
+        await voice.move_to(channel)
+    else:
+        voice = await channel.connect()
+        embed = discord.Embed(description = f'Я присоединился к **{channel}**', color = 0x4ace40)
+        embed.set_footer(text = "supports by quantprod")
+        message = await ctx.send(embed = embed)
+        await message.add_reaction('✅')
+    await Bot.join_voice_channel(channel) 
     song_there = os.path.isfile('song.mp3')
     try:
         if song_there:
@@ -167,20 +179,7 @@ async def play(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВ
     embed.set_footer(text = "supports by quantprod")
     await ctx.send(embed = embed)
     
-@Bot.command(aliases = ['j', 'JOIN'])
-async def join(ctx):  #КОМАНДА ПОДКЛЮЧЕНИЯ БОТА К ГС КАНАЛУ
-    global voice
-    channel = ctx.message.author.voice.channel
-    voice = get(Bot.voice_clients, guild = ctx.guild)
-    if voice and voice.is_connected():
-        await voice.move_to(channel)
-    else:
-        voice = await channel.connect()
-        embed = discord.Embed(description = f'Я присоединился к **{channel}**', color = 0x4ace40)
-        embed.set_footer(text = "supports by quantprod")
-        message = await ctx.send(embed = embed)
-        await message.add_reaction('✅')
-    await Bot.join_voice_channel(channel)
+
         
 @Bot.command(aliases = ['l', 'LEAVE'])
 async def leave(ctx):  #КОМАНДА LEAVE БОТА ИЗ ГС КАНАЛА
