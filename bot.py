@@ -165,7 +165,7 @@ async def play(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВ
             os.rename(file, 'song.mp3') 
     voice.play(discord.FFmpegPCMAudio('song.mp3'), after = lambda e: print(f'{name}, музыка закончила своё проигрывание'))
     nname = name.rsplit('-', maxsplit = 1)
-    embed = discord.Embed(description = f'__Сейчас играет:__ **{nname[0]}**', color = 0x4ace40)
+    embed = discord.Embed(description = f'🎵 __Сейчас играет:__ **{nname[0]}**', color = 0x4ace40)
     embed.set_footer(text = "supports by quantprod")
     await ctx.send(embed = embed)
     
@@ -202,13 +202,13 @@ async def pause(ctx):
     voice = get(Bot.voice_clients, guild = ctx.guild)   
     if voice and voice.is_playing():
         voice.pause()
-        embed = discord.Embed(description = f'*Музыка приостановлена и как бы зачем?...*', color = 0x4ace40)
+        embed = discord.Embed(description = f'⏸️ *Музыка приостановлена...*', color = 0x4ace40)
         embed.set_footer(text = "supports by quantprod")
         message = await ctx.send(embed = embed)
         await message.add_reaction('👌')
     else:
         voice.resume()
-        embed = discord.Embed(description = f'*Продолжай наслаждаться музыкой 😋*', color = 0x4ace40)
+        embed = discord.Embed(description = f'⏯️ *Продолжай наслаждаться музыкой 😋*', color = 0x4ace40)
         embed.set_footer(text = "supports by quantprod")
         await ctx.send(embed = embed)    
 #==============================================================#
