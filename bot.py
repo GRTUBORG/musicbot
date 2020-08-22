@@ -122,7 +122,11 @@ async def spotify(ctx, user: discord.Member = None):
 @Bot.command(aliases = ['v'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
 async def version(ctx):
-    embed = discord.Embed(title = "Актуальная версия бота", description= '__Апдейт был 21.08.2020 до v. 2.6__. \n' 'Добавлены сокращения к командам. \n **Посмотрите, вызвав команду `/help`, или же `/h`!**', color=0x4ace40)
+    embed = discord.Embed(title = "Актуальная версия бота", description= '__Апдейт был 22.08.2020 до v. 2.7__. \n' 'Добавлено:\n'
+                          '1) Поддержка музыки. Теперь бот умеет воспроизводить песни по ссылке с ютуба\n'
+                          '2) Обновлены команды на стр. 4 в `/help` (добавлена команда `/pause`,\n'
+                              'которая позволяет останавливать трек, и при её повторном использовании\n'
+                              'возобновлять воспроизведение трека', color=0x4ace40)
     await ctx.send(embed = embed)
     await ctx.send('@everyone')
 
@@ -317,8 +321,7 @@ async def pizdec(ctx):
                    ':regional_indicator_z:' 
                    ':regional_indicator_d:' 
                    ':regional_indicator_e:' 
-                   ':regional_indicator_c:\n'
-                   ':yasnimayuuu:')
+                   ':regional_indicator_c:')
 
 
 
@@ -328,9 +331,9 @@ async def pizdec(ctx):
 async def author(ctx):
     await ctx.message.delete()
     embed = discord.Embed(title = f'Авторы:',
-                        description = '**Разработчик:** https://vk.com/d.blinov79\n'
-                        '**С подачи:** https://vk.com/code_authora_174',
-                        color = 0x4ace40)
+                          description = '**Разработчик:** https://vk.com/d.blinov79\n'
+                          '**С подачи:** https://vk.com/code_authora_174',
+                          color = 0x4ace40)
     embed.set_footer(text = "supports by quantprod")
     message = await ctx.send(embed = embed)
     await message.add_reaction('☝')
@@ -340,7 +343,6 @@ async def github(ctx):
     embed = discord.Embed(title = 'GitHub разработчика:', color = 0x4ace40)
     embed.set_image(url = 'https://i.ibb.co/j42cxmr/qr-code.png')
     await ctx.send(embed = embed)
-#==============================================================#
 
 
 
@@ -350,7 +352,6 @@ async def github(ctx):
 async def say(ctx,  *, arg):
     await ctx.message.delete()
     await ctx.send(arg)
-#==============================================================#
 
 
  
@@ -365,7 +366,6 @@ async def math(ctx,  a:  int,  b:  int):
     embed.add_field(name = "Умножение: ", value= a * b, inline = False)
     embed.set_footer(text = "supports by quantprod")
     await ctx.send(embed = embed)
-#==============================================================#
 
 
 
@@ -378,7 +378,6 @@ async def info(ctx, member: discord.Member):
     embed.add_field(name = "❓ Имя юзера: ", value = member.display_name)
     embed.set_footer(text = "supports by quantprod")
     await ctx.send(embed = embed)
-#==============================================================#
 
 
 
@@ -391,7 +390,6 @@ async def hello(ctx):
     embed = discord.Embed(title = 'Dark Neon City', description = f'👋 Привет, {author.mention}! Рад видеть тебя на Dark Neon City!', color = 0x4ace40)
     embed.set_footer(text = "supports by quantprod")
     message = await ctx.send(embed = embed)
-#==============================================================#
 
 
 
@@ -412,7 +410,6 @@ async def clear(ctx, amount = 30):  #ВООБЩЕ ВСЕ СООБЩЕНИЯ
     await ctx.channel.purge(limit = amount)
     author = ctx.message.author
     await ctx.send(embed = discord.Embed(description = f'✅ {author.mention}, *удаление сообщений прошло успешно!*', color = 0x4ace40))
-#==============================================================#
 
 
 
@@ -429,7 +426,6 @@ async def court(ctx, member: discord.Member):
     embed = discord.Embed(title = "Суд", description= f'✅ Пользователь {author.mention} выдал {member.mention} роль подсудимого! Кто-то скоро пойдёт на суд :)', color = 0x4ace40)
     message = await ctx.send(embed = embed)
     await channel.send(f'{author.mention} **выдал роль подсудимого юзеру** {member.mention}.')
-#==============================================================#
 
 
 
@@ -442,7 +438,6 @@ async def avatar(ctx, *,  avamember: discord.Member):
     embed = discord.Embed(description = f"Аватарка пользователя {avamember.mention}", color = 0x4ace40)
     embed.set_image(url = userAvatarUrl)
     await ctx.send(embed = embed)
-#==============================================================#
 
 
 
@@ -524,7 +519,6 @@ async def mute(ctx, member: discord.Member, duration: int):  #МУТ
 async def mute_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         await ctx.send('Вы забыли указать аргумент!')
-#==============================================================#
 
 
 
@@ -536,7 +530,6 @@ async def length(ctx):
     embed.add_field(name = "Длина твоего сообщения вместе с командой равна:", value = '{}'.format(len(ctx.message.content)))
     embed.set_footer(text = "supports by quantprod")
     await ctx.send(embed = embed)
-#==============================================================#
 
 
     
@@ -549,7 +542,6 @@ async def message(ctx, member: discord.Member, *, arg):
     embed = discord.Embed(title = 'Личное сообщение', description = f'*Тебе сообщение с сервера Dark Neon City от* {author.mention}: ' + arg, color = 0x4ace40)
     embed.set_footer(text = "supports by quantprod")
     message = await member.send(embed = embed)
-#==============================================================#
 
 
 
@@ -563,7 +555,6 @@ async def ping(ctx):
     embed.set_footer(text = "supports by quantprod")
     message = await ctx.send(embed = embed)
     await message.add_reaction('👌')
-#==============================================================#
     
     
     
