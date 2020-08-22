@@ -159,7 +159,7 @@ async def play(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВ
             name = file
             os.rename(file, 'song.mp3') 
     voice.play(discord.FFmpegPCMAudio('song.mp3'), after = lambda e: print(f'[logs] {name}, музыка закончила своё проигрывание'))
-    nname = name.rsplit("-", 4)
+    nname = name.rsplit('-')
     embed = discord.Embed(description = f'Сейчас играет: {nname[0]}', color = 0x4ace40)
     embed.set_footer(text = "supports by quantprod")
     await ctx.send(embed = embed)
@@ -175,7 +175,8 @@ async def join(ctx):  #КОМАНДА ПОДКЛЮЧЕНИЯ БОТА К ГС К
         voice = await channel.connect()
         embed = discord.Embed(description = f'Я присоединился к **{channel}**', color = 0x4ace40)
         embed.set_footer(text = "supports by quantprod")
-        await ctx.send(embed = embed)
+        message = await ctx.send(embed = embed)
+        await message.add_reaction('✅')
     await Bot.join_voice_channel(channel)
         
 @Bot.command(aliases = ['l', 'LEAVE'])
@@ -186,7 +187,8 @@ async def leave(ctx):  #КОМАНДА LEAVE БОТА ИЗ ГС КАНАЛА
         await voice.disconnect()
         embed = discord.Embed(description = f'Я отключился от **{channel}**', color = 0x4ace40)
         embed.set_footer(text = "supports by quantprod")
-        await ctx.send(embed = embed)
+        message = await ctx.send(embed = embed)
+        await message.add_reaction('✅')
     else:
         voice = await channel.connect()
         
@@ -198,10 +200,11 @@ async def pause(ctx):
         voice.pause()
         embed = discord.Embed(description = f'*Музыка приостановлена...*', color = 0x4ace40)
         embed.set_footer(text = "supports by quantprod")
-        await ctx.send(embed = embed)
+        message = await ctx.send(embed = embed)
+        await message.add_reaction('👌')
     else:
         voice.resume()
-        embed = discord.Embed(description = f'*Продолжайте наслаждаться Вашей музыкой :)*', color = 0x4ace40)
+        embed = discord.Embed(description = f'*Продолжайте наслаждаться Вашей музыкой 😋*', color = 0x4ace40)
         embed.set_footer(text = "supports by quantprod")
         await ctx.send(embed = embed)    
 #==============================================================#
