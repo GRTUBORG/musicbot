@@ -215,7 +215,7 @@ async def pause(ctx):
 #ПОГОДА
 
 @Bot.command()
-async def weather(ctx, s_city):
+async def weath(ctx, s_city):
     await ctx.channel.purge(limit=1)
     url = 'http://api.openweathermap.org/data/2.5/weather'
     api_owm = ''
