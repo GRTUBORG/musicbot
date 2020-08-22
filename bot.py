@@ -218,7 +218,7 @@ async def pause(ctx):
 async def weath(ctx, s_city):
     await ctx.channel.purge(limit=1)
     url = 'http://api.openweathermap.org/data/2.5/weather'
-    api_owm = ''
+    api_owm = '610db95b52ef9995408f455131444af3'
     emb = discord.Embed(colour=discord.Color.green(), title='Погода в городе {}'.format(s_city))
 
     try:
