@@ -137,8 +137,6 @@ async def version(ctx):
 @Bot.command(aliases = ['p', 'PLAY'])
 async def play(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВОЙ ДОРОЖКИ
     song_there = os.path.isfile('song.mp3')
-    global voice
-    channel = ctx.message.author.voice.channel
     try:
         if song_there:
             os.remove('song.mp3')
@@ -153,16 +151,7 @@ async def play(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВ
             'preferredcodec' : 'mp3',
             'preferredquality' : '320'
         }],
-    }  
-    if voice and voice.is_connected():
-        await voice.move_to(channel)
-    else:
-        voice = await channel.connect()
-        embed = discord.Embed(description = f'Я присоединился к **{channel}**', color = 0x4ace40)
-        embed.set_footer(text = "supports by quantprod")
-        message = await ctx.send(embed = embed)
-        await message.add_reaction('✅')
-        await Bot.join_voice_channel(channel)
+    }
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         print ('[logs] Начинаю загрузку музыки...')
         embed = discord.Embed(description = '*Минуточку ожидания, готовлю к воспроизведению твой трек...*', color = 0x4ace40)
@@ -178,7 +167,20 @@ async def play(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВ
     embed.set_footer(text = "supports by quantprod")
     await ctx.send(embed = embed)
     
-
+@Bot.command(aliases = ['j', 'JOIN'])	
+async def join(ctx):  #КОМАНДА ПОДКЛЮЧЕНИЯ БОТА К ГС КАНАЛУ	
+    global voice	
+    channel = ctx.message.author.voice.channel	
+    voice = get(Bot.voice_clients, guild = ctx.guild)	
+    if voice and voice.is_connected():	
+        await voice.move_to(channel)	
+    else:	
+        voice = await channel.connect()	
+        embed = discord.Embed(description = f'Я присоединился к **{channel}**', color = 0x4ace40)	
+        embed.set_footer(text = "supports by quantprod")	
+        message = await ctx.send(embed = embed)	
+        await message.add_reaction('✅')	
+    await Bot.join_voice_channel(channel)
         
 @Bot.command(aliases = ['l', 'LEAVE'])
 async def leave(ctx):  #КОМАНДА LEAVE БОТА ИЗ ГС КАНАЛА
