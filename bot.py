@@ -152,7 +152,6 @@ async def play(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВ
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         print ('[logs] Начинаю загрузку музыки...')
         embed = discord.Embed(description = '*Минуточку ожидания...*', color = 0x4ace40)
-        embed.set_footer(text = "supports by quantprod")
         await ctx.send(embed = embed)
         ydl.download([url])
     for file in os.listdir('./'):
