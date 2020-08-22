@@ -138,6 +138,7 @@ async def version(ctx):
 
 @Bot.command(aliases = ['p', 'PLAY'])
 async def play(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВОЙ ДОРОЖКИ
+    voice.volume = 100
     song_there = os.path.isfile('song.mp3')
     try:
         if song_there:
@@ -164,7 +165,6 @@ async def play(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВ
             name = file
             os.rename(file, 'song.mp3') 
     voice.play(discord.FFmpegPCMAudio('song.mp3'), after = lambda e: print(f'{name}, музыка закончила своё проигрывание'))
-    voice.volume = 100
     nname = name.rsplit('-', maxsplit = 1)
     embed = discord.Embed(description = f'__Сейчас играет:__ **{nname[0]}**', color = 0x4ace40)
     embed.set_footer(text = "supports by quantprod")
