@@ -179,7 +179,7 @@ async def join(ctx):  #КОМАНДА ПОДКЛЮЧЕНИЯ БОТА К ГС К
         embed = discord.Embed(description = f'Я присоединился к **{channel}**', color = 0x4ace40)	
         embed.set_footer(text = "supports by quantprod")	
         message = await ctx.send(embed = embed)	
-        await Bot.add_reaction('✅')	
+        await ctx.add_reaction('✅')	
     await Bot.join_voice_channel(channel)
         
 @Bot.command(aliases = ['l', 'LEAVE'])
@@ -191,7 +191,7 @@ async def leave(ctx):  #КОМАНДА LEAVE БОТА ИЗ ГС КАНАЛА
         embed = discord.Embed(description = f'Я отключился от **{channel}**', color = 0x4ace40)
         embed.set_footer(text = "supports by quantprod")
         message = await ctx.send(embed = embed)
-        await Bot.add_reaction('✅')
+        await message.add_reaction('✅')
     else:
         voice = await channel.connect()       
  
@@ -203,7 +203,7 @@ async def pause(ctx):
         embed = discord.Embed(description = f'⏸️ *Музыка приостановлена...*', color = 0x4ace40)
         embed.set_footer(text = "supports by quantprod")
         message = await ctx.send(embed = embed)
-        await Bot.add_reaction('👌')
+        await message.add_reaction('👌')
     else:
         voice.resume()
         embed = discord.Embed(description = f'⏯️ *Продолжай наслаждаться музыкой 😋*', color = 0x4ace40)
