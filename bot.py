@@ -271,6 +271,14 @@ async def help(ctx):
     await page.start()
 
 
+    
+#СПАСИБО)
+
+@Bot.command(aliases = ['спасибо', 'thx', 'пасибо', 'пасиба', 'спс'])
+async def sanq(ctx):
+    message = ctx.message
+    await message.add_reaction('💚')
+    await ctx.send('Не за что :)')
 
 #ПОМОЩЬ ADMIN
 
