@@ -179,7 +179,7 @@ async def join(ctx):  #КОМАНДА ПОДКЛЮЧЕНИЯ БОТА К ГС К
         embed = discord.Embed(description = f'Я присоединился к **{channel}**', color = 0x4ace40)	
         embed.set_footer(text = "supports by quantprod")	
         message = await ctx.send(embed = embed)	
-        await ctx.add_reaction('✅')	
+        await message.add_reaction('✅')	
     await Bot.join_voice_channel(channel)
         
 @Bot.command(aliases = ['l', 'LEAVE'])
