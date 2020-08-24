@@ -249,7 +249,7 @@ async def help(ctx):
     embed3 = discord.Embed(title = 'Помощь, страница 3', description = 
                         '`/hello` - ну-ка быстро посмотри :)\n'
                         '\n'
-                        '`/info [@пользователь]` - узнай регистрацию пользователя!;\n'
+                        '`/info [@пользователь]` - узнай дату входа пользователя на сервер!;\n'
                         '\n'
                         '`/message [@пользователь] [текст сообщения]` - отправка сообщения любому юзеру с помощью бота;\n'
                         '\n'
@@ -271,7 +271,7 @@ async def help(ctx):
                         '`/pause` - пауза текущей песни, повторное использование возобновляет аудио.'
                         )
     embed5 = discord.Embed(title = 'Помощь, страница 4, команды в стадии разработки', description = 
-                        '*пока таких команд нет, ожидайте выходов новых обновлений бота*')
+                        '*Увы, но пока таких команд нет, ожидайте выходов новых обновлений бота*')
     embeds = [embed1, embed2, embed3, embed4, embed5]
     message = await ctx.send(embed =  embed1)
     page = pag(Bot, message, only = ctx.author, use_more = False, timeout = 1*3600, embeds = embeds)
@@ -281,7 +281,7 @@ async def help(ctx):
     
 #КАРТОЧКА ПОЛЬЗОВАТЕЛЯ
 
-@Bot.command()
+@Bot.command(aliases = ['карточка', 'карта', 'who?'])
 async def card(ctx):
     img = Image.new('RGBA', (400, 200), '#8B0000')
     url = str(ctx.author.avatar_url)[:-10]
@@ -293,8 +293,8 @@ async def card(ctx):
     idraw = ImageDraw.Draw(img)
     name = ctx.author.name
     tag = ctx.author.discriminator
-    headline = ImageFont.truetype('russoone.ttf', size = 20)
-    undertext = ImageFont.truetype('russoone.ttf', size = 12)
+    headline = ImageFont.truetype('arial.ttf', size = 20)
+    undertext = ImageFont.truetype('arial.ttf', size = 12)
     idraw.text((145, 15), f'{name}#{tag}', font = headline)
     idraw.text((145, 55), f'ID: {ctx.author.id}', font = undertext)
     img.save('card.png')
