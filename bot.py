@@ -316,7 +316,7 @@ async def sanq(ctx):
 
 @Bot.command()
 async def random_pick(ctx):
-    await ctx.send(random.choice(random_ahegao))
+    await Bot.send_message(random.choice(random_ahegao))
 
 
 #ПОМОЩЬ ADMIN
