@@ -88,7 +88,7 @@ async def on_command_error(ctx, error):
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         author = ctx.message.author
-        embed = discord.Embed(color = 0x4ace40)
+        embed = discord.Embed(color = 0x8B0000)
         embed.add_field(name = 'Ошибка выполнения команды!', value = f':x: *Внимание, {author.mention}! Данной команды __не существует__!*')
         embed.set_footer(text = "supports by quantprod")
         await ctx.send(embed = embed)
@@ -102,7 +102,7 @@ async def on_message(message):
     msg = message.content.lower()
     if msg in bad_words:
         await message.delete()
-        embed = discord.Embed(title = "Замечено оскорбление!", description = f'Прошу дать по попе {author.mention}', color = 0x4ace40)
+        embed = discord.Embed(title = "Замечено оскорбление!", description = f'Прошу дать по попе {author.mention}', color = 0x8B0000)
         message = await channel.send(embed = embed)
 
                    
@@ -202,14 +202,12 @@ async def pause(ctx):
     if voice and voice.is_playing():
         voice.pause()
         embed = discord.Embed(description = f'⏸️ *Музыка приостановлена...*', color = 0x4ace40)
-        embed.set_footer(text = "supports by quantprod")
         await ctx.send(embed = embed)
         message = ctx.message
         await message.add_reaction('👌')
     else:
         voice.resume()
         embed = discord.Embed(description = f'⏯️ *Продолжай наслаждаться музыкой 😋*', color = 0x4ace40)
-        embed.set_footer(text = "supports by quantprod")
         await ctx.send(embed = embed)    
         
             
@@ -278,27 +276,6 @@ async def help(ctx):
     await page.start()
 
 
-    
-#КАРТОЧКА ПОЛЬЗОВАТЕЛЯ
-
-@Bot.command(aliases = ['карточка', 'карта', 'who?'])
-async def card(ctx):
-    img = Image.new('RGBA', (400, 200), '#8B0000')
-    url = str(ctx.author.avatar_url)[:-10]
-    response = requests.get(url, stream = True)
-    response = Image.open(io.BytesIO(response.content))
-    response = response.convert('RGBA')
-    response = response.resize((100, 100), Image.ANTIALIAS)
-    img.paste(response, (15, 15, 115, 115))
-    idraw = ImageDraw.Draw(img)
-    name = ctx.author.name
-    tag = ctx.author.discriminator
-    headline = ImageFont.truetype('arial.ttf', size = 20)
-    undertext = ImageFont.truetype('arial.ttf', size = 12)
-    idraw.text((145, 15), f'{name}#{tag}', font = headline)
-    idraw.text((145, 55), f'ID: {ctx.author.id}', font = undertext)
-    img.save('card.png')
-    await ctx.send(file = discord.File(fp = 'card.png'))
     
     
 #СПАСИБО)
