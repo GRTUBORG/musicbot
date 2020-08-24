@@ -275,6 +275,9 @@ async def help(ctx):
                         '\n'
                         '`/say [ваш текст]` - бот повторит за вами всё то, что вы ему напишете\n'
                         '*сокращения/синонимы*: `/repeat`;\n'
+                        '\n'
+                        '`/ahegao` - ну тут сами понимаете что :D\n'
+                        '*сокращения/синонимы*: `/ah`, `/ахегао`\n'
                         )
     embed3 = discord.Embed(title = 'Помощь, страница 3', description = 
                         '`/hello` - ну-ка быстро посмотри :)\n'
@@ -314,8 +317,7 @@ async def help(ctx):
 
 @Bot.command(aliases = ['спасибо', 'thx', 'пасибо', 'пасиба', 'спс'])
 async def sanq(ctx):
-    answer = random.choice(command_list)
-    await ctx.send(answer)
+    await ctx.send(random.choice(command_list))
     message = ctx.message
     await message.add_reaction('💚')  
     
