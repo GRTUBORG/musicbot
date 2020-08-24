@@ -30,4 +30,3 @@ discord.py[voice] ~= 1.4.0
 colorlog
 ffmpeg
 Pillow
-io
