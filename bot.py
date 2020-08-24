@@ -143,7 +143,7 @@ async def spotify(ctx, user: discord.Member = None):
 @Bot.command(aliases = ['v'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
 async def version(ctx):
-    embed = discord.Embed(title = "Актуальная версия бота", description= '__Апдейт был 25.08.2020 до v. 2.9__. \n' 'Добавлено:\n'
+    embed = discord.Embed(title = "Актуальная версия бота", description= '__Апдейт был 25.08.2020 до v. 2.8b__. \n' 'Добавлено/обновлено:\n'
                           'Обновлён вывод в Embed, а конкретно - изменены цвета HEX,\n'
                           'а также добавлена парочка новых', color = 0x428325)
     await ctx.send(embed = embed)
