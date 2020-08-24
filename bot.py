@@ -52,6 +52,10 @@ command_list = ['Не за что!',
                 'Почаще обращайся ко мне 💚'
                ]
 
+random_ahegao = ['https://avatars.mds.yandex.net/get-pdb/1766896/ddf06dad-a461-4871-967a-076304aae800/s1200?webp=false'
+                 'https://yt3.ggpht.com/a/AGF-l7_CSHmSY_5TBdLR_sto-z4cVQS2KGSarlMm8w=s900-c-k-c0xffffffff-no-rj-mo'
+                 'https://avatars.mds.yandex.net/get-pdb/1919902/8daa48e4-e5f4-4f87-94cf-0e29528e2030/s1200?webp=false'
+                ]
 
 #РАБОТАЕТ ЛИ БОТ?
 
@@ -229,7 +233,7 @@ async def pause(ctx):
         embed = discord.Embed(description = f'⏯️ *Продолжай наслаждаться музыкой 😋*', color = 0x428325)
         await ctx.send(embed = embed)    
         
-            
+        
                  
 #ПОМОЩЬ USER
 
@@ -304,7 +308,16 @@ async def sanq(ctx):
     answer = random.choice(command_list)
     await ctx.send(answer)
     message = ctx.message
-    await message.add_reaction('💚')   
+    await message.add_reaction('💚')  
+    
+    
+
+#РАНДОМНОЕ АХЕГАО (ОЙ)
+
+@Bot.command()
+async def radnom_pick(ctx):
+    rand_pick = random.choice(random_ahegao)
+    await ctx.send(rand_pick)
    
 
 
