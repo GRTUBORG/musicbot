@@ -315,9 +315,9 @@ async def sanq(ctx):
 #РАНДОМНОЕ АХЕГАО (ОЙ)
 
 @Bot.command()
-async def radnom_pick(ctx):
+async def random_pick(ctx):
     rand_pick = random.choice(random_ahegao)
-    await ctx.send(rand_pick)
+    await Bot.send(rand_pick)
    
 
 
