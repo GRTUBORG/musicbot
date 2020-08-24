@@ -156,9 +156,12 @@ async def spotify(ctx, user: discord.Member = None):
 @Bot.command(aliases = ['v'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
 async def version(ctx):
-    embed = discord.Embed(title = "Актуальная версия бота", description= '__Апдейт был 25.08.2020 до v. 2.8b__. \n' 'Добавлено/обновлено:\n'
-                          'Обновлён вывод в Embed, а конкретно - изменены цвета HEX,\n'
-                          'а также добавлена парочка новых', color = 0x428325)
+    embed = discord.Embed(title = "Актуальная версия бота", description= '__Апдейт был 25.08.2020 до v. 3.0 alpha__. \n' 'Добавлено/обновлено:\n'
+                          'У бота появляются зачатки `#nsfw` контента. И первая команда:\n'
+                          '`/ahegao`\n'
+                          'Ух... Впереди много __"открытий"__ контента из мира 18+,\n'
+                          'потому что нужно же как-то пилить непристойный контент))\n'
+                          'Так что ждите, скоро выйдет v. 3.0 beta, которую опробуете уже Вы!', color = 0x428325)
     await ctx.send(embed = embed)
 
     
