@@ -29,7 +29,7 @@ players = {}
 Bot = commands.Bot(command_prefix = "/")
 Bot.remove_command('help')
 bad_words = ['сервер говно', 'бот говно', 'админы говно', 'satoemari лох', 'крыса лох', 'пидорский сервер', 'администрация говно', 'dnc говно', 'дно сервер', 'вы все лохи']
-
+command_list = ['Не за что!', 'Рад был помочь)', 'Тебе спасибо!']
 
 
 #РАБОТАЕТ ЛИ БОТ?
@@ -279,7 +279,8 @@ async def help(ctx):
 
 @Bot.command(aliases = ['спасибо', 'thx', 'пасибо', 'пасиба', 'спс'])
 async def sanq(ctx):
-    await ctx.send('Не за что :)')
+    answer = random.choice(command_list)
+    await ctx.send(answer)
     message = ctx.message
     await message.add_reaction('💚')
    
