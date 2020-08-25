@@ -8,6 +8,7 @@ import requests
 import typing
 import io
 import time
+import datetime
 
 from requests import get 
 
@@ -15,7 +16,7 @@ from discord.ext import commands
 from discord.ext.commands import Bot
 from discord.utils import get
 from discord import Spotify
-from datetime import datetime
+from datetime import timedelta
 
 from Cybernator import Paginator as pag
 
@@ -83,11 +84,11 @@ async def on_ready():
 async def on_member_join(member):
     role = discord.utils.get(member.guild.roles, name = 'Unit')  # САМА РОЛЬ КОТОРУЮ ВЫДАЕМ
     await member.add_roles(role) # ДОБАВЛЯЕМ РОЛЬ
-    channel1 = Bot.get_channel(526099119874375710) #правила
-    channel2 = Bot.get_channel(528281293306462248) #смскер
-    channel3 = Bot.get_channel(687044254622941217) #info
-    channel4 = Bot.get_channel(541231102333943832) #news
-    channel5 = Bot.get_channel(741002854898073660) #доска-почёта
+    channel1 = Bot.get_channel('526099119874375710') #правила
+    channel2 = Bot.get_channel('528281293306462248') #смскер
+    channel3 = Bot.get_channel('687044254622941217') #info
+    channel4 = Bot.get_channel('541231102333943832') #news
+    channel5 = Bot.get_channel('741002854898073660') #доска-почёта
     embed = discord.Embed(color = 0x4ace40)
     embed.add_field(name = "Приветственное сообщение", value = "Добро пожаловать в Dark Neon City!\n"
                                                                f"Перед тем, как пользоваться сервером, прочитай {channel1.mention}. Это обязательно, а то атата!)\n"
