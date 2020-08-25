@@ -443,9 +443,9 @@ async def math(ctx,  a:  int,  b:  int):
 async def info(ctx, member: discord.Member):
     mentions = [role.mention for role in member.roles if role.mentionable]
     embed = discord.Embed(title = "Info", color = 0x428325)
-    embed.add_field(name = "Когда присоединился: ", value = member.joined_at, inline = False)
-    embed.add_field(name = "Имя юзера: ", value = member.display_name, inline = False)
-    embed.add_field(name = "Роли имеет: ", value = " ".join(mentions), inline = False)
+    embed.add_field(name = "Когда присоединился: ", value = member.joined_at)
+    embed.add_field(name = "Имя юзера: ", value = member.display_name)
+    embed.add_field(name = "Роли имеет: ", value = "\n".join(mentions))
     embed.set_thumbnail(url = member.avatar_url)
     embed.set_footer(text = "supports by quantprod")
     await ctx.send(embed = embed)
