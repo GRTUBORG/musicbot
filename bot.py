@@ -444,7 +444,7 @@ async def math(ctx,  a:  int,  b:  int):
 async def info(ctx, member: discord.Member): 
     roles = [role.mention for role in member.roles[1:]]
     embed = discord.Embed(title = "Info", color = 0x428325)
-    embed.add_field(name = "Когда присоединился: ", value = member.joined_at, inline = False)
+    embed.add_field(name = "Когда присоединился: ", value = member.joined_at.strftime("%A, %B %d %Y @ %H:%M:%S %p"), inline = False)
     embed.add_field(name = "Имя юзера: ", value = member.display_name, inline = False)
     embed.add_field(name = f"Роли [{len(member.roles) - 1}]: ", value = ' '.join(roles), inline = False)
     embed.set_thumbnail(url = member.avatar_url)
