@@ -8,7 +8,6 @@ import requests
 import typing
 import io
 import time
-import datetime
 
 from requests import get 
 
@@ -16,6 +15,7 @@ from discord.ext import commands
 from discord.ext.commands import Bot
 from discord.utils import get
 from discord import Spotify
+from datetime import datetime
 
 from Cybernator import Paginator as pag
 
