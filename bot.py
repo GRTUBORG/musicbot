@@ -6,9 +6,6 @@ import youtube_dl
 import json
 import requests
 import typing
-import io
-import time
-import datetime
 
 from requests import get 
 
@@ -16,15 +13,10 @@ from discord.ext import commands
 from discord.ext.commands import Bot
 from discord.utils import get
 from discord import Spotify
-from datetime import timedelta
 
 from Cybernator import Paginator as pag
 
-from datetime import datetime
-
 from random import choice
-
-from PIL import Image, ImageFont, ImageDraw
 
 
 players = {}
@@ -32,6 +24,7 @@ players = {}
 
 Bot = commands.Bot(command_prefix = "/")
 Bot.remove_command('help')
+
 
 bad_words = ['сервер говно', 
              'бот говно', 
@@ -45,6 +38,7 @@ bad_words = ['сервер говно',
              'вы все лохи'
             ]
 
+
 command_list = ['Не за что!', 
                 'Рад был помочь)', 
                 'Тебе спасибо!', 
@@ -54,6 +48,7 @@ command_list = ['Не за что!',
                 'Хэй, это тебе спасибо 💚', 
                 'Почаще обращайся ко мне 💚'
                ]
+
 
 random_ahegao = ['https://avatars.mds.yandex.net/get-pdb/1766896/ddf06dad-a461-4871-967a-076304aae800/s1200?webp=false',
                  'https://yt3.ggpht.com/a/AGF-l7_CSHmSY_5TBdLR_sto-z4cVQS2KGSarlMm8w=s900-c-k-c0xffffffff-no-rj-mo',
@@ -69,11 +64,13 @@ random_ahegao = ['https://avatars.mds.yandex.net/get-pdb/1766896/ddf06dad-a461-4
                  'https://pm1.narvii.com/6557/31c9e7fe87dfbb467a05bbb4f10f88e7bc772877_hq.jpg'
                 ]
 
+
+
 #РАБОТАЕТ ЛИ БОТ?
 
 @Bot.event
 async def on_ready():
-    await Bot.change_presence(activity = discord.Activity(type= discord.ActivityType.watching, name = "за Dark Neon City 👀"))
+    await Bot.change_presence(activity = discord.Activity(type = discord.ActivityType.watching, name = "за Dark Neon City 👀"))
     print("Бот в онлайне!")
 
     
@@ -84,26 +81,26 @@ async def on_ready():
 async def on_member_join(member):
     role = discord.utils.get(member.guild.roles, name = 'Unit')  # САМА РОЛЬ КОТОРУЮ ВЫДАЕМ
     await member.add_roles(role) # ДОБАВЛЯЕМ РОЛЬ
-    channel1 = Bot.get_channel(id = 526099119874375710) #правила
-    channel2 = Bot.get_channel(id = 528281293306462248) #смскер
-    channel3 = Bot.get_channel(id = 687044254622941217) #info
-    channel4 = Bot.get_channel(id = 541231102333943832) #news
-    channel5 = Bot.get_channel(id = 741002854898073660) #доска-почёта
+    channel1 = Bot.get_channel(526099119874375710) #правила
+    channel2 = Bot.get_channel(528281293306462248) #смскер
+    channel3 = Bot.get_channel(687044254622941217) #info
+    channel4 = Bot.get_channel(541231102333943832) #news
+    channel5 = Bot.get_channel(741002854898073660) #доска-почёта
     embed = discord.Embed(color = 0x4ace40)
     embed.add_field(title = "Приветственное сообщение", description = f"Добро пожаловать в Dark Neon City!\n"
-                                                                      f"Перед тем, как пользоваться сервером, прочитай {channel1.mention}. Это обязательно, а то атата!)\n"
+                                                                      f"Перед тем, как пользоваться сервером, прочитай {channel1}. Это обязательно, а то атата!)\n"
                                                                       '\n'
                                                                       f'Тебе дана роль `@Unit`, поэтому, пока что, тебе доступны не все функции сервера. Но ты можешь участвовать в ивентах, чтобы повысить свой ранг!\n'
                                                                       '\n'
                                                                       "Для тебя открыты все комнаты в доме unit'ов, выбирай любую которая не занята, зови друзей на сервер и наслаждайтесь общением благодаря качественной связи!\n"
                                                                       '\n'
-                                                                      f"Chill'овая беседка - самое уютное место для общения на различные темы! Заглядывай туда, в {channel2.mention}, или же в войс-чат под ним!\n"
+                                                                      f"Chill'овая беседка - самое уютное место для общения на различные темы! Заглядывай туда, в {channel2}, или же в войс-чат под ним!\n"
                                                                       '\n'
-                                                                      f"На сервере, как ты заметил, присутствуют боты, информацию о них можешь найти в {channel3.mention}.\n"
+                                                                      f"На сервере, как ты заметил, присутствуют боты, информацию о них можешь найти в {channel3}.\n"
                                                                       '\n'
                                                                       'По интересующим вопросам обращайся к `@Смотрящий`.\n'
                                                                       '\n'
-                                                                      f"Не забывай следить за новостями {channel4.mention} и обновлениями правил {channel1.mention}. Будь активен на сервере и однажды появишься на {channel5.mention}!\n"
+                                                                      f"Не забывай следить за новостями {channel4} и обновлениями правил {channel1}. Будь активен на сервере и однажды появишься на {channel5}!\n"
                                                                       '\n'
                                                                       "С наилучшими пожеланиями, администрация сервера!")
     embed.set_footer(text = "supports by quantprod")
