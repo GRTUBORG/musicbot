@@ -348,7 +348,7 @@ async def ahegao(ctx):
 
 #РАНДОМНЫЕ ДЕВА44КИ
 
-@@Bot.command(aliases = ['ns'])
+@Bot.command(aliases = ['ns'])
 async def nsfw(ctx):
     await ctx.send(random.choice(random_ass))
     
