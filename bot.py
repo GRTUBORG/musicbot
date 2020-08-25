@@ -443,10 +443,10 @@ async def info(ctx, member: discord.Member):
     userAvatarUrl = avamember.avatar_url
     member_roles = member.roles 
     embed = discord.Embed(title = "Info", color = 0x428325)
-    set_thumbnail(url = userAvatarUrl)
     embed.add_field(name = "Когда присоединился: ", value = member.joined_at)
     embed.add_field(name = "Имя юзера: ", value = member.display_name)
     embed.add_field(name = "Роли на сервере: ", value = member_roles)
+    embed.set_thumbnail(url = userAvatarUrl)
     embed.set_footer(text = "supports by quantprod")
     await ctx.send(embed = embed)
 
