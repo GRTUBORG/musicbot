@@ -122,10 +122,11 @@ async def on_message(message):
 
 @Bot.command(aliases = ['spot', 's'])
 async def spotify(ctx, user: discord.Member = None):
+    await ctx.message.delete()
     user = user or ctx.author
     for activity in user.activities:
         if isinstance(activity, Spotify):
-            await ctx.send(f"{user} слушает {activity.title}, by {activity.artist}")
+            await ctx.send(f"{member.mention} слушает `{activity.title}`, by `{activity.artist}`")
 
 
 
@@ -134,6 +135,7 @@ async def spotify(ctx, user: discord.Member = None):
 @Bot.command(aliases = ['v'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
 async def version(ctx):
+    await ctx.message.delete()
     embed = discord.Embed(title = "Актуальная версия бота", description= '__Апдейт был 25.08.2020 до v. 3.0 beta__. \n' 'Добавлено/обновлено:\n'
                           'Ой, это nsfw? ДА!\n'
                           'Подъехало обновление с nsfw-контентом с более чем 200 фотографиями\n'
@@ -379,6 +381,16 @@ async def pizdec(ctx):
 
 
 
+#NSFW-ИНФО (ПОПОЛНЕНИЕ)
+
+@Bot.command(aliases = ['updatebases', 'base', 'updnsfw', 'bases'])
+async def nsfw_info(ctx):
+    with open(file, 'r') as f:
+    for i in range(0):
+        f.readline()
+    x = f.readline()
+    await ctx.send(x)
+    
 #ПАСХАЛОЧКА :)
 
 @Bot.command(aliases = ['AUTHOR'])
@@ -413,11 +425,11 @@ async def say(ctx,  *, arg):
 
 @Bot.command(aliases = ['MATH']) 
 async def math(ctx,  a:  int,  b:  int): 
-    embed= discord.Embed(title = "Простая математика", color = 0x428325)
-    embed.add_field(name = "Сумма: ", value= a + b, inline = False)
-    embed.add_field(name = "Разность: ", value= a - b, inline = False)
-    embed.add_field(name = "Деление: ", value= a / b, inline = False)
-    embed.add_field(name = "Умножение: ", value= a * b, inline = False)
+    embed = discord.Embed(title = "Простая математика", color = 0x428325)
+    embed.add_field(name = "Сумма: ", value = a + b, inline = False)
+    embed.add_field(name = "Разность: ", value = a - b, inline = False)
+    embed.add_field(name = "Деление: ", value = a / b, inline = False)
+    embed.add_field(name = "Умножение: ", value = a * b, inline = False)
     embed.set_footer(text = "supports by quantprod")
     await ctx.send(embed = embed)
 
