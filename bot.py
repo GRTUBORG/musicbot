@@ -333,7 +333,7 @@ async def ahegao(ctx):
 
 @Bot.command(aliases = ['ns'])
 async def nsfw(ctx):
-    with open ('myfile.txt', 'r') as file:
+    with open ('nsfw.txt', 'r') as file:
         lines = file.readlines()
     await ctx.send(random.choice(lines))
     
