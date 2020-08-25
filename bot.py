@@ -134,12 +134,11 @@ async def spotify(ctx, user: discord.Member = None):
 @Bot.command(aliases = ['v'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
 async def version(ctx):
-    embed = discord.Embed(title = "Актуальная версия бота", description= '__Апдейт был 25.08.2020 до v. 3.0 alpha__. \n' 'Добавлено/обновлено:\n'
-                          'У бота появляются зачатки `#nsfw` контента. И первая команда:\n'
-                          '`/ahegao`\n'
-                          'Ух... Впереди много __"открытий"__ контента из мира 18+,\n'
-                          'потому что нужно же как-то пилить непристойный контент))\n'
-                          'Так что ждите, скоро выйдет v. 3.0 beta, которую опробуете уже Вы!', color = 0x428325)
+    embed = discord.Embed(title = "Актуальная версия бота", description= '__Апдейт был 25.08.2020 до v. 3.0 beta__. \n' 'Добавлено/обновлено:\n'
+                          'Ой, это nsfw? ДА!\n'
+                          'Подъехало обновление с nsfw-контентом с более чем 200 фотографиями\n'
+                          'Разбирайте) Пополнение фотографий будет производиться **раз в три дня**', color = 0x428325)
+    await ctx.send('@everyone')
     await ctx.send(embed = embed)
 
     
@@ -243,6 +242,9 @@ async def help(ctx):
                         '`/math [первое число] [второе число]` - посчитает Ваши числа. \n'
                         '**ВНИМАНИЕ! Числа нужно вводить ЧЕРЕЗ пробел:**\n'
                         '__ввели__ `/math 3 4`, __вывод дал Embed с операциями__;\n'
+                        '\n'
+                        '`/nsfw` - строго 18+ контент)\n'
+                        '*сокращения/синонимы*: `ns`, `порево`, `прон`;\n'
                         )
     embed2 = discord.Embed(title = 'Помощь, cтраница 2', description =
                         '`/length [строка]` - узнать длину строки\n'
@@ -257,8 +259,8 @@ async def help(ctx):
                         '`/say [ваш текст]` - бот повторит за вами всё то, что вы ему напишете\n'
                         '*сокращения/синонимы*: `/repeat`;\n'
                         '\n'
-                        '`/ahegao` - ну тут сами понимаете что :D\n'
-                        '*сокращения/синонимы*: `/ah`, `/ахегао`\n'
+                        '`/hentai` - ну тут сами понимаете что :D\n'
+                        '*сокращения/синонимы*: `hent`\n'
                         )
     embed3 = discord.Embed(title = 'Помощь, страница 3', description = 
                         '`/hello` - ну-ка быстро посмотри :)\n'
@@ -306,8 +308,8 @@ async def sanq(ctx):
 
 #РАНДОМНОЕ АХЕГАО (ОЙ)
 
-@Bot.command(aliases = ['ah', 'ахегао'])
-async def ahegao(ctx):
+@Bot.command(aliases = ['hent'])
+async def hentai(ctx):
     with open ('hentai.txt', 'r') as file:
         lines = file.readlines()
     await ctx.send(random.choice(lines))
@@ -316,7 +318,7 @@ async def ahegao(ctx):
 
 #РАНДОМНЫЕ ДЕВА44КИ
 
-@Bot.command(aliases = ['ns'])
+@Bot.command(aliases = ['ns', 'порево', 'прон'])
 async def nsfw(ctx):
     with open ('nsfw.txt', 'r') as file:
         lines = file.readlines()
