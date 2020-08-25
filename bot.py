@@ -346,12 +346,7 @@ async def sanq(ctx):
     message = ctx.message
     await message.add_reaction('💚')  
     
-
     
-@Bot.command()
-async def timesys(ctx): 
-    now = datetime.datetime.now()
-    await ctx.send(now)
 
 #РАНДОМНЫЙ ХЕНТАЙ (ОЙ)
 
@@ -446,12 +441,12 @@ async def math(ctx,  a:  int,  b:  int):
 #ИНФОРМАЦИЯ О ЮЗЕРЕ
 
 @Bot.command(aliases = ['i', 'information', 'INFO', 'INFORMATION'])
-async def info(ctx, member: discord.Member):
-    mentions = [role.mention for role in member.roles if role.mentionable]
+async def info(ctx, member: discord.Member):  
+    guild = Bot.get_guild(526097247285280768)
     embed = discord.Embed(title = "Info", color = 0x428325)
     embed.add_field(name = "Когда присоединился: ", value = member.joined_at)
     embed.add_field(name = "Имя юзера: ", value = member.display_name)
-    embed.add_field(name = "Роли имеет: ", value = "\n".join(mentions))
+    embed.add_field(name = "Роли имеет: ", value = ", ".join([str(r.id) for r in guild.roles]))
     embed.set_thumbnail(url = member.avatar_url)
     embed.set_footer(text = "supports by quantprod")
     await ctx.send(embed = embed)
