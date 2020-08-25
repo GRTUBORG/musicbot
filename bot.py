@@ -351,7 +351,7 @@ async def sanq(ctx):
 @Bot.command()
 async def timesys(ctx): 
     now = datetime.datetime.now()
-    await ctx.send(str(now))
+    await ctx.send(now)
 
 #РАНДОМНЫЙ ХЕНТАЙ (ОЙ)
 
