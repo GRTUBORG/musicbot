@@ -50,23 +50,6 @@ command_list = ['Не за что!',
                ]
 
 
-random_ahegao = ['https://avatars.mds.yandex.net/get-pdb/1766896/ddf06dad-a461-4871-967a-076304aae800/s1200?webp=false',
-                 'https://yt3.ggpht.com/a/AGF-l7_CSHmSY_5TBdLR_sto-z4cVQS2KGSarlMm8w=s900-c-k-c0xffffffff-no-rj-mo',
-                 'https://avatars.mds.yandex.net/get-pdb/1919902/8daa48e4-e5f4-4f87-94cf-0e29528e2030/s1200?webp=false',
-                 'https://avatars.mds.yandex.net/get-pdb/1875351/708b6efd-86d2-495e-b38c-782621fddcd8/s1200?webp=false',
-                 'https://avatars.mds.yandex.net/get-pdb/1350656/0505f416-631c-4561-a853-2ba0fb138db4/s1200?webp=false',
-                 'https://yt3.ggpht.com/a/AATXAJw8oX7t0bHZnEiRdDLzhrY4Az99-dpwaC4SBeLL=s900-c-k-c0xffffffff-no-rj-mo',
-                 'https://cdn140.picsart.com/292181646042201.jpg',
-                 'https://kazoku.space/upload/photos/2020/04/FPkKaqo91K2Vg1e6S3Hm_19_9565e09bad0b6de6d4f20d36ee7c279b_avatar_full.jpg',
-                 'https://d.facdn.net/art/mermaidonstilts/1486354159/1486354159.mermaidonstilts_panty_ahegao_2.png',
-                 'https://animemotivation.com/wp-content/uploads/2020/01/ahegao-anime-wallpaper.jpg',
-                 'https://i.kym-cdn.com/photos/images/facebook/001/345/589/093.jpg',
-                 'https://pm1.narvii.com/6557/31c9e7fe87dfbb467a05bbb4f10f88e7bc772877_hq.jpg'
-                ]
-
-
-
-
 
 #РАБОТАЕТ ЛИ БОТ?
 
@@ -325,7 +308,9 @@ async def sanq(ctx):
 
 @Bot.command(aliases = ['ah', 'ахегао'])
 async def ahegao(ctx):
-    await ctx.send(random.choice(random_ahegao))
+    with open ('hentai.txt', 'r') as file:
+        lines = file.readlines()
+    await ctx.send(random.choice(lines))
     
 
 
