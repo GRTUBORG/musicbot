@@ -446,7 +446,7 @@ async def info(ctx, member: discord.Member):
     embed = discord.Embed(title = "Info", color = 0x428325)
     embed.add_field(name = "Когда присоединился: ", value = member.joined_at)
     embed.add_field(name = "Имя юзера: ", value = member.display_name)
-    embed.add_field(name = "Роли имеет: ", value = ", ".join([str(r.id) for r in ctx.guild.roles]))
+    embed.add_field(name = "Роли имеет: ", value = ", ".join([str('<@&' + r.id + '>') for r in ctx.guild.roles]))
     embed.set_thumbnail(url = member.avatar_url)
     embed.set_footer(text = "supports by quantprod")
     await ctx.send(embed = embed)
