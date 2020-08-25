@@ -14,6 +14,8 @@ from discord.ext.commands import Bot
 from discord.utils import get
 from discord import Spotify
 
+from datetime import datetime, date, time
+
 from Cybernator import Paginator as pag
 
 from random import choice
@@ -303,7 +305,6 @@ async def spotify(ctx, user: discord.Member = None):
 @commands.has_any_role("admin", "Смотрящий", "elite", "dmoder", "moder")
 async def help_adm(ctx):
     await ctx.message.delete()
-    channel1 = Bot.get_channel(526099119874375710)
     author = ctx.message.author
     embed = discord.Embed(title = 'Команды для администрации и высшей инстанции в том числе', description = 
                         f'Привет, {author.mention}! Вот список команд, доступных тебе:\n'
@@ -329,7 +330,7 @@ async def help_adm(ctx):
                         '`/mute [@пользователь] [время в часах] [причина]` - мут пользователя \n'
                         '*сокращения/синонимы*: `/m`;\n'
                         '\n'
-                        f'Кстати говоря, советую ознакомиться с правилами: {channel1.mention}', 
+                        f'Кстати говоря, советую ознакомиться с правилами в <#526099119874375710>', 
                         color = 0x428325)
     embed.set_footer(text = "supports by quantprod")
     message = await ctx.author.send(embed = embed)
@@ -440,11 +441,10 @@ async def math(ctx,  a:  int,  b:  int):
 
 @Bot.command(aliases = ['i', 'information', 'INFO', 'INFORMATION'])
 async def info(ctx, member: discord.Member):
-    member_roles = member.roles 
     embed = discord.Embed(title = "Info", color = 0x428325)
     embed.add_field(name = "Когда присоединился: ", value = member.joined_at)
     embed.add_field(name = "Имя юзера: ", value = member.display_name)
-    embed.add_field(name = "Роли на сервере: ", value = member_roles)
+    embed.add_field(name = "Роли на сервере: ", value = f'{member.roles}')
     embed.set_thumbnail(url = member.avatar_url)
     embed.set_footer(text = "supports by quantprod")
     await ctx.send(embed = embed)
