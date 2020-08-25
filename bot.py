@@ -115,19 +115,7 @@ async def on_message(message):
         await message.delete()
         embed = discord.Embed(title = "Замечено оскорбление!", description = f'Прошу дать по попе {author.mention}', color = 0x8B0000)
         message = await channel.send(embed = embed)
-
-                   
-                   
-#SPOTIFY, КТО ЧТО СЛУШАЕТ
-
-@Bot.command(aliases = ['spot', 's'])
-async def spotify(ctx, user: discord.Member = None):
-    await ctx.message.delete()
-    user = user or ctx.author
-    for activity in user.activities:
-        if isinstance(activity, Spotify):
-            await ctx.send(f"{member.mention} слушает `{activity.title}`, by `{activity.artist}`")
-
+                                 
 
 
 #АКТУАЛЬНАЯ ВЕРСИЯ БОТА
@@ -297,37 +285,18 @@ async def help(ctx):
 
 
     
-    
-#СПАСИБО)
+#SPOTIFY, КТО ЧТО СЛУШАЕТ
 
-@Bot.command(aliases = ['спасибо', 'thx', 'пасибо', 'пасиба', 'спс'])
-async def sanq(ctx):
-    await ctx.send(random.choice(command_list))
-    message = ctx.message
-    await message.add_reaction('💚')  
-    
-    
-
-#РАНДОМНОЕ АХЕГАО (ОЙ)
-
-@Bot.command(aliases = ['hent'])
-async def hentai(ctx):
-    with open ('hentai.txt', 'r') as file:
-        lines = file.readlines()
-    await ctx.send(random.choice(lines))
+@Bot.command(aliases = ['spot', 's'])
+async def spotify(ctx, user: discord.Member = None):
+    await ctx.message.delete()
+    user = user or ctx.author
+    for activity in user.activities:
+        if isinstance(activity, Spotify):
+            await ctx.send(f"{member.mention} слушает `{activity.title}`, by `{activity.artist}`")
     
 
-
-#РАНДОМНЫЕ ДЕВА44КИ
-
-@Bot.command(aliases = ['ns', 'порево', 'прон'])
-async def nsfw(ctx):
-    with open ('nsfw.txt', 'r') as file:
-        lines = file.readlines()
-    await ctx.send(random.choice(lines))
     
-
-
 #ПОМОЩЬ ADMIN
 
 @Bot.command(aliases = ['h_a', 'HELP_ADM'])
@@ -367,6 +336,36 @@ async def help_adm(ctx):
 
 
 
+#СПАСИБО)
+
+@Bot.command(aliases = ['спасибо', 'thx', 'пасибо', 'пасиба', 'спс'])
+async def sanq(ctx):
+    await ctx.send(random.choice(command_list))
+    message = ctx.message
+    await message.add_reaction('💚')  
+    
+    
+
+#РАНДОМНЫЙ ХЕНТАЙ (ОЙ)
+
+@Bot.command(aliases = ['hent'])
+async def hentai(ctx):
+    with open ('hentai.txt', 'r') as file:
+        lines = file.readlines()
+    await ctx.send(random.choice(lines))
+    
+
+
+#РАНДОМНЫЕ ДЕВА44КИ
+
+@Bot.command(aliases = ['ns', 'порево', 'прон'])
+async def nsfw(ctx):
+    with open ('nsfw.txt', 'r') as file:
+        lines = file.readlines()
+    await ctx.send(random.choice(lines))
+    
+
+        
 #НЕ, НУ ЭТО БАН!
 
 @Bot.command(aliases = ['pzdc', 'PIZDEC'])
@@ -390,7 +389,9 @@ async def nsfw_info(ctx):
             f.readline()
         x = f.readline()
     await ctx.send(x)
-    
+   
+  
+  
 #ПАСХАЛОЧКА :)
 
 @Bot.command(aliases = ['AUTHOR'])
