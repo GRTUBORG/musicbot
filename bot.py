@@ -6,6 +6,7 @@ import youtube_dl
 import json
 import requests
 import typing
+import datetime
 
 from requests import get 
 
@@ -345,7 +346,12 @@ async def sanq(ctx):
     message = ctx.message
     await message.add_reaction('💚')  
     
+
     
+@Bot.command()
+async def timesys(ctx): 
+    now = datetime.datetime.now()
+    await ctx.send(str(now))
 
 #РАНДОМНЫЙ ХЕНТАЙ (ОЙ)
 
