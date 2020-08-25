@@ -64,6 +64,25 @@ random_ahegao = ['https://avatars.mds.yandex.net/get-pdb/1766896/ddf06dad-a461-4
                  'https://pm1.narvii.com/6557/31c9e7fe87dfbb467a05bbb4f10f88e7bc772877_hq.jpg'
                 ]
 
+random_ass = ['https://sun1-24.userapi.com/ouckOHAGuaZCFGeYzmfNQt0bCruUWLL67hVzcg/ZfKs2IAFeKE.jpg',
+              'https://sun1-94.userapi.com/PQ6cbWtFJGgd6Y-o7GUuEVMYsMM7vbWPNJwHJA/J-3fLw7KvYs.jpg',
+              'https://sun1-92.userapi.com/kZ1DedFaKU4dpys5fatO1xRQcEzZNui8HiCy4w/Fvcdstpq78o.jpg',
+              'https://sun1-92.userapi.com/-kzSmZIdL1oWxsc_-Y7mPlM0QwFHH0jIQc_TKA/E2mpwmolZcA.jpg',
+              'https://sun1-24.userapi.com/HE2zrFlHy8Z8eCAIEugUqtvz7PIB-9OwC_yj2w/7MtHEocYCOE.jpg',
+              'https://sun1-14.userapi.com/VZVj9J3PClm4Ul9rK8M5VlED5QPcj2PsoEPIig/KzycS2M9FqQ.jpg',
+              'https://sun1-21.userapi.com/1Q7aLUKf8nTi8SC8kgcRtgCssIZr1m0p5Bk_JQ/q_cF1j0d1b8.jpg',
+              'https://sun1-91.userapi.com/mbJQSX5JG4VD7LCrjxEczQLpDkZg0fxGUOJZcQ/n_tyj8bFLYA.jpg',
+              'https://sun1-90.userapi.com/MeRTV4nkgpe66Wte5P7Tu2aBy6Buc4p5XpvxBQ/GMeXL3AAlsM.jpg',
+              'https://sun1-86.userapi.com/gc9OCxxsuYZl0ueEAovoXjLsglG6to2qqiztpA/lzBhgFqTsZ4.jpg',
+              'https://sun1-29.userapi.com/Ia3fcGhDmp-tK23gXOe3juiKm4wcRbSUrjyFkg/_BVDFYcyxgg.jpg',
+              'https://sun1-28.userapi.com/VV6cqaeHf-Da0NSf1rHhSGN-336fLIddMdnD-g/fBbWq0HfaFs.jpg',
+              'https://sun1-94.userapi.com/J5g6cvi-Rl7U0ser-KPUDwCxp0pw5UYg2k6Fwg/OaozHp1PqPI.jpg',
+              'https://sun1-83.userapi.com/FO7_4iXIbcLsRNthaCQGYC7wJ2qfQAeysRN7Mg/I4Jomen1Rjc.jpg',
+              'https://sun1-47.userapi.com/MFOf7ndPA567FLc1C61rceowtS0K8HdLjAeHVA/3VCdqKXEBnc.jpg',
+              'https://sun9-76.userapi.com/c854028/v854028407/21eca5/Bbb5JHKz33g.jpg',
+              'https://sun9-72.userapi.com/c858020/v858020228/84a23/PJEBQU5sl84.jpg'
+             ]
+
 
 
 #РАБОТАЕТ ЛИ БОТ?
@@ -80,14 +99,13 @@ async def on_ready():
 @Bot.event
 async def on_member_join(member):
     role = discord.utils.get(member.guild.roles, name = 'Unit')  # САМА РОЛЬ КОТОРУЮ ВЫДАЕМ
-    role1 = discord.utils.get(member.guild.roles, name = 'Смотрящий')
     await member.add_roles(role) # ДОБАВЛЯЕМ РОЛЬ
     embed = discord.Embed(color = 0x4ace40)
     embed.add_field(name = "Приветственное сообщение", value = f"Добро пожаловать в Dark Neon City!\n"
                                                                '\n'
                                                                f"Перед тем, как пользоваться сервером, прочитай <#526099119874375710>. Это обязательно, а то атата!)\n"
                                                                '\n'
-                                                               f'Тебе дана роль @{role}, поэтому, пока что, тебе доступны не все функции сервера. Но ты можешь участвовать в ивентах, чтобы повысить свой ранг!\n'
+                                                               f'Тебе дана роль `@Unit`, поэтому, пока что, тебе доступны не все функции сервера. Но ты можешь участвовать в ивентах, чтобы повысить свой ранг!\n'
                                                                '\n'
                                                                "Для тебя открыты все комнаты в доме unit'ов, выбирай любую которая не занята, зови друзей на сервер и наслаждайтесь общением благодаря качественной связи!\n"
                                                                '\n'
@@ -95,7 +113,7 @@ async def on_member_join(member):
                                                                '\n'
                                                                f"На сервере, как ты заметил, присутствуют боты, информацию о них можешь найти в <#687044254622941217>.\n"
                                                                '\n'
-                                                               f'По интересующим вопросам обращайся к @{role1}.\n'
+                                                               f'По интересующим вопросам обращайся к `@Смотрящий`.\n'
                                                                '\n'
                                                                f"Не забывай следить за новостями <#541231102333943832> и обновлениями правил в <#526099119874375710>. Будь активен на сервере и однажды появишься на <#741002854898073660>!\n"
                                                                '\n'
@@ -325,6 +343,15 @@ async def sanq(ctx):
 @Bot.command(aliases = ['ah', 'ахегао'])
 async def ahegao(ctx):
     await ctx.send(random.choice(random_ahegao))
+    
+
+
+#РАНДОМНЫЕ ДЕВА44КИ
+
+@@Bot.command(aliases = ['ns'])
+async def nsfw(ctx):
+    await ctx.send(random.choice(random_ass))
+    
 
 
 #ПОМОЩЬ ADMIN
