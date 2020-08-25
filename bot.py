@@ -441,10 +441,11 @@ async def math(ctx,  a:  int,  b:  int):
 
 @Bot.command(aliases = ['i', 'information', 'INFO', 'INFORMATION'])
 async def info(ctx, member: discord.Member):
+    mentions = [role.mention for role in ctx.message.author.roles if role.mentionable]
     embed = discord.Embed(title = "Info", color = 0x428325)
     embed.add_field(name = "Когда присоединился: ", value = member.joined_at)
     embed.add_field(name = "Имя юзера: ", value = member.display_name)
-    embed.add_field(name = "Роли на сервере: ", value = f'{member.roles}')
+    embed.add_field(name = "Роли имеет: ", value = " ".join(mentions))
     embed.set_thumbnail(url = member.avatar_url)
     embed.set_footer(text = "supports by quantprod")
     await ctx.send(embed = embed)
