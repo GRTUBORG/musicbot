@@ -86,8 +86,8 @@ async def on_member_join(member):
     channel3 = Bot.get_channel(687044254622941217) #info
     channel4 = Bot.get_channel(541231102333943832) #news
     channel5 = Bot.get_channel(741002854898073660) #доска-почёта
-    embed = discord.Embed(color = 0x4ace40)
-    embed.add_field(title = "Приветственное сообщение", description = f"Добро пожаловать в Dark Neon City!\n"
+    embed = discord.Embed(title = "Приветственное сообщение", color = 0x4ace40)
+    embed.add_field(name = f"Добро пожаловать в Dark Neon City!\n"
                                                                       f"Перед тем, как пользоваться сервером, прочитай {channel1}. Это обязательно, а то атата!)\n"
                                                                       '\n'
                                                                       f'Тебе дана роль `@Unit`, поэтому, пока что, тебе доступны не все функции сервера. Но ты можешь участвовать в ивентах, чтобы повысить свой ранг!\n'
@@ -117,9 +117,6 @@ async def on_command_error(ctx, error):
 @Bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
-        delta = datetime.timedelta(hours=3, minutes=0)
-        t = (datetime.datetime.now(datetime.timezone.utc) + delta)
-        nowtime = t.strftime("%H:%M")
         author = ctx.message.author
         embed = discord.Embed(color = 0x8B0000)
         embed.add_field(name = 'Ошибка выполнения команды!', value = f':x: *Внимание, {author.mention}! Данной команды __не существует__!*')
