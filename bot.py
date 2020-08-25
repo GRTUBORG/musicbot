@@ -7,6 +7,8 @@ import json
 import requests
 import typing
 import io
+import time
+import datetime
 
 from requests import get 
 
@@ -86,26 +88,23 @@ async def on_member_join(member):
     channel3 = Bot.get_channel(687044254622941217) #info
     channel4 = Bot.get_channel(541231102333943832) #news
     channel5 = Bot.get_channel(741002854898073660) #доска-почёта
-    channel6 = Bot.get_channel(733727409672683550) #предложения
     embed = discord.Embed(color = 0x4ace40)
     embed.add_field(name = "Приветственное сообщение", value = "Добро пожаловать в Dark Neon City!\n"
-    f"Перед тем, как пользоваться сервером, прочитай {channel1.mention}. Это обязательно, а то атата!)\n"
-    '\n'
-    f'Тебе дана роль `@Unit`, поэтому, пока что, тебе доступны не все функции сервера. Но ты можешь участвовать в ивентах, чтобы повысить свой ранг!\n'
-    '\n'
-    "Для тебя открыты все комнаты в доме unit'ов, выбирай любую которая не занята, зови друзей на сервер и наслаждайтесь общением благодаря качественной связи!\n"
-    '\n'
-    f"Chill'овая беседка - самое уютное место для общения на различные темы! Заглядывай туда, в {channel2.mention}, или же в войс-чат под ним!\n"
-    '\n'
-    f"На сервере, как ты заметил, присутствуют боты, информацию о них можешь найти в {channel3.mention}.\n"
-    '\n'
-    'По интересующим вопросам обращайся к `@Смотрящий`.\n'
-    '\n'
-    f"Не забывай следить за новостями {channel4.mention} и обновлениями правил {channel1.mention}. Будь активен на сервере и однажды появишься на {channel5.mention}!\n"
-    '\n'
-    f"Так же можешь подкинуть идеи в {channel6.mention}\n"
-    '\n'
-    "С наилучшими пожеланиями, администрация сервера!")
+                                                               f"Перед тем, как пользоваться сервером, прочитай {channel1.mention}. Это обязательно, а то атата!)\n"
+                                                               '\n'
+                                                               f'Тебе дана роль `@Unit`, поэтому, пока что, тебе доступны не все функции сервера. Но ты можешь участвовать в ивентах, чтобы повысить свой ранг!\n'
+                                                               '\n'
+                                                               "Для тебя открыты все комнаты в доме unit'ов, выбирай любую которая не занята, зови друзей на сервер и наслаждайтесь общением благодаря качественной связи!\n"
+                                                               '\n'
+                                                               f"Chill'овая беседка - самое уютное место для общения на различные темы! Заглядывай туда, в {channel2.mention}, или же в войс-чат под ним!\n"
+                                                               '\n'
+                                                               f"На сервере, как ты заметил, присутствуют боты, информацию о них можешь найти в {channel3.mention}.\n"
+                                                               '\n'
+                                                               'По интересующим вопросам обращайся к `@Смотрящий`.\n'
+                                                               '\n'
+                                                               f"Не забывай следить за новостями {channel4.mention} и обновлениями правил {channel1.mention}. Будь активен на сервере и однажды появишься на {channel5.mention}!\n"
+                                                               '\n'
+                                                               "С наилучшими пожеланиями, администрация сервера!")
     embed.set_footer(text = "supports by quantprod")
     await member.send(embed = embed)
 
@@ -120,10 +119,13 @@ async def on_command_error(ctx, error):
 @Bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
+        delta = datetime.timedelta(hours=3, minutes=0)
+        t = (datetime.datetime.now(datetime.timezone.utc) + delta)
+        nowtime = t.strftime("%H:%M")
         author = ctx.message.author
         embed = discord.Embed(color = 0x8B0000)
         embed.add_field(name = 'Ошибка выполнения команды!', value = f':x: *Внимание, {author.mention}! Данной команды __не существует__!*')
-        embed.set_footer(text = "supports by quantprod")
+        embed.set_footer(text = f"supports by quantprod | {nowtime}")
         await ctx.send(embed = embed)
 
 @Bot.event
