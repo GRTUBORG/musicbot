@@ -386,9 +386,9 @@ async def pizdec(ctx):
 @Bot.command(aliases = ['updatebases', 'base', 'updnsfw', 'bases'])
 async def nsfw_info(ctx):
     with open(file, 'r') as f:
-    for i in range(0):
-        f.readline()
-    x = f.readline()
+        for i in range(0):
+            f.readline()
+        x = f.readline()
     await ctx.send(x)
     
 #ПАСХАЛОЧКА :)
