@@ -447,7 +447,7 @@ async def info(ctx, member: discord.Member, message: discord.Message):
     embed.add_field(name = "Имя юзера: ", value = member.name, inline = False)
     embed.add_field(name = f"Роли [{len(member.roles) - 1}]: ", value = ' '.join(reversed(roles)), inline = False)
     embed.set_thumbnail(url = member.avatar_url)
-    embed.set_footer(text = f"supports by quantprod | Сегодня в {message.created_at}")
+    embed.set_footer(text = f"supports by quantprod | Сегодня в {member.created_at.strftime('%H:%M %p')}")
     await ctx.send(embed = embed)
 
 
