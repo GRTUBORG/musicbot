@@ -373,11 +373,11 @@ async def nsfw(ctx):
 @Bot.command(aliases = ['pzdc', 'PIZDEC'])
 async def pizdec(ctx):
     await ctx.message.delete()
-    await ctx.send(':regional_indicator_p:'
-                   ':regional_indicator_i:' 
-                   ':regional_indicator_z:' 
-                   ':regional_indicator_d:' 
-                   ':regional_indicator_e:' 
+    await ctx.send(':regional_indicator_p: '
+                   ':regional_indicator_i: ' 
+                   ':regional_indicator_z: ' 
+                   ':regional_indicator_d: ' 
+                   ':regional_indicator_e: ' 
                    ':regional_indicator_c:')
 
 
@@ -399,10 +399,9 @@ async def nsfw_info(ctx):
 @Bot.command(aliases = ['AUTHOR'])
 async def author(ctx):
     await ctx.message.delete()
-    embed = discord.Embed(title = f'Авторы:',
-                          description = '**Разработчик:** https://vk.com/d.blinov79\n'
-                          '**С подачи:** https://vk.com/code_authora_174',
-                          color = 0x428325)
+    embed = discord.Embed(title = f'Авторы:', description = '**Разработчик:** https://vk.com/d.blinov79\n'
+                                                            '**С подачи:** https://vk.com/code_authora_174',
+                                                            color = 0x428325)
     embed.set_footer(text = "supports by quantprod")
     message = await ctx.send(embed = embed)
     await message.add_reaction('☝')
@@ -444,8 +443,8 @@ async def math(ctx,  a:  int,  b:  int):
 async def info(ctx, member: discord.Member): 
     roles = [role.mention for role in member.roles[1:]]
     embed = discord.Embed(title = "Info", color = 0x428325)
-    embed.add_field(name = "Когда присоединился: ", value = member.joined_at.strftime("%A, %B %d, %Y @ %H:%M:%S %p"), inline = False)
-    embed.add_field(name = "Имя юзера: ", value = member.display_name, inline = False)
+    embed.add_field(name = "Когда присоединился: ", value = member.joined_at.strftime("%A, %B %d, %Y @ %H:%M %p"), inline = False)
+    embed.add_field(name = "Имя юзера: ", value = member.name, inline = False)
     embed.add_field(name = f"Роли [{len(member.roles) - 1}]: ", value = ' '.join(reversed(roles)), inline = False)
     embed.set_thumbnail(url = member.avatar_url)
     embed.set_footer(text = "supports by quantprod")
