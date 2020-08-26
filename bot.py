@@ -442,10 +442,7 @@ async def math(ctx,  a:  int,  b:  int):
 
 @Bot.command(aliases = ['i', 'information', 'INFO', 'INFORMATION'])
 async def info(ctx, member: discord.Member):
-    delta = datetime.timedelta(hours=3, minutes=0)
-    messagetime = ctx.message.created_at
-    messagetime = (datetime.datetime.now(datetime.timezone.utc) + delta)
-    mesinf = messagetime.strftime("%H:%M")
+    mesinf = ctx.message.created_at.strftime("%H:%M")
     roles = [role.mention for role in member.roles[1:]]
     embed = discord.Embed(title = "Info", color = 0x428325)
     embed.add_field(name = "Аккаунт создан: ", value = member.created_at.strftime("%A, %B %d, %Y @ %H:%M %p"), inline = False)
