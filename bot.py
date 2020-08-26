@@ -440,8 +440,8 @@ async def math(ctx,  a:  int,  b:  int):
 #ИНФОРМАЦИЯ О ЮЗЕРЕ
 
 @Bot.command(aliases = ['i', 'information', 'INFO', 'INFORMATION'])
-async def info(ctx, member: discord.Member, message: discord.Message): 
-    timemessage = message.created_at
+async def info(ctx, member: discord.Member):
+    mesinf = ctx.message.created_at
     roles = [role.mention for role in member.roles[1:]]
     embed = discord.Embed(title = "Info", color = 0x428325)
     embed.add_field(name = "Аккаунт создан: ", value = member.created_at.strftime("%A, %B %d, %Y @ %H:%M %p"), inline = False)
@@ -449,7 +449,7 @@ async def info(ctx, member: discord.Member, message: discord.Message):
     embed.add_field(name = "Имя юзера: ", value = member.name, inline = False)
     embed.add_field(name = f"Роли [{len(member.roles) - 1}]: ", value = ' '.join(reversed(roles)), inline = False)
     embed.set_thumbnail(url = member.avatar_url)
-    embed.set_footer(text = f"supports by quantprod | Сегодня в {timemessage}")
+    embed.set_footer(text = f"supports by quantprod | {mesinf}")
     await ctx.send(embed = embed)
 
 
