@@ -7,6 +7,7 @@ import json
 import requests
 import typing
 import datetime
+import time
 
 from requests import get 
 
@@ -441,7 +442,7 @@ async def math(ctx,  a:  int,  b:  int):
 
 @Bot.command(aliases = ['i', 'information', 'INFO', 'INFORMATION'])
 async def info(ctx, member: discord.Member):
-    mesinf = ctx.message.created_at.strftime("%A, %B %d, %Y @ %H:%M %p")
+    mesinf = ctx.message.created_at.strftime("%H:%M")
     roles = [role.mention for role in member.roles[1:]]
     embed = discord.Embed(title = "Info", color = 0x428325)
     embed.add_field(name = "Аккаунт создан: ", value = member.created_at.strftime("%A, %B %d, %Y @ %H:%M %p"), inline = False)
