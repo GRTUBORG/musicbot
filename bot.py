@@ -23,9 +23,7 @@ from Cybernator import Paginator as pag
 from random import choice
 
 
-
 players = {}
-
 
 
 Bot = commands.Bot(command_prefix = "/")
@@ -130,10 +128,8 @@ async def on_message(message):
 @commands.has_any_role("admin", "Смотрящий", "elite")
 async def version(ctx):
     await ctx.message.delete()
-    embed = discord.Embed(title = "Актуальная версия бота", description= '__Апдейт был 25.08.2020 до v. 3.0 beta__. \n' 'Добавлено/обновлено:\n'
-                          'Ой, это nsfw? ДА!\n'
-                          'Подъехало обновление с nsfw-контентом с более чем 200 фотографиями\n'
-                          'Разбирайте) Пополнение фотографий будет производиться **раз в три дня**', color = 0x428325)
+    embed = discord.Embed(title = "Актуальная версия бота", description= '__Апдейт был 28.08.2020 до v. 3.1__. \n' 'Добавлено/обновлено:\n'
+                          '• Поправлены/исправлены мелкие косяки. Впрочем, ничего нового', color = 0x428325)
     await ctx.send('@everyone')
     await ctx.send(embed = embed)
 
@@ -444,11 +440,11 @@ async def math(ctx,  a:  int,  b:  int):
 
 @Bot.command(aliases = ['i', 'information', 'INFO', 'INFORMATION'])
 async def info(ctx, member: discord.Member):
-    mesinf = ctx.message.created_at.strftime("%H:%M")
+    mesinf = ctx.message.created_at.strftime("%H:%M %p")
     roles = [role.mention for role in member.roles[1:]]
     embed = discord.Embed(title = "Info", color = 0x428325)
-    embed.add_field(name = "Аккаунт создан: ", value = member.created_at.strftime("%A, %B %d, %Y @ %H:%M %p"), inline = False)
-    embed.add_field(name = "Когда присоединился: ", value = member.joined_at.strftime("%A, %B %d, %Y @ %H:%M %p"), inline = False)
+    embed.add_field(name = "Аккаунт создан: ", value = member.created_at.strftime("%A, %B %d, %Y @ %H:%M %p UTC"), inline = False)
+    embed.add_field(name = "Когда присоединился: ", value = member.joined_at.strftime("%A, %B %d, %Y @ %H:%M %p UTC"), inline = False)
     embed.add_field(name = "Имя юзера: ", value = member.name, inline = False)
     embed.add_field(name = f"Роли [{len(member.roles) - 1}]: ", value = ' '.join(reversed(roles)), inline = False)
     embed.set_thumbnail(url = member.avatar_url)
@@ -461,10 +457,11 @@ async def info(ctx, member: discord.Member):
 
 @Bot.command(aliases = ['HELLO'])
 async def hello(ctx):
+    mesinf = ctx.message.created_at.strftime("%H:%M %p")
     await ctx.message.delete()
     author = ctx.message.author
     embed = discord.Embed(title = 'Dark Neon City', description = f'👋 Привет, {author.mention}! Рад видеть тебя на Dark Neon City!', color = 0x428325)
-    embed.set_footer(text = "supports by quantprod")
+    embed.set_footer(text = f"supports by quantprod | Сегодня, в {mesinf} UTC")
     message = await ctx.send(embed = embed)
 
 
@@ -510,9 +507,11 @@ async def court(ctx, member: discord.Member):
 @Bot.command(aliases = ['ava', 'AVATAR'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "Vip")
 async def avatar(ctx, *,  avamember: discord.Member):
+    mesinf = ctx.message.created_at.strftime("%H:%M %p")
     userAvatarUrl = avamember.avatar_url
-    embed = discord.Embed(description = f"Аватарка пользователя {avamember.mention}", color = 0x428325)
+    embed = discord.Embed(description = f"Аватарка пользователя {avamember.mention}")
     embed.set_image(url = userAvatarUrl)
+    embed.set_footer(text = f"supports by quantprod | Сегодня, в {mesinf} UTC")
     await ctx.send(embed = embed)
 
 
