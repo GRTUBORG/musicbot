@@ -640,6 +640,6 @@ async def ping(ctx):
 #СТАРТ БОТА
 
 
-client.loop.create_task(my_background_task())
+Bot.loop.create_task(my_background_task())
 token = os.environ.get('bot_token')
 Bot.run(str(token))
