@@ -130,7 +130,6 @@ async def version(ctx):
     await ctx.message.delete()
     embed = discord.Embed(title = "Актуальная версия бота", description= '__Апдейт был 28.08.2020 до v. 3.1__. \n' 'Добавлено/обновлено:\n'
                           '• Поправлены/исправлены мелкие косяки. Впрочем, ничего нового', color = 0x428325)
-    await ctx.send('@everyone')
     await ctx.send(embed = embed)
 
     
