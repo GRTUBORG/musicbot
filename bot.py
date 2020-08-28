@@ -23,7 +23,9 @@ from Cybernator import Paginator as pag
 from random import choice
 
 
+
 players = {}
+
 
 
 Bot = commands.Bot(command_prefix = "/")
