@@ -430,7 +430,7 @@ async def say(ctx,  *, arg):
 
 @Bot.command(aliases = ['MATH']) 
 async def math(ctx,  a:  int,  b:  int): 
-    embed = discord.Embed(title = "Простая математика", color = 0x428325)
+    embed = discord.Embed(color = 0x428325)
     embed.add_field(name = "Сумма: ", value = a + b, inline = False)
     embed.add_field(name = "Разность: ", value = a - b, inline = False)
     embed.add_field(name = "Деление: ", value = a / b, inline = False)
@@ -452,7 +452,7 @@ async def info(ctx, member: discord.Member):
     embed.add_field(name = "Имя юзера: ", value = member.name, inline = False)
     embed.add_field(name = f"Роли [{len(member.roles) - 1}]: ", value = ' '.join(reversed(roles)), inline = False)
     embed.set_thumbnail(url = member.avatar_url)
-    embed.set_footer(text = f"supports by quantprod | Сегодня, в {mesinf}")
+    embed.set_footer(text = f"supports by quantprod | Сегодня, в {mesinf} UTC")
     await ctx.send(embed = embed)
 
 
