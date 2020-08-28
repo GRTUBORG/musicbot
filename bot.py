@@ -129,7 +129,7 @@ async def on_message(message):
 async def version(ctx):
     await ctx.message.delete()
     embed = discord.Embed(title = "Актуальная версия бота", description= '__Апдейт был 28.08.2020 до v. 3.1__. \n' 'Добавлено/обновлено:\n'
-                          '• Поправлены/исправлены мелкие косяки. Впрочем, ничего нового', color = 0x428325)
+                          '• Поправлены/исправлены мелкие косяки. Впрочем, ничего нового.', color = 0x428325)
     await ctx.send(embed = embed)
 
     
@@ -156,7 +156,7 @@ async def play(ctx, url):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВ
     }
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         print ('[logs] Начинаю загрузку музыки...')
-        embed = discord.Embed(description = '*Минуточку ожидания, готовлю к воспроизведению твой трек...*', color = 0x428325)
+        embed = discord.Embed(description = '*Минуточку ожидания, готовлю к воспроизведению твой трек...*')
         await ctx.send(embed = embed)
         ydl.download([url])
     for file in os.listdir('./'):
@@ -204,13 +204,13 @@ async def pause(ctx):
     voice = get(Bot.voice_clients, guild = ctx.guild)   
     if voice and voice.is_playing():
         voice.pause()
-        embed = discord.Embed(description = f'⏸️ *Музыка приостановлена...*', color = 0x428325)
+        embed = discord.Embed(description = f'⏸️ *Музыка приостановлена...*')
         await ctx.send(embed = embed)
         message = ctx.message
         await message.add_reaction('👌')
     else:
         voice.resume()
-        embed = discord.Embed(description = f'⏯️ *Продолжай наслаждаться музыкой 😋*', color = 0x428325)
+        embed = discord.Embed(description = f'⏯️ *Продолжай наслаждаться музыкой 😋*')
         await ctx.send(embed = embed)    
         
         
@@ -280,7 +280,7 @@ async def help(ctx):
     embed5 = discord.Embed(title = 'Помощь, страница 4, команды в стадии разработки', description = 
                         '*Увы, но пока таких команд нет, ожидайте выходов новых обновлений бота*')
     embeds = [embed1, embed2, embed3, embed4, embed5]
-    message = await ctx.send(embed =  embed1)
+    message = await ctx.send(embed = embed1)
     page = pag(Bot, message, only = ctx.author, use_more = False, timeout = 1*3600, embeds = embeds)
     await page.start()
 
@@ -406,7 +406,7 @@ async def author(ctx):
 
 @Bot.command(aliases = ['git', 'GitHub'])
 async def github(ctx):
-    embed = discord.Embed(title = 'GitHub разработчика:', color = 0x428325)
+    embed = discord.Embed(title = 'GitHub разработчика:')
     embed.set_image(url = 'https://i.ibb.co/j42cxmr/qr-code.png')
     await ctx.send(embed = embed)
 
@@ -439,11 +439,11 @@ async def math(ctx,  a:  int,  b:  int):
 
 @Bot.command(aliases = ['i', 'information', 'INFO', 'INFORMATION'])
 async def info(ctx, member: discord.Member):
-    mesinf = ctx.message.created_at.strftime("%H:%M %p")
+    mesinf = ctx.message.created_at.strftime("%H:%M")
     roles = [role.mention for role in member.roles[1:]]
     embed = discord.Embed(title = "Info", color = 0x428325)
-    embed.add_field(name = "Аккаунт создан: ", value = member.created_at.strftime("%A, %B %d, %Y @ %H:%M %p UTC"), inline = False)
-    embed.add_field(name = "Когда присоединился: ", value = member.joined_at.strftime("%A, %B %d, %Y @ %H:%M %p UTC"), inline = False)
+    embed.add_field(name = "Аккаунт создан: ", value = member.created_at.strftime("%A, %B %d, %Y @ %H:%M UTC"), inline = False)
+    embed.add_field(name = "Когда присоединился: ", value = member.joined_at.strftime("%A, %B %d, %Y @ %H:%M UTC"), inline = False)
     embed.add_field(name = "Имя юзера: ", value = member.name, inline = False)
     embed.add_field(name = f"Роли [{len(member.roles) - 1}]: ", value = ' '.join(reversed(roles)), inline = False)
     embed.set_thumbnail(url = member.avatar_url)
@@ -456,7 +456,7 @@ async def info(ctx, member: discord.Member):
 
 @Bot.command(aliases = ['HELLO'])
 async def hello(ctx):
-    mesinf = ctx.message.created_at.strftime("%H:%M %p")
+    mesinf = ctx.message.created_at.strftime("%H:%M")
     await ctx.message.delete()
     author = ctx.message.author
     embed = discord.Embed(title = 'Dark Neon City', description = f'👋 Привет, {author.mention}! Рад видеть тебя на Dark Neon City!', color = 0x428325)
@@ -506,7 +506,7 @@ async def court(ctx, member: discord.Member):
 @Bot.command(aliases = ['ava', 'AVATAR'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "Vip")
 async def avatar(ctx, *,  avamember: discord.Member):
-    mesinf = ctx.message.created_at.strftime("%H:%M %p")
+    mesinf = ctx.message.created_at.strftime("%H:%M")
     userAvatarUrl = avamember.avatar_url
     embed = discord.Embed(description = f"Аватарка пользователя {avamember.mention}")
     embed.set_image(url = userAvatarUrl)
