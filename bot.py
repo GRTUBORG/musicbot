@@ -63,7 +63,7 @@ async def my_background_task():
     channel = discord.Object(id='526097247285280768')
     while not Bot.is_closed:
         counter += 1
-        await Bot.send_message(channel, counter)
+        await Bot.change_presence(activity = discord.Activity(type = discord.ActivityType.watching, name = "за Dark Neon City 👀"))
         await asyncio.sleep(10) # task runs every 60 seconds
 @Bot.event
 async def on_ready():
