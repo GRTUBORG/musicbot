@@ -57,16 +57,9 @@ command_list = ['Не за что!',
 
 #РАБОТАЕТ ЛИ БОТ?
 
-async def my_background_task():
-    await Bot.wait_until_ready()
-    counter = 0
-    channel = discord.Object(id='526097247285280768')
-    while not Bot.is_closed:
-        counter += 1
-        await Bot.change_presence(activity = discord.Activity(type = discord.ActivityType.watching, name = "за Dark Neon City 👀"))
-        await asyncio.sleep(10) # task runs every 60 seconds
 @Bot.event
 async def on_ready():
+    await Bot.change_presence(activity = discord.Activity(type = discord.ActivityType.watching, name = "за Dark Neon City 👀"))
     print("Бот в онлайне!")
     
 #ВЫДАЧА РОЛЕЙ
@@ -639,7 +632,5 @@ async def ping(ctx):
     
 #СТАРТ БОТА
 
-
-Bot.loop.create_task(my_background_task())
 token = os.environ.get('bot_token')
 Bot.run(str(token))
