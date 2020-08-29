@@ -457,10 +457,9 @@ async def hello(ctx):
     mesinf = ctx.message.created_at.strftime("%H:%M")
     await ctx.message.delete()
     author = ctx.message.author
-    embed = discord.Embed(title = 'Dark Neon City', description = f'👋 Йо, {author.mention}! Рад видеть тебя на Dark Neon City!', color = 0x428325)
+    embed = discord.Embed(title = 'Dark Neon City', description = f'👋 Васап, {author.mention}! Рад видеть тебя на Dark Neon City!', color = 0x428325)
     embed.set_footer(text = f"supports by quantprod | Сегодня, в {mesinf} UTC")
     message = await ctx.send(embed = embed)
-    bot.reload_extension('hello')
 
 
 
@@ -629,13 +628,7 @@ async def ping(ctx):
     message = await ctx.send(embed = embed)
     await message.add_reaction('👌')
 
-def setup(Bot):
-    print('I am being loaded!')
-
-def teardown(Bot):
-    print('I am being unloaded!')
-
-setup()
+    
     
 #СТАРТ БОТА
 
