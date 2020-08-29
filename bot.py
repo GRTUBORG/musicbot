@@ -634,7 +634,8 @@ def setup(Bot):
 
 def teardown(Bot):
     print('I am being unloaded!')
-    
+
+setup()
     
 #СТАРТ БОТА
 
