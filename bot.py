@@ -628,7 +628,12 @@ async def ping(ctx):
     embed.set_footer(text = "supports by quantprod")
     message = await ctx.send(embed = embed)
     await message.add_reaction('👌')
-    
+
+def setup(Bot):
+    print('I am being loaded!')
+
+def teardown(Bot):
+    print('I am being unloaded!')
     
     
 #СТАРТ БОТА
