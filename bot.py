@@ -405,7 +405,7 @@ async def author(ctx):
 @Bot.command(aliases = ['git', 'GitHub'])
 async def github(ctx):
     embed = discord.Embed(title = 'GitHub разработчика:')
-    embed.set_image(url = 'https://i.ibb.co/j42cxmr/qr-code.png')
+    embed.add_field(value = 'https://github.com/GRTUBORG/')
     await ctx.send(embed = embed)
 
 
