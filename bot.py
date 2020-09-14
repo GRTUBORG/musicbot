@@ -430,7 +430,7 @@ async def github(ctx):
 #ИВЕНТЫ
 
 @Bot.command()
-@commands.has_any_role("admin", "Смотрящий", "elite", "dmoder", "moder", "Event manager")
+@commands.has_any_role("admin", "Смотрящий", "Event manager")
 async def say_invite(ctx,  *, arg):
     await ctx.message.delete()
     embed = discord.Embed(description = arg, color = 0x428325)
