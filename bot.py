@@ -510,9 +510,8 @@ async def court(ctx, member: discord.Member):
 @commands.has_any_role("admin", "Смотрящий", "elite", "Vip")
 async def avatar(ctx, *,  avamember: discord.Member):
     delta = datetime.timedelta(hours=3, minutes=0)
-    t = datetime.datetime.now(datetime.timezone.utc) + delta
-    mesinf = ctx.message.created_at
-    nowtime = mesinf.strftime("%H:%M")
+    t = (ctx.message.created_at(datetime.timezone.utc) + delta)
+    nowtime = t.strftime("%H:%M")
     userAvatarUrl = avamember.avatar_url
     embed = discord.Embed(description = f"Аватарка пользователя {avamember.mention}")
     embed.set_image(url = userAvatarUrl)
@@ -608,7 +607,7 @@ async def mute_error(ctx, error):
 @commands.has_any_role("admin", "Смотрящий", "dmoder", "moder")
 async def invite(ctx):
     link = await ctx.channel.create_invite(max_age = 300)
-    await ctx.send("Вот ссылка, которую нужно кидать: " + link)
+    await ctx.send("Вот ссылка: " + link)
 
 
 #УЗНАТЬ ДЛИНУ СТРОКИ (СООБЩЕНИЯ)
