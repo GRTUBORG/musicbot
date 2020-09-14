@@ -509,11 +509,14 @@ async def court(ctx, member: discord.Member):
 @Bot.command(aliases = ['ava', 'AVATAR'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "Vip")
 async def avatar(ctx, *,  avamember: discord.Member):
-    mesinf = ctx.message.created_at.strftime("%H:%M")
+    delta = datetime.timedelta(hours=3, minutes=0)
+    t = datetime.datetime.now(datetime.timezone.utc) + delta
+    mesinf = ctx.message.created_at
+    nowtime = mesinf.strftime("%H:%M")
     userAvatarUrl = avamember.avatar_url
     embed = discord.Embed(description = f"Аватарка пользователя {avamember.mention}")
     embed.set_image(url = userAvatarUrl)
-    embed.set_footer(text = f"supports by quantprod | Сегодня, в {mesinf} UTC")
+    embed.set_footer(text = f"supports by quantprod | Сегодня, в {nowtime} UTC")
     await ctx.send(embed = embed)
 
 
