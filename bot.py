@@ -413,9 +413,11 @@ async def github(ctx):
 #ПОПУГАЙЧИК
 
 @Bot.command(aliases = ['repeat', 'SAY'])
-async def say(ctx,  *, arg):
+async def say(ctx,  *, arg):	
     await ctx.message.delete()
     await ctx.send(arg)
+    message = ctx.message
+    await message.add_reaction('✅')
 
 
  
