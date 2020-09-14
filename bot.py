@@ -384,7 +384,7 @@ async def pizdec(ctx):
 
 #NSFW-ИНФО (ПОПОЛНЕНИЕ)
 
-@Bot.command(aliases = ['updatebases', 'base', 'updnsfw', 'bases'])
+@Bot.command(aliases = ['updatebases', 'base', 'bases'])
 async def nsfw_info(ctx):
     with open('nsfw_version.txt', 'r') as f:
         for i in range(0):
