@@ -416,7 +416,7 @@ async def github(ctx):
 async def say(ctx,  *, arg):	
     await ctx.message.delete()
     embed = discord.Embed(color = 0x428325)
-    embed.add_field(name = "Ивент!", value = arg, inline = False)
+    embed.add_field(description = arg, inline = False)
     await ctx.send(embed = embed)
 
 
@@ -442,7 +442,7 @@ async def info(ctx, member: discord.Member):
     mesinf = ctx.message.created_at.strftime("%H:%M")
     roles = [role.mention for role in member.roles[1:]]
     embed = discord.Embed(title = "Info", color = 0x428325)
-    embed.add_field(name = "Аккаунт создан: ", value = member.created_at.strftime("%A, %B %d, %Y @ %H:%M %SZ"), inline = False)
+    embed.add_field(name = "Аккаунт создан: ", value = member.created_at.strftime("%A, %B %d, %Y @ %H:%M UTC"), inline = False)
     embed.add_field(name = "Когда присоединился: ", value = member.joined_at.strftime("%A, %B %d, %Y @ %H:%M UTC"), inline = False)
     embed.add_field(name = "Имя юзера: ", value = member.name, inline = False)
     embed.add_field(name = f"Роли [{len(member.roles) - 1}]: ", value = ' '.join(reversed(roles)), inline = False)
