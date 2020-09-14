@@ -447,7 +447,6 @@ async def math(ctx,  a:  int,  b:  int):
 
 @Bot.command(aliases = ['i', 'information', 'INFO', 'INFORMATION'])
 async def info(ctx, member: discord.Member):
-    mesinf = ctx.message.created_at.strftime("%H:%M")
     roles = [role.mention for role in member.roles[1:]]
     embed = discord.Embed(title = "Info", color = 0x428325)
     embed.add_field(name = "Аккаунт создан: ", value = member.created_at.strftime("%A, %B %d, %Y @ %H:%M UTC"), inline = False)
@@ -455,7 +454,7 @@ async def info(ctx, member: discord.Member):
     embed.add_field(name = "Имя юзера: ", value = member.name, inline = False)
     embed.add_field(name = f"Роли [{len(member.roles) - 1}]: ", value = ' '.join(reversed(roles)), inline = False)
     embed.set_thumbnail(url = member.avatar_url)
-    embed.set_footer(text = f"supports by quantprod | Сегодня, в {mesinf} UTC")
+    embed.set_footer(text = f"supports by quantprod | Сегодня, в {nowtime}")
     await ctx.send(embed = embed)
 
 
@@ -468,7 +467,7 @@ async def hello(ctx):
     await ctx.message.delete()
     author = ctx.message.author
     embed = discord.Embed(title = 'Dark Neon City', description = f'👋 Васап, {author.mention}! Рад видеть тебя на Dark Neon City!', color = 0x428325)
-    embed.set_footer(text = f"supports by quantprod | Сегодня, в {mesinf} UTC")
+    embed.set_footer(text = f"supports by quantprod | Сегодня, в {nowtime}")
     message = await ctx.send(embed = embed)
 
 
@@ -517,7 +516,7 @@ async def avatar(ctx, *,  avamember: discord.Member):
     userAvatarUrl = avamember.avatar_url
     embed = discord.Embed(description = f"Аватарка пользователя {avamember.mention}")
     embed.set_image(url = userAvatarUrl)
-    embed.set_footer(text = f"supports by quantprod | Сегодня, в {nowtime} UTC")
+    embed.set_footer(text = f"supports by quantprod | Сегодня, в {nowtime}")
     await ctx.send(embed = embed)
 
 
