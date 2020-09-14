@@ -417,8 +417,7 @@ async def github(ctx):
 async def say(ctx,  *, arg):	
     await ctx.message.delete()
     embed = discord.Embed(description = arg, color = 0x428325)
-    await ctx.send(embed = embed)
-    message = ctx.message
+    message = await ctx.send(embed = embed)
     await message.add_reaction('✅')
 
  
