@@ -24,8 +24,15 @@ from Cybernator import Paginator as pag
 from random import choice
 
 
-players = {}
 
+POST_ID = 755056184687591475 #id сообщения для выдачи ролей
+ROLES = {
+    '✅': 745356485995003915 #роль участника ивента
+}
+
+
+
+#ТЕКУЩЕЕ ВРЕМЯ (СТРОГО ДЛЯ КОНСОЛИ)
 
 delta = datetime.timedelta(hours=3, minutes=0)
 t = (datetime.datetime.now(datetime.timezone.utc) + delta)
@@ -506,7 +513,7 @@ async def clear(ctx, amount = 30):  #ВООБЩЕ ВСЕ СООБЩЕНИЯ
 @Bot.command(aliases = ['COURT'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "dmoder", "moder")
 async def court(ctx, member: discord.Member):
-    channel = Bot.get_channel(526464840672346112) #логи
+    channel = Bot.get_channel(745347244076826794) #логи
     author = ctx.message.author
     role = discord.utils.get(ctx.guild.roles, name = "urole0")
     await ctx.message.delete()
@@ -538,7 +545,7 @@ async def avatar(ctx, *,  avamember: discord.Member):
 @Bot.command(aliases = ['k', 'KICK'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
 async def kick(ctx, member: discord.Member, *, reason = None):  #КИК
-    channel = Bot.get_channel(526464840672346112) #LOGS
+    channel = Bot.get_channel(745347244076826794) #LOGS
     author = ctx.message.author
     await ctx.message.delete()
     await member.kick(reason = reason)
@@ -550,7 +557,7 @@ async def kick(ctx, member: discord.Member, *, reason = None):  #КИК
 @Bot.command(aliases = ['tb', 'TEMPBAN'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "dmoder", "moder")
 async def tempban(ctx, user: discord.User, duration: int, *, reason= None):  #ВРЕМЕННЫЙ БАН
-    channel = Bot.get_channel(526464840672346112) #LOGS
+    channel = Bot.get_channel(745347244076826794) #LOGS
     author = ctx.message.author
     await ctx.message.delete()
     await ctx.guild.ban(user)
@@ -575,7 +582,7 @@ async def tempban_error(ctx, error):
 @Bot.command(aliases = ['b', 'BAN'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
 async def ban(ctx, member: discord.Member, *, reason = None):  #ПЕРМАНЕНТНЫЙ БАН
-    channel = Bot.get_channel(526464840672346112) #логи
+    channel = Bot.get_channel(745347244076826794) #логи
     await member.ban(reason = reason)
     await ctx.message.delete()
     author = ctx.message.author
@@ -595,7 +602,7 @@ async def ban_error(ctx, error):
 @commands.has_any_role("admin", "Смотрящий", "elite", "dmoder", "moder")
 async def mute(ctx, member: discord.Member, duration: int):  #МУТ
     author = ctx.message.author
-    channel = Bot.get_channel(526464840672346112) #логи
+    channel = Bot.get_channel(745347244076826794) #логи
     role = discord.utils.get(ctx.guild.roles, name = "mute")
     await ctx.message.delete()
     await member.add_roles(role)
