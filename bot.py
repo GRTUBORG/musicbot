@@ -8,6 +8,7 @@ import requests
 import typing
 import datetime
 import time
+import pytz
 
 from requests import get 
 
@@ -439,7 +440,9 @@ async def math(ctx,  a:  int,  b:  int):
 
 @Bot.command(aliases = ['i', 'information', 'INFO', 'INFORMATION'])
 async def info(ctx, member: discord.Member):
-    mesinf = ctx.message.created_at.strftime("%H:%M")
+    tz_NY = pytz.timezone('America/New_York') 
+    datetime_NY = datetime.now(tz_NY)
+    mesinf = ctx.message.created_at.datetime_NY.strftime("%H:%M")
     roles = [role.mention for role in member.roles[1:]]
     embed = discord.Embed(title = "Info", color = 0x428325)
     embed.add_field(name = "Аккаунт создан: ", value = member.created_at.strftime("%A, %B %d, %Y @ %H:%M UTC"), inline = False)
@@ -595,8 +598,12 @@ async def mute_error(ctx, error):
         await ctx.send('Вы забыли указать аргумент!')
 
         
+
+#ССЫЛКА-ПРИГЛАШЕНИЕ
+        
 @Bot.command()
-async def invite(self, ctx):
+@commands.has_any_role("admin", "Смотрящий", "dmoder", "moder")
+async def invite(ctx):
     link = await ctx.channel.create_invite(max_age = 300)
     await ctx.send("Вот ссылка, которую нужно кидать: " + link)
 
