@@ -594,6 +594,11 @@ async def mute_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         await ctx.send('Вы забыли указать аргумент!')
 
+        
+@Bot.command()
+async def invite(self, ctx):
+    link = await ctx.channel.create_invite(max_age = 300)
+    await ctx.send("Вот ссылка, которую нужно кидать: " + link)
 
 
 #УЗНАТЬ ДЛИНУ СТРОКИ (СООБЩЕНИЯ)
