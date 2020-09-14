@@ -30,7 +30,7 @@ players = {}
 delta = datetime.timedelta(hours=3, minutes=0)
 t = (datetime.datetime.now(datetime.timezone.utc) + delta)
 nowtime = t.strftime("%H:%M")
-print(nowtime)
+
 
 Bot = commands.Bot(command_prefix = "/")
 Bot.remove_command('help')
@@ -67,6 +67,7 @@ command_list = ['Не за что!',
 async def on_ready():
     await Bot.change_presence(activity = discord.Activity(type = discord.ActivityType.watching, name = "за Dark Neon City 👀"))
     print("Бот в онлайне!")
+    print(nowtime)
     
 #ВЫДАЧА РОЛЕЙ
 
@@ -513,10 +514,13 @@ async def court(ctx, member: discord.Member):
 @Bot.command(aliases = ['ava', 'AVATAR'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "Vip")
 async def avatar(ctx, *,  avamember: discord.Member):
+    delta1 = datetime.timedelta(hours=3, minutes=0)
+    mesinf = (ctx.message.created_at) + delta1
+    nowtime1 = mesinf.strftime("%H:%M")
     userAvatarUrl = avamember.avatar_url
     embed = discord.Embed(description = f"Аватарка пользователя {avamember.mention}")
     embed.set_image(url = userAvatarUrl)
-    embed.set_footer(text = f"supports by quantprod | Сегодня, в {nowtime}")
+    embed.set_footer(text = f"supports by quantprod | Сегодня, в {nowtime1}")
     await ctx.send(embed = embed)
 
 
