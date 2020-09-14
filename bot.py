@@ -415,6 +415,7 @@ async def github(ctx):
 @Bot.command(aliases = ['repeat', 'SAY'])
 async def say(ctx,  *, arg):	
     await ctx.message.delete()
+    embed = discord.Embed(color = 0x428325)
     embed.add_field(value = arg)
     await ctx.send(embed = embed)
 
