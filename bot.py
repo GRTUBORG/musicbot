@@ -422,8 +422,8 @@ async def github(ctx):
 
 #ПОПУГАЙЧИК
 
-@Bot.command(aliases = ['repeat', 'SAY'])
-async def say(ctx,  *, arg):	
+@Bot.command()
+async def say_invite(ctx,  *, arg):	
     await ctx.message.delete()
     embed = discord.Embed(description = arg, color = 0x428325)
     message = await ctx.send(embed = embed)
@@ -434,12 +434,15 @@ async def say(ctx,  *, arg):
 
 @Bot.command(aliases = ['MATH']) 
 async def math(ctx,  a:  int,  b:  int): 
+    delta1 = datetime.timedelta(hours=3, minutes=0)
+    mesinf = (ctx.message.created_at) + delta1
+    nowtime1 = mesinf.strftime("%H:%M")
     embed = discord.Embed(color = 0x428325)
     embed.add_field(name = "Сумма: ", value = a + b, inline = False)
     embed.add_field(name = "Разность: ", value = a - b, inline = False)
     embed.add_field(name = "Деление: ", value = a / b, inline = False)
     embed.add_field(name = "Умножение: ", value = a * b, inline = False)
-    embed.set_footer(text = "supports by quantprod")
+    embed.set_footer(text = f"supports by quantprod | Сегодня, в {nowtime1}")
     await ctx.send(embed = embed)
 
 
@@ -448,6 +451,9 @@ async def math(ctx,  a:  int,  b:  int):
 
 @Bot.command(aliases = ['i', 'information', 'INFO', 'INFORMATION'])
 async def info(ctx, member: discord.Member):
+    delta1 = datetime.timedelta(hours=3, minutes=0)
+    mesinf = (ctx.message.created_at) + delta1
+    nowtime1 = mesinf.strftime("%H:%M")
     roles = [role.mention for role in member.roles[1:]]
     embed = discord.Embed(title = "Info", color = 0x428325)
     embed.add_field(name = "Аккаунт создан: ", value = member.created_at.strftime("%A, %B %d, %Y @ %H:%M UTC"), inline = False)
@@ -455,7 +461,7 @@ async def info(ctx, member: discord.Member):
     embed.add_field(name = "Имя юзера: ", value = member.name, inline = False)
     embed.add_field(name = f"Роли [{len(member.roles) - 1}]: ", value = ' '.join(reversed(roles)), inline = False)
     embed.set_thumbnail(url = member.avatar_url)
-    embed.set_footer(text = f"supports by quantprod | Сегодня, в {nowtime}")
+    embed.set_footer(text = f"supports by quantprod | Сегодня, в {nowtime1}")
     await ctx.send(embed = embed)
 
 
@@ -464,11 +470,13 @@ async def info(ctx, member: discord.Member):
 
 @Bot.command(aliases = ['HELLO'])
 async def hello(ctx):
-    mesinf = ctx.message.created_at.strftime("%H:%M")
+    delta1 = datetime.timedelta(hours=3, minutes=0)
+    mesinf = (ctx.message.created_at) + delta1
+    nowtime1 = mesinf.strftime("%H:%M")
     await ctx.message.delete()
     author = ctx.message.author
     embed = discord.Embed(title = 'Dark Neon City', description = f'👋 Васап, {author.mention}! Рад видеть тебя на Dark Neon City!', color = 0x428325)
-    embed.set_footer(text = f"supports by quantprod | Сегодня, в {nowtime}")
+    embed.set_footer(text = f"supports by quantprod | Сегодня, в {nowtime1}")
     message = await ctx.send(embed = embed)
 
 
