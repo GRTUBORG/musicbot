@@ -418,7 +418,8 @@ async def say(ctx,  *, arg):
     await ctx.message.delete()
     embed = discord.Embed(description = arg, color = 0x428325)
     await ctx.send(embed = embed)
-
+    message = ctx.message
+    await message.add_reaction('✅')
 
  
 #МАТЕМАТИКА (ПРОСТЫЕ ОПЕРАЦИИ)
