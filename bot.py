@@ -27,6 +27,11 @@ from random import choice
 players = {}
 
 
+delta = datetime.timedelta(hours=3, minutes=0)
+t = (datetime.datetime.now(datetime.timezone.utc) + delta)
+nowtime = t.strftime("%H:%M")
+print(nowtime)
+
 Bot = commands.Bot(command_prefix = "/")
 Bot.remove_command('help')
 
@@ -509,9 +514,6 @@ async def court(ctx, member: discord.Member):
 @Bot.command(aliases = ['ava', 'AVATAR'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "Vip")
 async def avatar(ctx, *,  avamember: discord.Member):
-    delta = datetime.timedelta(hours=3, minutes=0)
-    t = (ctx.message.created_at(datetime.timezone.utc) + delta)
-    nowtime = t.strftime("%H:%M")
     userAvatarUrl = avamember.avatar_url
     embed = discord.Embed(description = f"Аватарка пользователя {avamember.mention}")
     embed.set_image(url = userAvatarUrl)
