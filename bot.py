@@ -103,10 +103,7 @@ async def on_member_join(member):
     embed.set_footer(text = "supports by quantprod")
     await member.send(embed = embed)
 
-@Bot.command()
-async def roles(ctx, member: discord.Member)
-    role = discord.utils.get(member.guild.roles, name = 'Unit')
-    await member.add_roles(role)
+
 
 #ОБРАБОТЧИК ОШИБОК
 
