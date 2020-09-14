@@ -427,14 +427,21 @@ async def github(ctx):
 
 
 
-#ПОПУГАЙЧИК
+#ИВЕНТЫ
 
 @Bot.command()
-async def say_invite(ctx,  *, arg):	
+@commands.has_any_role("admin", "Смотрящий", "elite", "dmoder", "moder", "Event manager")
+async def say_invite(ctx,  *, arg):
     await ctx.message.delete()
     embed = discord.Embed(description = arg, color = 0x428325)
     message = await ctx.send(embed = embed)
     await message.add_reaction('✅')
+
+
+@Bot.command()
+async def say(ctx,  *, arg):
+    await ctx.message.delete()
+    await ctx.send(arg)
 
  
 #МАТЕМАТИКА (ПРОСТЫЕ ОПЕРАЦИИ)
