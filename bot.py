@@ -416,8 +416,7 @@ async def github(ctx):
 @Bot.command(aliases = ['repeat', 'SAY'])
 async def say(ctx,  *, arg):	
     await ctx.message.delete()
-    embed = discord.Embed(color = 0x428325)
-    embed.add_field(description = arg, inline = False)
+    embed = discord.Embed(description = arg, color = 0x428325)
     await ctx.send(embed = embed)
 
 
@@ -440,9 +439,7 @@ async def math(ctx,  a:  int,  b:  int):
 
 @Bot.command(aliases = ['i', 'information', 'INFO', 'INFORMATION'])
 async def info(ctx, member: discord.Member):
-    tz_NY = pytz.timezone('America/New_York') 
-    datetime_NY = datetime.now(tz_NY)
-    mesinf = ctx.message.created_at.datetime_NY.strftime("%H:%M")
+    mesinf = ctx.message.created_at.strftime("%H:%M")
     roles = [role.mention for role in member.roles[1:]]
     embed = discord.Embed(title = "Info", color = 0x428325)
     embed.add_field(name = "Аккаунт создан: ", value = member.created_at.strftime("%A, %B %d, %Y @ %H:%M UTC"), inline = False)
@@ -584,7 +581,7 @@ async def mute(ctx, member: discord.Member, duration: int):  #МУТ
     role = discord.utils.get(ctx.guild.roles, name = "mute")
     await ctx.message.delete()
     await member.add_roles(role)
-    await channel.send(f'{author.mention} **выдал мут** {member.mention}. **Время:** {duration} час')
+    await channel.send(f'{author.mention} **выдал мут** {member.mention}. **Время:** {duration} час(а)')
     embed = discord.Embed(description= f'*Пользователь {member.mention} был успешно замучен!*', color = 0x428325)
     await ctx.send(embed = embed)
     await asyncio.sleep(duration * 3600)
