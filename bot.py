@@ -127,8 +127,10 @@ async def on_message(message):
 @commands.has_any_role("admin", "Смотрящий", "elite")
 async def version(ctx):
     await ctx.message.delete()
-    embed = discord.Embed(title = "Актуальная версия бота", description= '__Апдейт был 28.08.2020 до v. 3.1__. \n' 'Добавлено/обновлено:\n'
-                          '• Поправлены/исправлены мелкие косяки. Впрочем, ничего нового.', color = 0x428325)
+    embed = discord.Embed(title = "Актуальная версия бота", description= '__Апдейт был 14.09.2020 до v. 3.2__. \n' 'Добавлено/обновлено:\n'
+                          '• Поправлены/исправлены баги и недочёты.\n'
+                          '• Также активно идёт работа с часовыми поясами, дабы дата была не в UTC-формате', color = 0x428325)
+    embed.set_footer(text = f"P.S.: если есть какие-то идеи - просьба написать <@!394858317572472832>")
     await ctx.send(embed = embed)
 
     
