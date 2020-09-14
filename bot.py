@@ -415,9 +415,8 @@ async def github(ctx):
 @Bot.command(aliases = ['repeat', 'SAY'])
 async def say(ctx,  *, arg):	
     await ctx.message.delete()
-    await ctx.send(arg)
-    message = ctx.message
-    await message.add_reaction('✅')
+    embed.add_field(value = arg)
+    await ctx.send(embed = embed)
 
 
  
