@@ -29,7 +29,7 @@ from random import choice
 
 delta = datetime.timedelta(hours=3, minutes=0)
 t = (datetime.datetime.now(datetime.timezone.utc) + delta)
-nowtime = t.strftime("%H:%M")
+nowtime = t.strftime("%B %d, %X")
 
 
 Bot = commands.Bot(command_prefix = "/")
@@ -106,7 +106,7 @@ async def on_raw_reaction_add(payload):
     if message_id == POST_ID:
         guild_id = payload.guild_id
         guild = discord.utils.find(lambda g : g.id == guild_id, Bot.guilds)
-        if payload.emoji.name == "white_check_mark":
+        if payload.emoji.name == "+1":
             role = discord.utils.get(guild.roles, name = 'Event participant')
         else:
             role = discord.utils.get(guild.roles, name = payload.emoji.name)
@@ -257,8 +257,6 @@ async def help(ctx):
                         '\n'
                         '`/author` - команда разработчиков этого бота;\n'
                         '\n'
-                        '`/github` - GitHub главного разработчика бота;\n'
-                        '\n'
                         '`/math [первое число] [второе число]` - посчитает Ваши числа. \n'
                         '**ВНИМАНИЕ! Числа нужно вводить ЧЕРЕЗ пробел:**\n'
                         '__ввели__ `/math 3 4`, __вывод дал Embed с операциями__;\n'
@@ -365,6 +363,16 @@ async def help_adm(ctx):
                         color = 0x428325)
     embed.set_footer(text = "supports by quantprod")
     message = await ctx.author.send(embed = embed)
+
+
+
+#ПРОВЕРКА ДОСТУПНОСТИ БОТА
+@Bot.command()
+@commands.has_any_role("admin")
+async def check(ctx):
+    await ctx.message.delete()
+    author = ctx.message.author
+    await ctx.send(f'Я в онлайне, {author.mention}. Также мой последний деплой был', nowtime)
 
 
 
