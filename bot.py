@@ -419,6 +419,18 @@ async def pizdec(ctx):
 
 
 
+#ТЕКУЩЕЕ ВРЕМЯ И ДАТА
+@Bot.command()
+async def time(ctx):
+    delta1 = datetime.timedelta(hours=3, minutes=0)
+    mesinf = (ctx.message.created_at) + delta1
+    nowtime1 = mesinf.strftime("%H:%M @ %d.%m.%Y")
+    embed = discord.Embed(title = 'Текущее время и дата по МСК:', description = nowtime, color = 0x428325)
+    embed.set_footer(text = "supports by quantprod")
+    await ctx.send(embed = embed)
+
+
+
 #NSFW-ИНФО (ПОПОЛНЕНИЕ)
 
 @Bot.command(aliases = ['updatebases', 'base', 'bases'])
@@ -436,7 +448,7 @@ async def nsfw_info(ctx):
 @Bot.command(aliases = ['AUTHOR'])
 async def author(ctx):
     await ctx.message.delete()
-    embed = discord.Embed(title = f'Авторы:', description = '**Разработчик:** https://vk.com/d.blinov79\n'
+    embed = discord.Embed(title = 'Авторы:', description = '**Разработчик:** https://vk.com/d.blinov79\n'
                                                             '**С подачи:** https://vk.com/code_authora_174',
                                                             color = 0x428325)
     embed.set_footer(text = "supports by quantprod")
