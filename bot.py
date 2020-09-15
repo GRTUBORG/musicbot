@@ -368,9 +368,10 @@ async def help_adm(ctx):
 
 #ПРОВЕРКА ДОСТУПНОСТИ БОТА
 @Bot.command()
+@commands.has_any_role("admin")
 async def check(ctx):
     await ctx.message.delete()
-    await ctx.send(nowtime)
+    await ctx.send('<@!394858317572472832> знает, что это:', nowtime)
 
 
 
