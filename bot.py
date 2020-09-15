@@ -29,7 +29,7 @@ from random import choice
 
 delta = datetime.timedelta(hours=3, minutes=0)
 t = (datetime.datetime.now(datetime.timezone.utc) + delta)
-nowtime = t.strftime("%B %d, %X")
+nowtime = t.strftime("%d/%m в %X")
 
 
 Bot = commands.Bot(command_prefix = "/")
@@ -368,7 +368,6 @@ async def help_adm(ctx):
 
 #ПРОВЕРКА ДОСТУПНОСТИ БОТА
 @Bot.command()
-@commands.has_any_role("admin")
 async def check(ctx):
     await ctx.message.delete()
     author = ctx.message.author
