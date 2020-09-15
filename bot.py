@@ -432,8 +432,12 @@ async def github(ctx):
 @Bot.command()
 @commands.has_any_role("admin", "Смотрящий", "Event manager")
 async def say_invite(ctx,  *, arg):
+    delta1 = datetime.timedelta(hours=3, minutes=0)
+    mesinf = (ctx.message.created_at) + delta1
+    nowtime1 = mesinf.strftime("%H:%M")
     await ctx.message.delete()
     embed = discord.Embed(description = arg, color = 0x428325)
+    embed.set_footer(text = f"supports by quantprod | Сегодня, в {nowtime1}")
     message = await ctx.send(embed = embed)
     await message.add_reaction('✅')
 
