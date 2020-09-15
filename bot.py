@@ -429,7 +429,8 @@ async def github(ctx):
 
 @Bot.command()
 @commands.has_any_role("admin", "Смотрящий", "Event manager")
-async def say_invite(ctx,  *, arg):    
+async def say_invite(ctx,  *, arg):  
+    role = discord.utils.get(member.guild.roles, name = 'Event participant')
     delta1 = datetime.timedelta(hours=3, minutes=0)
     mesinf = (ctx.message.created_at) + delta1
     nowtime1 = mesinf.strftime("%H:%M")
@@ -438,8 +439,8 @@ async def say_invite(ctx,  *, arg):
     embed.set_footer(text = f"supports by quantprod | Сегодня, в {nowtime1}")
     message = await ctx.send(embed = embed)
     await message.add_reaction('✅')
-    reaction, reactor = await bot.wait_for_reaction(emoji="✅", message=message)
-    await bot.add_roles(reactor, role)
+    reaction, reactor = await Bot.wait_for_reaction(emoji = "✅", message = message)
+    await Bot.add_roles(reactor, role)
 
     
     
