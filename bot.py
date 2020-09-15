@@ -87,7 +87,7 @@ async def on_raw_reaction_add(payload):
         guild_id = payload.guild_id
         guild = descord.utils.find(lambda g : g.id == guild_id, Bot.guilds)
         if payload.emoji.name == "white_check_mark":
-            role = discord.utils.get(guild.roles, name = 'Event manager')
+            role = discord.utils.get(guild.roles, name = 'Event participant')
         else:
             role = discord.utils.get(guild.roles, name = payload.emoji.name)
         if role is not None:
