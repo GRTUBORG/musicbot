@@ -74,8 +74,30 @@ command_list = ['Не за что!',
 async def on_ready():
     await Bot.change_presence(activity = discord.Activity(type = discord.ActivityType.watching, name = "за Dark Neon City 👀"))
     print("Бот в онлайне!")
-    print(nowtime)
-    
+    print('Деплой бота был: ', nowtime)
+ 
+
+
+#ВЫДАЧА РОЛЕЙ ПО РЕАКЦИИ
+
+@Bot.event
+async def on_raw_reaction_add(payload):
+    message_id = payload.message_id
+    if message_id = POST_ID:
+        guild_id = payload.guild_id
+        guild = descord.utils.find(lambda g : g.id == guild_id, Bot.guilds)
+        if payload.emoji.name == "white_check_mark":
+            role = discord.utils.get(guild.roles, name = 'Event manager')
+        else:
+            role = discord.utils.get(guild.roles, name = payload.emoji.name)
+        if role is not None:
+            member = discord.utils.find(lambda f : f.id == payload.user_id, guild.members)
+            if member is not None:
+                await member.add_roles(role)
+        else:
+            print('Что-то не так с добавлением ролей...')
+            
+
 #ВЫДАЧА РОЛЕЙ
 
 @Bot.event
@@ -344,6 +366,9 @@ async def help_adm(ctx):
                         '`/mute [@пользователь] [время в часах] [причина]` - мут пользователя \n'
                         '*сокращения/синонимы*: `/m`;\n'
                         '\n'
+                        '`/say_invite [сообщение об ивенте]` - объявление об ивенте с "галочкой" для участия. Нажатие на галочку '
+                        '**автоматически выдаёт роль** __участника__ ивента юзеру, который поставил реакцию\n'
+                        '\n'
                         f'Кстати говоря, советую ознакомиться с правилами в <#526099119874375710>', 
                         color = 0x428325)
     embed.set_footer(text = "supports by quantprod")
@@ -432,6 +457,7 @@ async def github(ctx):
 @Bot.command()
 @commands.has_any_role("admin", "Смотрящий", "Event manager")
 async def say_invite(ctx,  *, arg):
+        
     delta1 = datetime.timedelta(hours=3, minutes=0)
     mesinf = (ctx.message.created_at) + delta1
     nowtime1 = mesinf.strftime("%H:%M")
@@ -441,6 +467,9 @@ async def say_invite(ctx,  *, arg):
     message = await ctx.send(embed = embed)
     await message.add_reaction('✅')
 
+    
+    
+#ПОВТОРЕНИЕ СООБЩЕНИЯ ЮЗЕРА (SAY)    
 
 @Bot.command()
 async def say(ctx,  *, arg):
