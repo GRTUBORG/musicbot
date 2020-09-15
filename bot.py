@@ -83,7 +83,7 @@ async def on_ready():
 @Bot.event
 async def on_raw_reaction_add(payload):
     message_id = payload.message_id
-    if message_id = POST_ID:
+    if message_id == POST_ID:
         guild_id = payload.guild_id
         guild = descord.utils.find(lambda g : g.id == guild_id, Bot.guilds)
         if payload.emoji.name == "white_check_mark":
