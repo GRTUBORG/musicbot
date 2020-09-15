@@ -371,7 +371,7 @@ async def help_adm(ctx):
 @commands.has_any_role("admin")
 async def check(ctx):
     await ctx.message.delete()
-    await ctx.send('<@!394858317572472832> знает, что это:', nowtime)
+    await ctx.send(nowtime)
 
 
 
@@ -445,8 +445,7 @@ async def author(ctx):
 
 @Bot.command(aliases = ['git', 'GitHub'])
 async def github(ctx):
-    embed = discord.Embed(title = 'GitHub разработчика:')
-    embed.add_field(value = 'https://github.com/GRTUBORG/')
+    embed = discord.Embed(title = 'GitHub разработчика:', description = 'https://github.com/GRTUBORG/')
     await ctx.send(embed = embed)
 
 
