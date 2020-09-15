@@ -25,13 +25,6 @@ from random import choice
 
 
 
-POST_ID = 755056184687591475 #id сообщения для выдачи ролей
-ROLES = {
-    '✅': 745356485995003915 #роль участника ивента
-}
-
-
-
 #ТЕКУЩЕЕ ВРЕМЯ (СТРОГО ДЛЯ КОНСОЛИ)
 
 delta = datetime.timedelta(hours=3, minutes=0)
@@ -74,28 +67,8 @@ command_list = ['Не за что!',
 async def on_ready():
     await Bot.change_presence(activity = discord.Activity(type = discord.ActivityType.watching, name = "за Dark Neon City 👀"))
     print("Бот в онлайне!")
-    print('Деплой бота был: ', nowtime)
- 
+    print('Деплой бота был:', nowtime)
 
-
-#ВЫДАЧА РОЛЕЙ ПО РЕАКЦИИ
-
-@Bot.event
-async def on_raw_reaction_add(payload):
-    message_id = payload.message_id
-    if message_id == POST_ID:
-        guild_id = payload.guild_id
-        guild = descord.utils.find(lambda g : g.id == guild_id, Bot.guilds)
-        if payload.emoji.name == "white_check_mark":
-            role = discord.utils.get(guild.roles, name = 'Event participant')
-        else:
-            role = discord.utils.get(guild.roles, name = payload.emoji.name)
-        if role is not None:
-            member = discord.utils.find(lambda f : f.id == payload.user_id, guild.members)
-            if member is not None:
-                await member.add_roles(role)
-        else:
-            print('Что-то не так с добавлением ролей...')
             
 
 #ВЫДАЧА РОЛЕЙ
@@ -456,8 +429,7 @@ async def github(ctx):
 
 @Bot.command()
 @commands.has_any_role("admin", "Смотрящий", "Event manager")
-async def say_invite(ctx,  *, arg):
-        
+async def say_invite(ctx,  *, arg):    
     delta1 = datetime.timedelta(hours=3, minutes=0)
     mesinf = (ctx.message.created_at) + delta1
     nowtime1 = mesinf.strftime("%H:%M")
@@ -466,6 +438,8 @@ async def say_invite(ctx,  *, arg):
     embed.set_footer(text = f"supports by quantprod | Сегодня, в {nowtime1}")
     message = await ctx.send(embed = embed)
     await message.add_reaction('✅')
+    reaction, reactor = await bot.wait_for_reaction(emoji="✅", message=message)
+    await bot.add_roles(reactor, role)
 
     
     
