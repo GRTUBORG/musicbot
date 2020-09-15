@@ -425,7 +425,7 @@ async def time(ctx):
     delta1 = datetime.timedelta(hours=3, minutes=0)
     mesinf = (ctx.message.created_at) + delta1
     nowtime1 = mesinf.strftime("%H:%M @ %d.%m.%Y")
-    embed = discord.Embed(title = 'Текущее время и дата по МСК:', description = nowtime, color = 0x428325)
+    embed = discord.Embed(title = 'Текущее время и дата по МСК:', description = nowtime1, color = 0x428325)
     embed.set_footer(text = "supports by quantprod")
     await ctx.send(embed = embed)
 
