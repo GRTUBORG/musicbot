@@ -98,6 +98,25 @@ async def on_member_join(member):
     embed.set_footer(text = "supports by quantprod")
     await member.send(embed = embed)
 
+POST_ID = 755056184687591475 #id сообщения для выдачи ролей    
+
+@Bot.event
+async def on_raw_reaction_add(payload):
+    message_id = payload.message_id
+    if message_id == POST_ID:
+        guild_id = payload.guild_id
+        guild = discord.utils.find(lambda g : g.id == guild_id, Bot.guilds)
+        if payload.emoji.name == "white_check_mark":
+            role = discord.utils.get(guild.roles, name = 'Event participant')
+        else:
+            role = discord.utils.get(guild.roles, name = payload.emoji.name)
+        if role is not None:
+            member = discord.utils.find(lambda f : f.id == payload.user_id, guild.members)
+            if member is not None:
+                await member.add_roles(role)
+        else:
+            print('Что-то не так с добавлением ролей...')    
+
 
 
 #ОБРАБОТЧИК ОШИБОК
