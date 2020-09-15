@@ -29,7 +29,7 @@ from random import choice
 
 delta = datetime.timedelta(hours=3, minutes=0)
 t = (datetime.datetime.now(datetime.timezone.utc) + delta)
-nowtime = t.strftime("%d/%m в %X")
+nowtime = t.strftime("%d.%m в %X")
 
 
 Bot = commands.Bot(command_prefix = "/")
@@ -370,8 +370,7 @@ async def help_adm(ctx):
 @Bot.command()
 async def check(ctx):
     await ctx.message.delete()
-    author = ctx.message.author
-    await ctx.send(f'Я в онлайне, {author.mention}. Также мой последний деплой был', nowtime)
+    await ctx.send(nowtime)
 
 
 
