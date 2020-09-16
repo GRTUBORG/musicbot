@@ -616,7 +616,7 @@ async def tempban(ctx, user: discord.User, duration: int, *, reason= None):  #В
     emb.set_footer(text = "supports by quantprod")
     await ctx.send(embed = emb)
     await channel.send(f'{author.mention} **выдал временный бан** {user.mention}.')
-    await asyncio.sleep(duration)
+    await asyncio.sleep(duration * 3600)
     await ctx.guild.unban(user)
     embed = discord.Embed(title= "Временный бан", description= f'Пользователь {user.mention} был выпущен из тюрьмы, просьба отправить ему приглашение на сервер (просто он инвалид и сам не может присоединиться)!\n'
       'https://discord.gg/rjMDwaB', color = 0x428325)
