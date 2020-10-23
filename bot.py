@@ -106,6 +106,7 @@ async def on_ready():
     print('Деплой бота был', nowtime)
     await greatSender()
 
+    
 
 #ВЫДАЧА РОЛЕЙ
 
