@@ -1555,4 +1555,5 @@ async def ping(ctx):
 
 #СТАРТ БОТА
 
-Bot.run()
+token = os.environ.get('bot_token')
+Bot.run(str(token))
