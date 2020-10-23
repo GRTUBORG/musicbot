@@ -8,7 +8,6 @@ import requests
 import typing
 import datetime
 import time
-import keep_alive
 import re
 import lib
 import const
@@ -1555,5 +1554,4 @@ async def ping(ctx):
 
 #СТАРТ БОТА
 
-keep_alive.keep_alive()
 Bot.run()
