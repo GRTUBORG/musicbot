@@ -32,7 +32,6 @@ from discord.utils import get
 from discord import Spotify
 from discord import User
 from PIL import Image, ImageDraw
-from replit import db
 from os import system
 from datetime import date, time, timedelta
 from Cybernator import Paginator as pag
@@ -112,10 +111,9 @@ async def on_ready():
 
 @Bot.event
 async def on_member_join(member):
-    role_unit = discord.utils.get(member.guild.roles, name = "Unit")  # САМА РОЛЬ КОТОРУЮ ВЫДАЕМ
-    await member.add_roles(role_unit) # ДОБАВЛЯЕМ РОЛЬ
+    await member.add_roles(discord.utils.get(member.guild.roles, name = "Unit"))
     
-    embed = discord.Embed(color = 0x4ace40)
+    '''embed = discord.Embed(color = 0x4ace40)
     embed.add_field(name = "Приветственное сообщение", value = "Добро пожаловать в Dark Neon City!\n"
                                                                '\n'
                                                                "Перед тем, как пользоваться сервером, прочитай <#526099119874375710>. Это обязательно, а то атата!)\n"
@@ -134,7 +132,7 @@ async def on_member_join(member):
                                                                '\n'
                                                                "С наилучшими пожеланиями, администрация сервера!")
     embed.set_footer(text = "supports by quantprod")
-    await member.send(embed = embed)
+    await member.send(embed = embed)'''
 
 
 #ОБРАБОТЧИК ОШИБОК
