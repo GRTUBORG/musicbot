@@ -853,9 +853,9 @@ async def time_bot(ctx):
 
     embed = discord.Embed(color = 0x428325)
     embed.set_thumbnail(url = "https://i.gifer.com/LUjT.gif")
-    embed.add_field(name = 'Текущее время и дата в Москве:', value = nowtime1, inline = False)
-    embed.add_field(name = 'Текущее время и дата в Нью-Йорке:', value = nowtime2, inline = False)
-    embed.add_field(name = 'Текущее время и дата в Японии:', value = nowtime3, inline = False)
+    embed.add_field(name = 'Текущее время и дата в Москве (Россия :flag_ru:):', value = f'{nowtime1} UTC +3', inline = False)
+    embed.add_field(name = 'Текущее время и дата в Нью-Йорке (Америка :flag_us:):', value = f'{nowtime2} UTC −4', inline = False)
+    embed.add_field(name = 'Текущее время и дата в Токио (Япония :flag_jp:):', value = f'{nowtime3} UTC +9', inline = False)
     embed.set_footer(text = "supports by quantprod")
     await ctx.send(embed = embed)
 
@@ -1048,7 +1048,7 @@ async def info(ctx, member: discord.Member = None):
 
 @Bot.command(aliases = ['HELLO'])
 async def hello(ctx):
-    delta1 = datetime.timedelta(hours=3, minutes=0)
+    delta1 = datetime.timedelta(hours = 3, minutes = 0)
     mesinf = ctx.message.created_at + delta1
     nowtime1 = mesinf.strftime("%X")
     
