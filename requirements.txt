@@ -141,7 +141,6 @@ python-jsonrpc-server
 python-language-server
 pyttsx3
 pytz
-pyxel @ git+https://github.com/amasad/pyxel@8bcc2266b2fbb65f72ad686952de3838971c136e
 PyYAML==5.3.1
 regex
 replit
@@ -162,10 +161,6 @@ sounddevice
 soupsieve
 SQLAlchemy
 sqlparse
-tensorboard
-tensorboard-plugin-wit
-tensorflow-cpu @ https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow_cpu-2.2.0-cp38-cp38-manylinux2010_x86_64.whl
-tensorflow-estimator
 termcolor
 terminaltables
 toml
