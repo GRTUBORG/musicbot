@@ -233,7 +233,7 @@ async def weather(ctx, *, city: str):
 #ПЕРЕВОДЧИК
 
 language = ('`ru` - Русский, `en` - Английский, `ar` - Арабский, `zh` - Китайский, `it` - Итальянский, `ja` - Японский\n'
-           '`zu` - Зулу, `yo` - Йоруба, `uk` - Украинский, `be` - Белорусский')
+            '`zu` - Зулу, `yo` - Йоруба, `uk` - Украинский, `be` - Белорусский')
 
 @Bot.command(aliases = ["переведи"])
 async def translate(ctx, lang = None, to_lang = None, *, arg = None):
@@ -252,7 +252,7 @@ async def translate(ctx, lang = None, to_lang = None, *, arg = None):
             translation = translator.translate(str(arg))
             await ctx.send(f'**Исходный текст:** `{arg}`\n'
                             '\n'
-                            f'**Результат:** `{translation}`')
+                           f'**Результат:** `{translation}`')
     except: 
         await ctx.send('Не смог перевести :с')
 
@@ -815,20 +815,23 @@ async def pizdec(ctx):
 async def spotify(ctx, user: discord.Member):
     await ctx.message.delete()
     user = user or ctx.author
-    for activity in user.activities:
-        if isinstance(activity, Spotify):
-            artist_correct = activity.artist.rsplit(';')
-            correct_lines = ','
-            new_correct_artist = correct_lines.join(artist_correct)
+    try:
+        for activity in user.activities:
+            if isinstance(activity, Spotify):
+                artist_correct = activity.artist.rsplit(';')
+                correct_lines = ','
+                new_correct_artist = correct_lines.join(artist_correct)
 
-            album_jpg = activity.album_cover_url
+                album_jpg = activity.album_cover_url
 
-            embed = discord.Embed(color = 0x428325)
-            embed.set_thumbnail(url = album_jpg)
-            embed.add_field(name = 'Трек:', value = f'{user.mention} слушает  `"{activity.title}"`', inline = False)
-            embed.add_field(name = 'Исполнитель:', value = f'`{new_correct_artist}`', inline = False)
-            embed.set_footer(text = "supports by quantprod")
-            await ctx.send(embed = embed)
+                embed = discord.Embed(color = 0x428325)
+                embed.set_thumbnail(url = album_jpg)
+                embed.add_field(name = 'Трек:', value = f'{user.mention} слушает  `"{activity.title}"`', inline = False)
+                embed.add_field(name = 'Исполнитель:', value = f'`{new_correct_artist}`', inline = False)
+                embed.set_footer(text = "supports by quantprod")
+                await ctx.send(embed = embed)
+    except Exception as e:
+        await ctx.send(f'Не смог из-за ошибки: {e}')
        
 
 
