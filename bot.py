@@ -300,6 +300,7 @@ async def play(ctx, *, url, volume = 0.5):  #КОМАНДА ПРОИГРЫВАН
             'format' : 'bestaudio/best',
             'noplaylist' : True, 
             'quiet' : False, #логи загрузки, если true, то их нет
+            'verbose' : True,
             'no_warnings': True,
             'writethumbnail' : True,
             'ignore-errors' : True,
