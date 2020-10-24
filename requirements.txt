@@ -61,6 +61,7 @@ fissix
 Flask
 future
 gast
+json
 geojson==2.5.0
 glfw==2.0.0
 google-auth==1.22.1
@@ -113,8 +114,6 @@ pip-upgrader==1.4.15
 pipreqs-amasad==0.4.10
 pkginfo==1.5.0.1
 pluggy==0.13.1
-poetry==1.1.3
-poetry-core==1.0.0
 pre-commit==2.7.1
 prompt-toolkit==3.0.8
 protobuf==3.13.0
@@ -172,9 +171,7 @@ tqdm
 translate
 typer
 typing-extensions
-ujson
 urllib3
-virtualenv
 vk
 volatile
 wcwidth
