@@ -258,9 +258,6 @@ async def translate(ctx, lang = None, to_lang = None, *, arg = None):
 
 
 #МУЗЫКА С ЮТУБА
-error_code_playing = '0'
-error_code_connect = '2'
-error_code_pause = '3'
 
 @Bot.command(aliases = ['p', 'PLAY'])
 async def play(ctx, *, url, volume = 0.5):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВОЙ ДОРОЖКИ
@@ -841,21 +838,21 @@ async def spotify(ctx, user: discord.Member):
 async def time_bot(ctx):
     delta_msk = datetime.timedelta(hours = 3, minutes = 0)
     mesinf = ctx.message.created_at + delta_msk
-    nowtime1 = mesinf.strftime("**Время:** %X \n**Дата:** %d.%m.%Y")
+    nowtime1 = mesinf.strftime("**Время:** %X UTC +3\n**Дата:** %d.%m.%Y")
 
     delta_ny = datetime.timedelta(hours = -4, minutes = 0)
     mesinf1 = ctx.message.created_at + delta_ny
-    nowtime2 = mesinf1.strftime("**Время:** %X \n**Дата:** %d.%m.%Y")
+    nowtime2 = mesinf1.strftime("**Время:** %X UTC −4\n**Дата:** %d.%m.%Y")
 
     delta_jp = datetime.timedelta(hours = 9, minutes = 0)
     mesinf2 = ctx.message.created_at + delta_jp
-    nowtime3 = mesinf2.strftime("**Время:** %X \n**Дата:** %d.%m.%Y")
+    nowtime3 = mesinf2.strftime("**Время:** %X UTC +9\n**Дата:** %d.%m.%Y")
 
     embed = discord.Embed(color = 0x428325)
     embed.set_thumbnail(url = "https://i.gifer.com/LUjT.gif")
-    embed.add_field(name = 'Текущее время и дата в Москве (Россия :flag_ru:):', value = f'{nowtime1} UTC +3', inline = False)
-    embed.add_field(name = 'Текущее время и дата в Нью-Йорке (Америка :flag_us:):', value = f'{nowtime2} UTC −4', inline = False)
-    embed.add_field(name = 'Текущее время и дата в Токио (Япония :flag_jp:):', value = f'{nowtime3} UTC +9', inline = False)
+    embed.add_field(name = 'Текущее время и дата в Москве (Россия :flag_ru:):', value = f'`{nowtime1}`', inline = False)
+    embed.add_field(name = 'Текущее время и дата в Нью-Йорке (Америка :flag_us:):', value = f'`{nowtime2}`', inline = False)
+    embed.add_field(name = 'Текущее время и дата в Токио (Япония :flag_jp:):', value = f'`{nowtime3}`', inline = False)
     embed.set_footer(text = "supports by quantprod")
     await ctx.send(embed = embed)
 
