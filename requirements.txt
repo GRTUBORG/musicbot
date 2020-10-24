@@ -186,4 +186,4 @@ yapf
 yarg
 yarl
 yaspin
-youtube-dl
+youtube-dl==2020.7.28
