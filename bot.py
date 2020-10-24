@@ -810,9 +810,9 @@ async def pizdec(ctx):
 
 @Bot.command(aliases = ['spot'])
 async def spotify(ctx, user: discord.Member):
-    await ctx.message.delete()
-    user = user or ctx.author
     try:
+        await ctx.message.delete()
+        user = user or ctx.author
         for activity in user.activities:
             if isinstance(activity, Spotify):
                 artist_correct = activity.artist.rsplit(';')
@@ -838,15 +838,15 @@ async def spotify(ctx, user: discord.Member):
 async def time_bot(ctx):
     delta_msk = datetime.timedelta(hours = 3, minutes = 0)
     mesinf = ctx.message.created_at + delta_msk
-    nowtime1 = mesinf.strftime("**Время:** `%X UTC +3`\n**Дата:** `%d.%m.%Y`")
+    nowtime1 = mesinf.strftime("**Время:** `%X (UTC +3)`\n**Дата:** `%d.%m.%Y`")
 
     delta_ny = datetime.timedelta(hours = -4, minutes = 0)
     mesinf1 = ctx.message.created_at + delta_ny
-    nowtime2 = mesinf1.strftime("**Время:** `%X UTC −4`\n**Дата:** `%d.%m.%Y`")
+    nowtime2 = mesinf1.strftime("**Время:** `%X (UTC −4)`\n**Дата:** `%d.%m.%Y`")
 
     delta_jp = datetime.timedelta(hours = 9, minutes = 0)
     mesinf2 = ctx.message.created_at + delta_jp
-    nowtime3 = mesinf2.strftime("**Время:** `%X UTC +9`\n**Дата:** `%d.%m.%Y`")
+    nowtime3 = mesinf2.strftime("**Время:** `%X (UTC +9)`\n**Дата:** `%d.%m.%Y`")
 
     embed = discord.Embed(color = 0x428325)
     embed.set_thumbnail(url = "https://i.gifer.com/LUjT.gif")
