@@ -302,9 +302,10 @@ async def play(ctx, *, url, volume = 0.5):  #КОМАНДА ПРОИГРЫВАН
         ydl_opts = {
             'format' : 'bestaudio/best',
             'noplaylist' : True, 
-            'quiet' : True, #логи загрузки, если true, то их нет
+            'quiet' : False, #логи загрузки, если true, то их нет
             'no_warnings': True,
             'writethumbnail' : True,
+            'ignore-errors' : True,
             'postprocessors' : [{
                 'key' : 'FFmpegExtractAudio',
                 'preferredcodec' : 'mp3',
@@ -564,6 +565,7 @@ async def install_bot(ctx, *, commands: str):
     error = os.system(command)
     await ctx.send(f'Закончил с ошибкой `{error}`')
 
+    
 
 #РАНДОМАЙЗЕР СЛУЧАЙНЫХ ЧИСЕЛ
 
