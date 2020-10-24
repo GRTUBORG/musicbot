@@ -61,7 +61,6 @@ fissix
 Flask
 future
 gast
-json
 geojson==2.5.0
 glfw==2.0.0
 google-auth==1.22.1
