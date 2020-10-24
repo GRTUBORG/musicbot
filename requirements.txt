@@ -111,6 +111,7 @@ pip-upgrader
 pipreqs-amasad
 pkginfo
 pluggy
+pip
 pre-commit
 prompt-toolkit
 protobuf
