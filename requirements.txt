@@ -1,6 +1,6 @@
 discord
 flask
-PyNaCl = "^1.4.0"
+PyNaCl
 ffmpeg
 youtube_dl
 pyflakes
