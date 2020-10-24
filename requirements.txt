@@ -1,3 +1,6 @@
+vk-audio==6.9
+lxml==4.6.1
+vk-api==11.9.0
 absl-py==0.10.0
 aiohttp==3.6.3
 amg==1.0.7
