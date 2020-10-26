@@ -126,7 +126,8 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         author = ctx.message.author
         embed = discord.Embed(color = 0x8B0000)
-        embed.add_field(name = 'Ошибка выполнения команды!', value = f':x: *Внимание, {author.mention}! Данной команды __не существует__!*')
+        embed.add_field(name = 'Ошибка выполнения команды!', value = f':x: Внимание, {author.mention}! Данной команды __не существует__! Проверьте правильность '
+                                                                     'написания, либо же пропишите команду `/help`')
         embed.set_footer(text = f"supports by quantprod")
         await ctx.send(embed = embed)
 
@@ -167,11 +168,12 @@ async def on_message(message):
 @commands.has_any_role("admin", "Смотрящий", "elite")
 async def version(ctx):
     await ctx.message.delete()
-    embed = discord.Embed(title = "Актуальная версия бота", description = '__Апдейт был 10.10.2020 до v. 6.3.1__.\n'
+    embed = discord.Embed(title = "Актуальная версия бота", description = '__Апдейт был 26.10.2020 до v. 6.9__.\n'
                           'Добавлено/обновлено:\n'
-                          '• Продолжаем форсить заболевших COVID19, обновляя и улучшая эту команду\n'
-                          '• По-стандарту - поправлены косяки в коде\n'
-                          '• Добавлено две новых команды: `/weather` и `/translate` (см. `/help`)\n'
+                          '• Бот переехал на хостинг 24/7, теперь будет работать до смерти самого хостинга :D\n'
+                          '• Исправлены костыли и баги в коде\n'
+                          '• Временно вырезана команда `/play [запрос]`, но всё также работает команда `/play [ссылка]`\n'
+                          '• Обновлена команда `/help`\n'
                           '\n'
                           'P.S.: если есть какие-то идеи, или же желание помочь в развитии бота/сервера, просьба написать\n'
                           'либо <@394858317572472832>, либо <@394850460420538389>', color = 0x428325)
