@@ -725,6 +725,18 @@ async def help_adm(ctx):
     embed.set_footer(text = "supports by quantprod")
     await ctx.author.send(embed = embed)
 
+    
+    
+#ВоТ тАкИе ВоТ сТрОкИ
+
+@Bot.command()
+async def upper(ctx, *, text):
+    s = str(text)
+    r = ""
+    for i, c in enumerate(s):
+      r += c if i % 2 else c.upper()
+    await ctx.message.delete()
+    await ctx.send(f'`{r}`')
 
 
 #ПРОВЕРКА ДОСТУПНОСТИ БОТА
