@@ -657,7 +657,7 @@ async def help(ctx):
     embed3 = discord.Embed(title = 'Помощь, страница 3', description = 
                         '1) `/hello` - ну-ка быстро посмотри :)\n'
                         '\n'
-                        '2) `/info [@пользователь]` - узнай дату входа пользователя на сервер!;\n'
+                        '2) `/info [@пользователь]` - узнай дату входа пользователя на сервер!\n'
                         '\n'
                         '3) `/message [@пользователь] [текст_сообщения]` - отправка сообщения любому юзеру с помощью бота;\n'
                         '\n'
@@ -763,6 +763,7 @@ async def upper(ctx, *, text):
     await ctx.send(f'`{r}`')
 
 
+    
 #ПРОВЕРКА ДОСТУПНОСТИ БОТА
 
 @Bot.command()
@@ -848,7 +849,6 @@ async def pizdec(ctx):
 @Bot.command(aliases = ['spot'])
 async def spotify(ctx, user: discord.Member = None):
     try:
-        await ctx.message.delete()
         user = user or ctx.author
         delta_msk = datetime.timedelta(hours = 3, minutes = 0)
         for activity in user.activities:
@@ -867,7 +867,9 @@ async def spotify(ctx, user: discord.Member = None):
                 embed.add_field(name = 'Исполнитель:', value = f'`{new_correct_artist}`', inline = False)
                 embed.add_field(name = 'Начал(а) слушать в:', value = f'`{nowtime1}`', inline = False)
                 embed.set_footer(text = "supports by quantprod")
-                await ctx.send(embed = embed)
+                message = await ctx.send(embed = embed)
+                await asyncio.sleep(15)
+                await message.delete()
     except Exception as e:
         await ctx.send(f'Не смог из-за ошибки: {e}')
        
