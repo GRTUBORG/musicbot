@@ -45,6 +45,7 @@ from translate import Translator
 #based on DNC and ready to support.
 #------------------------------------------------------------------#
 
+intents = discord.Intents.all()
 
 #ТЕКУЩЕЕ ВРЕМЯ (СТРОГО ДЛЯ КОНСОЛИ)
 
@@ -56,7 +57,7 @@ async def greatSender():
     channel = Bot.get_channel(756990788516446280)
     await channel.send(f'Я перезапустился {nowtime}')
 
-Bot = commands.Bot(command_prefix = ["/", "!", "qp!", "бот ", "quantprod ", "quant "], intents = intents)
+Bot = commands.Bot(command_prefix = ["/", "!", "qp!", "бот ", "quantprod ", "quant "], intents = discord.Intents.all())
 Bot.remove_command('help')
 
 
