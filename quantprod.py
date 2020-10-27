@@ -846,7 +846,7 @@ async def pizdec(ctx):
 #SPOTIFY, КТО ЧТО СЛУШАЕТ
 
 @Bot.command(aliases = ['spot'])
-async def spotify(ctx, user: discord.Member):
+async def spotify(ctx, user: discord.Member = None):
     try:
         await ctx.message.delete()
         user = user or ctx.author
