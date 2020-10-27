@@ -870,6 +870,7 @@ async def spotify(ctx, user: discord.Member = None):
                 message = await ctx.send(embed = embed)
                 await asyncio.sleep(15)
                 await message.delete()
+                await ctx.message.delete()
     except Exception as e:
         await ctx.send(f'Не смог из-за ошибки: {e}')
        
