@@ -852,16 +852,18 @@ async def spotify(ctx, user: discord.Member):
         user = user or ctx.author
         for activity in user.activities:
             if isinstance(activity, Spotify):
+                time_current = activity.created_at + delta_msk
+                nowtime1 = time_current.strftime("`%H:%M по МСК`")
+
                 artist_correct = activity.artist.rsplit(';')
                 correct_lines = ','
                 new_correct_artist = correct_lines.join(artist_correct)
-
-                album_jpg = activity.album_cover_url
 
                 embed = discord.Embed(color = 0x428325)
                 embed.set_thumbnail(url = album_jpg)
                 embed.add_field(name = 'Трек:', value = f'{user.mention} слушает  `"{activity.title}"`', inline = False)
                 embed.add_field(name = 'Исполнитель:', value = f'`{new_correct_artist}`', inline = False)
+                embed.add_field(name = 'Начал(а) слушать в:', value = f'`{nowtime1}`', inline = False)
                 embed.set_footer(text = "supports by quantprod")
                 await ctx.send(embed = embed)
     except Exception as e:
