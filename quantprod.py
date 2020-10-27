@@ -56,7 +56,7 @@ async def greatSender():
     channel = Bot.get_channel(756990788516446280)
     await channel.send(f'Я перезапустился {nowtime}')
 
-Bot = commands.Bot(command_prefix = ["/", "!", "qp!", "бот ", "quantprod ", "quant "])
+Bot = commands.Bot(command_prefix = ["/", "!", "qp!", "бот ", "quantprod ", "quant "], intents = intents)
 Bot.remove_command('help')
 
 
