@@ -850,6 +850,7 @@ async def spotify(ctx, user: discord.Member):
     try:
         await ctx.message.delete()
         user = user or ctx.author
+        delta_msk = datetime.timedelta(hours = 3, minutes = 0)
         for activity in user.activities:
             if isinstance(activity, Spotify):
                 time_current = activity.created_at + delta_msk
