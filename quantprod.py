@@ -867,6 +867,7 @@ async def spotify(ctx, user: discord.Member = None):
                 correct_lines = ','
                 new_correct_artist = correct_lines.join(artist_correct)
                 album_jpg = activity.album_cover_url
+                duration = str(activity.duration)
                 
                 embed = discord.Embed(color = 0x428325)
                 embed.set_thumbnail(url = album_jpg)
@@ -879,7 +880,7 @@ async def spotify(ctx, user: discord.Member = None):
                 await message.delete()
                 await ctx.message.delete()
     except Exception as e:
-        await ctx.send(f'Не смог из-за ошибки: {e}')
+        await ctx.send(f'Возникла ошибка "{e}"')
        
 
 
