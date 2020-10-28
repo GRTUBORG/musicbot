@@ -913,6 +913,8 @@ async def time_bot(ctx):
 
 @Bot.command(aliases = ['covid19', 'COVID', 'cov', 'COVID19'])
 async def covid(ctx, country = None):
+    translator = Translator(from_lang = "ru", to_lang = "en")
+    translation = translator.translate(country)
     message = await ctx.send('Собираю данные, пожалуйста, подождите...')
     covid = Covid(source = "worldometers")
     covid1 = Covid()                                 
@@ -932,13 +934,10 @@ async def covid(ctx, country = None):
         await ctx.send(embed = embed)
     else:
         try:
-            translator = Translator(from_lang = "en", to_lang = "ru")
-            translation = translator.translate(country)
             morph = pymorphy2.MorphAnalyzer()
             counties = morph.parse(translation)[0]
             gent = counties.inflect({'gent'})
-            gent_new = str(gent.word)[:1]
-            gent_new = gent_new.upper() + str(gent.word)[1:]
+            gent = gent.capitalize()
             await message.delete()
             country_cases = covid.get_status_by_country_name(country)['new_cases']
             if country_cases == 0:
@@ -949,7 +948,7 @@ async def covid(ctx, country = None):
                 timeout = 60 * 3600
             confirmed_country_cases = covid.get_status_by_country_name(country)['confirmed']
             deaths_country_cases = covid.get_status_by_country_name(country)['deaths']
-            embed = discord.Embed(title = 'Информация по отдельной стране', description = f'__Статистика для {gent_new}__', color = 0x428325) 
+            embed = discord.Embed(title = 'Информация по отдельной стране', description = f'__Статистика для {gent}__', color = 0x428325) 
             embed.add_field(name = "Новых случаев за сутки", value = f'`{country_cases}`', inline = False)
             embed.add_field(name = "Всего заболевших", value = f'`{confirmed_country_cases}`', inline = False)
             embed.add_field(name = "Скончались", value = f'`{deaths_country_cases}`', inline = False)
