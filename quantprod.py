@@ -957,8 +957,8 @@ async def covid(ctx, country = None):
             message1 = await ctx.send(embed = embed)
             await asyncio.sleep(timeout)
             await message1.delete() 
-        except:
-            await ctx.send('Возникла непредвиденная ошибка...')
+        except Exception as e:
+            await ctx.send(f'Возникла ошибка {e}. Обратитесь к <@!394858317572472832>')
 
 
 
