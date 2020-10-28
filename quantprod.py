@@ -871,7 +871,7 @@ async def spotify(ctx, user: discord.Member = None):
                 
                 embed = discord.Embed(color = 0x428325)
                 embed.set_thumbnail(url = album_jpg)
-                embed.add_field(name = 'Трек:', value = f'{user.mention} слушает `«{activity.title}»`', inline = False)
+                embed.add_field(name = 'Трек:', value = f'{user.mention} слушает **«{activity.title}»** `{duration}`', inline = False)
                 embed.add_field(name = 'Исполнитель:', value = f'`{new_correct_artist}`', inline = False)
                 embed.add_field(name = 'Начал(а) слушать в:', value = f'`{nowtime1}`', inline = False)
                 embed.set_footer(text = "supports by quantprod")
@@ -938,8 +938,8 @@ async def covid(ctx, country = None):
             morph = pymorphy2.MorphAnalyzer()
             counties = morph.parse(translation)[0]
             gent = counties.inflect({'gent'})
-            gent = gent.word
-            gent = gent.capitalize()
+            gent_new = gent.word
+            gent_correct = gent_new.capitalize()
             await message.delete()
             country_cases = covid.get_status_by_country_name(translation)['new_cases']
             if country_cases == 0:
@@ -950,7 +950,7 @@ async def covid(ctx, country = None):
                 timeout = 60 * 3600
             confirmed_country_cases = covid.get_status_by_country_name(translation)['confirmed']
             deaths_country_cases = covid.get_status_by_country_name(translation)['deaths']
-            embed = discord.Embed(title = 'Информация по отдельной стране', description = f'__Статистика для {gent}__', color = 0x428325) 
+            embed = discord.Embed(title = 'Информация по отдельной стране', description = f'__Статистика для {gent_correct}__', color = 0x428325) 
             embed.add_field(name = "Новых случаев за сутки", value = f'`{country_cases}`', inline = False)
             embed.add_field(name = "Всего заболевших", value = f'`{confirmed_country_cases}`', inline = False)
             embed.add_field(name = "Скончались", value = f'`{deaths_country_cases}`', inline = False)
