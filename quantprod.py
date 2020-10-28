@@ -867,7 +867,7 @@ async def spotify(ctx, user: discord.Member = None):
                 correct_lines = ','
                 new_correct_artist = correct_lines.join(artist_correct)
                 album_jpg = activity.album_cover_url
-                duration = str(activity.duration)
+                duration = str(activity.duration)[2:][:-7]
                 
                 embed = discord.Embed(color = 0x428325)
                 embed.set_thumbnail(url = album_jpg)
