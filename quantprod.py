@@ -608,6 +608,7 @@ async def heads_tails(ctx):
 
 @Bot.command(aliases = ['h', 'HELP'])
 async def help(ctx):
+    timeout = 3*60
     author = ctx.message.author
     embed1 = discord.Embed(title = 'Помощь, страница 1', description = f'Йо, {author.mention}! Держи список команд:\n'
                         '\n'
@@ -691,7 +692,7 @@ async def help(ctx):
                         '*Увы, но пока таких команд нет, ожидайте выходов новых обновлений бота*')
     embeds = [embed1, embed2, embed3, embed4, embed5]
     message = await ctx.send(embed = embed1)
-    page = pag(Bot, message, only = ctx.author, use_more = False, timeout = 3*60, embeds = embeds)
+    page = pag(Bot, message, only = ctx.author, use_more = False, timeout = timeout, embeds = embeds)
     await page.start()
     
 
