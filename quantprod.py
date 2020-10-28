@@ -937,6 +937,7 @@ async def covid(ctx, country = None):
             morph = pymorphy2.MorphAnalyzer()
             counties = morph.parse(translation)[0]
             gent = counties.inflect({'gent'})
+            gent = gent.word
             gent = gent.capitalize()
             await message.delete()
             country_cases = covid.get_status_by_country_name(translation)['new_cases']
