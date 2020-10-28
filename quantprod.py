@@ -913,9 +913,9 @@ async def time_bot(ctx):
 
 @Bot.command(aliases = ['covid19', 'COVID', 'cov', 'COVID19'])
 async def covid(ctx, country = None):
+    message = await ctx.send('Собираю данные, пожалуйста, подождите...')
     translator = Translator(from_lang = "ru", to_lang = "en")
     translation = translator.translate(country)
-    message = await ctx.send('Собираю данные, пожалуйста, подождите...')
     covid = Covid(source = "worldometers")
     covid1 = Covid()                                 
     if country == None:
@@ -939,15 +939,15 @@ async def covid(ctx, country = None):
             gent = counties.inflect({'gent'})
             gent = gent.capitalize()
             await message.delete()
-            country_cases = covid.get_status_by_country_name(country)['new_cases']
+            country_cases = covid.get_status_by_country_name(translation)['new_cases']
             if country_cases == 0:
                 country_cases = 'Статистика обновляется. Попробуйте заново в 12:00 по МСК'
                 timeout = 10
             else:
                 country_cases = '+' + str(country_cases)
                 timeout = 60 * 3600
-            confirmed_country_cases = covid.get_status_by_country_name(country)['confirmed']
-            deaths_country_cases = covid.get_status_by_country_name(country)['deaths']
+            confirmed_country_cases = covid.get_status_by_country_name(translation)['confirmed']
+            deaths_country_cases = covid.get_status_by_country_name(translation)['deaths']
             embed = discord.Embed(title = 'Информация по отдельной стране', description = f'__Статистика для {gent}__', color = 0x428325) 
             embed.add_field(name = "Новых случаев за сутки", value = f'`{country_cases}`', inline = False)
             embed.add_field(name = "Всего заболевших", value = f'`{confirmed_country_cases}`', inline = False)
