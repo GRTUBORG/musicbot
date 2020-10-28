@@ -204,8 +204,12 @@ async def version(ctx):
 #ПОГОДА
 
 @Bot.command(aliases = ["погода"])
-async def weather(ctx, *, city: str):
+async def weather(ctx, *, city = None):
     await ctx.message.delete()
+    city = str(city)
+    author = ctx.message.author
+    if city == None:
+        city = 'Москва'
     try:
         config_dict = get_default_config()
         config_dict['language'] = 'ru'
@@ -225,8 +229,7 @@ async def weather(ctx, *, city: str):
             embed.add_field(name = 'Осадки:', value = f'Небо затянуто на `{clouds}%`, {cloud}', inline = False)
             embed.set_thumbnail(url = 'https://kindertravelguide.com/wp-content/uploads/2015/11/SUN-1200x1117.jpg')
             embed.set_footer(text = "supports by quantprod")
-            await ctx.send(embed = embed)
-            await ctx.send(embed = embed)
+            await ctx.author.send(embed = embed)
         elif temp < 15.00:
             with open ('for_weather_from_10.txt', 'r') as file:
                 lines = file.readlines()
@@ -236,7 +239,7 @@ async def weather(ctx, *, city: str):
             embed.add_field(name = 'Осадки:', value = f'Небо затянуто на `{clouds}%`, {cloud}', inline = False)
             embed.set_thumbnail(url = 'https://kindertravelguide.com/wp-content/uploads/2015/11/SUN-1200x1117.jpg')
             embed.set_footer(text = "supports by quantprod")
-            await ctx.send(embed = embed)
+            await ctx.author.send(embed = embed)
         elif temp <= 5.0:
             with open ('for_weather_from_0.txt', 'r') as file:
                 lines = file.readlines()
@@ -246,7 +249,7 @@ async def weather(ctx, *, city: str):
             embed.add_field(name = 'Осадки:', value = f'Небо затянуто на `{clouds}%`, {cloud}', inline = False)
             embed.set_thumbnail(url = 'https://kindertravelguide.com/wp-content/uploads/2015/11/SUN-1200x1117.jpg')
             embed.set_footer(text = "supports by quantprod")
-            await ctx.send(embed = embed)
+            await ctx.author.send(embed = embed)
     except:
         await ctx.send('Ты допустил ошибку в названии, либо, к сожалению, я пока что не знаю такого города :c\n')
 
@@ -608,6 +611,7 @@ async def heads_tails(ctx):
 
 @Bot.command(aliases = ['h', 'HELP'])
 async def help(ctx):
+    await ctx.message.delete()
     author = ctx.message.author
     embed1 = discord.Embed(title = 'Помощь, страница 1', description = f'Йо, {author.mention}! Держи список команд:\n'
                         '\n'
@@ -694,7 +698,6 @@ async def help(ctx):
     page = pag(Bot, message, only = ctx.author, use_more = False, timeout = 3*60, embeds = embeds)
     await page.start()
     await asyncio.sleep(10)
-    await ctx.message.delete()
     await message.delete()
     
 
