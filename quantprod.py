@@ -914,8 +914,6 @@ async def time_bot(ctx):
 @Bot.command(aliases = ['covid19', 'COVID', 'cov', 'COVID19'])
 async def covid(ctx, country = None):
     message = await ctx.send('Собираю данные, пожалуйста, подождите...')
-    translator = Translator(from_lang = "ru", to_lang = "en")
-    translation = translator.translate(country)
     covid = Covid(source = "worldometers")
     covid1 = Covid()                                 
     if country == None:
@@ -934,6 +932,8 @@ async def covid(ctx, country = None):
         await ctx.send(embed = embed)
     else:
         try:
+            translator = Translator(from_lang = "ru", to_lang = "en")
+            translation = translator.translate(country)
             morph = pymorphy2.MorphAnalyzer()
             counties = morph.parse(translation)[0]
             gent = counties.inflect({'gent'})
