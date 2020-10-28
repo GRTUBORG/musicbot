@@ -931,54 +931,32 @@ async def covid(ctx, country = None):
         await ctx.send(embed = embed)
     else:
         try:
-            if country == 'ukraine':
-                gent_new = 'Украины'
-                await message.delete()
-                country_cases = covid.get_status_by_country_name(country)['new_cases']
-                if country_cases == 0:
-                    country_cases = 'Статистика обновляется. Попробуйте заново в 12:00 по МСК'
-                    timeout = 10
-                else:
-                    country_cases = '+' + str(country_cases)
-                    timeout = 60 * 3600
-                confirmed_country_cases = covid.get_status_by_country_name(country)['confirmed']
-                deaths_country_cases = covid.get_status_by_country_name(country)['deaths']
-                embed = discord.Embed(title = 'Информация по отдельной стране', description = f'__Статистика для {gent_new}__', color = 0x428325) 
-                embed.add_field(name = "Новых случаев за сутки", value = f'`{country_cases}`', inline = False)
-                embed.add_field(name = "Всего заболевших", value = f'`{confirmed_country_cases}`', inline = False)
-                embed.add_field(name = "Скончались", value = f'`{deaths_country_cases}`', inline = False)
-                embed.set_thumbnail(url = 'https://media1.tenor.com/images/8aaa0776480217422941d94dfab2fad3/tenor.gif?itemid=16684233')
-                embed.set_footer(text = "supports by quantprod | Берегите себя и своих близких 💚")
-                message1 = await ctx.send(embed = embed)
-                await asyncio.sleep(timeout)
-                await message1.delete()
+            translator = Translator(from_lang = "en", to_lang = "ru")
+            translation = translator.translate(country)
+            morph = pymorphy2.MorphAnalyzer()
+            counties = morph.parse(translation)[0]
+            gent = counties.inflect({'gent'})
+            gent_new = str(gent.word)[:1]
+            gent_new = gent_new.upper() + str(gent.word)[1:]
+            await message.delete()
+            country_cases = covid.get_status_by_country_name(country)['new_cases']
+            if country_cases == 0:
+                country_cases = 'Статистика обновляется. Попробуйте заново в 12:00 по МСК'
+                timeout = 10
             else:
-                translator = Translator(from_lang = "en", to_lang = "ru")
-                translation = translator.translate(country)
-                morph = pymorphy2.MorphAnalyzer()
-                counties = morph.parse(translation)[0]
-                gent = counties.inflect({'datv'})
-                gent_new = str(gent.word)[:1]
-                gent_new = gent_new.upper() + str(gent.word)[1:]
-                await message.delete()
-                country_cases = covid.get_status_by_country_name(country)['new_cases']
-                if country_cases == 0:
-                    country_cases = 'Статистика обновляется. Попробуйте заново в 12:00 по МСК'
-                    timeout = 10
-                else:
-                    country_cases = '+' + str(country_cases)
-                    timeout = 60 * 3600
-                confirmed_country_cases = covid.get_status_by_country_name(country)['confirmed']
-                deaths_country_cases = covid.get_status_by_country_name(country)['deaths']
-                embed = discord.Embed(title = 'Информация по отдельной стране', description = f'__Статистика для {gent_new}__', color = 0x428325) 
-                embed.add_field(name = "Новых случаев за сутки", value = f'`{country_cases}`', inline = False)
-                embed.add_field(name = "Всего заболевших", value = f'`{confirmed_country_cases}`', inline = False)
-                embed.add_field(name = "Скончались", value = f'`{deaths_country_cases}`', inline = False)
-                embed.set_thumbnail(url = 'https://media1.tenor.com/images/8aaa0776480217422941d94dfab2fad3/tenor.gif?itemid=16684233')
-                embed.set_footer(text = "supports by quantprod | Берегите себя и своих близких 💚")
-                message1 = await ctx.send(embed = embed)
-                await asyncio.sleep(timeout)
-                await message1.delete() 
+                country_cases = '+' + str(country_cases)
+                timeout = 60 * 3600
+            confirmed_country_cases = covid.get_status_by_country_name(country)['confirmed']
+            deaths_country_cases = covid.get_status_by_country_name(country)['deaths']
+            embed = discord.Embed(title = 'Информация по отдельной стране', description = f'__Статистика для {gent_new}__', color = 0x428325) 
+            embed.add_field(name = "Новых случаев за сутки", value = f'`{country_cases}`', inline = False)
+            embed.add_field(name = "Всего заболевших", value = f'`{confirmed_country_cases}`', inline = False)
+            embed.add_field(name = "Скончались", value = f'`{deaths_country_cases}`', inline = False)
+            embed.set_thumbnail(url = 'https://media1.tenor.com/images/8aaa0776480217422941d94dfab2fad3/tenor.gif?itemid=16684233')
+            embed.set_footer(text = "supports by quantprod | Берегите себя и своих близких 💚")
+            message1 = await ctx.send(embed = embed)
+            await asyncio.sleep(timeout)
+            await message1.delete() 
         except:
             await ctx.send('Возникла непредвиденная ошибка...')
 
