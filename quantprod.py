@@ -695,7 +695,7 @@ async def help(ctx):
     page = pag(Bot, message, only = ctx.author, use_more = False, timeout = timeout, embeds = embeds)
     await page.start()
     await asyncio.sleep(timeout + 10)
-    await page.delete()
+    await message.delete()
     
 
     
