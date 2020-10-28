@@ -207,10 +207,11 @@ async def version(ctx):
 async def weather(ctx, *, city = None):
     await ctx.message.delete()
     city = str(city)
+    city = city.capitalize()
     author = ctx.message.author
-    if city == None:
-        city = 'Москва'
     try:
+        if city == None:
+            city = 'Москва'
         config_dict = get_default_config()
         config_dict['language'] = 'ru'
         owm = OWM('0d16f6ffb7d46c30c1202a765e2cb0fc', config_dict)
