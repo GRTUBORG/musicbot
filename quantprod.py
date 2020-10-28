@@ -608,7 +608,6 @@ async def heads_tails(ctx):
 
 @Bot.command(aliases = ['h', 'HELP'])
 async def help(ctx):
-    timeout = 3*60
     author = ctx.message.author
     embed1 = discord.Embed(title = 'Помощь, страница 1', description = f'Йо, {author.mention}! Держи список команд:\n'
                         '\n'
@@ -692,9 +691,9 @@ async def help(ctx):
                         '*Увы, но пока таких команд нет, ожидайте выходов новых обновлений бота*')
     embeds = [embed1, embed2, embed3, embed4, embed5]
     message = await ctx.send(embed = embed1)
-    page = pag(Bot, message, only = ctx.author, use_more = False, timeout = timeout, embeds = embeds)
+    page = pag(Bot, message, only = ctx.author, use_more = False, timeout = 3*60, embeds = embeds)
     await page.start()
-    await asyncio.sleep(timeout + 10)
+    await asyncio.sleep(10)
     await message.delete()
     
 
@@ -934,8 +933,10 @@ async def covid(ctx, country = None):
                 country_cases = covid.get_status_by_country_name(country)['new_cases']
                 if country_cases == 0:
                     country_cases = 'Статистика обновляется. Попробуйте заново в 12:00 по МСК'
+                    timeout = 10
                 else:
                     country_cases = '+' + str(country_cases)
+                    timeout = 60 * 3600
                 confirmed_country_cases = covid.get_status_by_country_name(country)['confirmed']
                 deaths_country_cases = covid.get_status_by_country_name(country)['deaths']
                 embed = discord.Embed(title = 'Информация по отдельной стране', description = f'__Статистика для {gent_new}__', color = 0x428325) 
@@ -944,7 +945,9 @@ async def covid(ctx, country = None):
                 embed.add_field(name = "Скончались", value = f'`{deaths_country_cases}`', inline = False)
                 embed.set_thumbnail(url = 'https://media1.tenor.com/images/8aaa0776480217422941d94dfab2fad3/tenor.gif?itemid=16684233')
                 embed.set_footer(text = "supports by quantprod | Берегите себя и своих близких 💚")
-                await ctx.send(embed = embed)
+                message1 = await ctx.send(embed = embed)
+                await asyncio.sleep(timeout)
+                await message1.delete()
             else:
                 translator = Translator(from_lang = "en", to_lang = "ru")
                 translation = translator.translate(country)
@@ -957,8 +960,10 @@ async def covid(ctx, country = None):
                 country_cases = covid.get_status_by_country_name(country)['new_cases']
                 if country_cases == 0:
                     country_cases = 'Статистика обновляется. Попробуйте заново в 12:00 по МСК'
+                    timeout = 10
                 else:
                     country_cases = '+' + str(country_cases)
+                    timeout = 60 * 3600
                 confirmed_country_cases = covid.get_status_by_country_name(country)['confirmed']
                 deaths_country_cases = covid.get_status_by_country_name(country)['deaths']
                 embed = discord.Embed(title = 'Информация по отдельной стране', description = f'__Статистика для {gent_new}__', color = 0x428325) 
@@ -967,7 +972,9 @@ async def covid(ctx, country = None):
                 embed.add_field(name = "Скончались", value = f'`{deaths_country_cases}`', inline = False)
                 embed.set_thumbnail(url = 'https://media1.tenor.com/images/8aaa0776480217422941d94dfab2fad3/tenor.gif?itemid=16684233')
                 embed.set_footer(text = "supports by quantprod | Берегите себя и своих близких 💚")
-                await ctx.send(embed = embed)
+                message1 = await ctx.send(embed = embed)
+                await asyncio.sleep(timeout)
+                await message1.delete() 
         except:
             await ctx.send('Возникла непредвиденная ошибка...')
 
