@@ -206,12 +206,12 @@ async def version(ctx):
 @Bot.command(aliases = ["погода"])
 async def weather(ctx, *, city = None):
     await ctx.message.delete()
+    if city == None:
+        city = 'Москва'
     city = str(city)
     city = city.capitalize()
     author = ctx.message.author
     try:
-        if city == None:
-            city = 'Москва'
         config_dict = get_default_config()
         config_dict['language'] = 'ru'
         owm = OWM('0d16f6ffb7d46c30c1202a765e2cb0fc', config_dict)
