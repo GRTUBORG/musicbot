@@ -1075,7 +1075,7 @@ async def info(ctx, member: discord.Member = None):
     embed.add_field(name = "Аккаунт создан: ", value = f'`{info_format}`', inline = False)
     embed.add_field(name = "Когда присоединился: ", value = f'`{info1_format}`', inline = False)
     embed.add_field(name = "Имя юзера и его тег: ", value = f'`{member.name}#{member.discriminator}`', inline = False)
-    embed.add_field(name = "Что может: ", value = f'`{member.guild_permissions}`', inline = False)
+    embed.add_field(name = "Что может: ", value = f'{member.guild_permissions}', inline = False)
     embed.add_field(name = f"Роли [{len(member.roles) - 1}]: ", value = ' '.join(reversed(roles)), inline = False)
     embed.set_thumbnail(url = avatar)
     embed.set_footer(text = f"supports by quantprod | Сегодня, в {nowtime1}")
