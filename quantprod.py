@@ -860,8 +860,10 @@ async def spotify(ctx, user: discord.Member = None):
         delta_msk = datetime.timedelta(hours = 3, minutes = 0)
         for activity in user.activities:
             if isinstance(activity, Spotify):
-                time_current = activity.created_at + delta_msk
-                nowtime1 = time_current.strftime("`%H:%M по МСК`")
+                time_current = activity.created_at + delta_msk #начало прослушивания песни
+                time_start = activity.start + delta_msk 
+                nowtime1 = time_current.strftime("`%H:%M по МСК`") #поправка по часовому поясу для time_current
+                nowtime2 = time_start.strftime("`%H:%M по МСК`")
 
                 artist_correct = activity.artist.rsplit(';')
                 correct_lines = ','
@@ -874,6 +876,7 @@ async def spotify(ctx, user: discord.Member = None):
                 embed.add_field(name = 'Трек:', value = f'{user.mention} слушает **«{activity.title}»** `{duration}`', inline = False)
                 embed.add_field(name = 'Исполнитель:', value = f'`{new_correct_artist}`', inline = False)
                 embed.add_field(name = 'Начал(а) слушать в:', value = f'`{nowtime1}`', inline = False)
+                embed.add_field(name = 'Что-то непонятное для меня:', value = f'`{nowtime2}`', inline = False)
                 embed.set_footer(text = "supports by quantprod")
                 message = await ctx.send(embed = embed)
                 await asyncio.sleep(15)
