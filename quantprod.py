@@ -861,7 +861,7 @@ async def spotify(ctx, user: discord.Member = None):
         for activity in user.activities:
             if isinstance(activity, Spotify):
                 time_current = activity.created_at + delta_msk #начало прослушивания песни
-                time_start = activity.start + delta_msk 
+                time_start = activity.end + delta_msk 
                 nowtime1 = time_current.strftime("`%H:%M по МСК`") #поправка по часовому поясу для time_current
                 nowtime2 = time_start.strftime("`%H:%M по МСК`")
 
