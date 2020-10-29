@@ -958,6 +958,7 @@ async def covid(ctx, country = None):
             embed.set_footer(text = "supports by quantprod | Берегите себя и своих близких 💚")
             message1 = await ctx.send(embed = embed)
             await asyncio.sleep(timeout)
+            await ctx.message.delete()
             await message1.delete() 
         except Exception as e:
             await ctx.send(f'Возникла ошибка {e}. Обратитесь к <@!394858317572472832>')
