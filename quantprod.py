@@ -285,6 +285,7 @@ async def translate(ctx, lang = None, to_lang = None, *, arg = None):
         await ctx.send('Не смог перевести :с')
 
 
+        
 #МУЗЫКА С ЮТУБА
 
 @Bot.command(aliases = ['p', 'PLAY'])
@@ -455,7 +456,6 @@ async def play(ctx, *, url, volume = 0.5):  #КОМАНДА ПРОИГРЫВАН
             await ctx.send('Слишком частые запросы по одной и той же песне. Может послушаем что-нибудь другое?.')
         else:
             print(e)
-
 
 @Bot.command()
 async def tts_bot(ctx, *, text = None):
@@ -1378,7 +1378,6 @@ async def kick(ctx, member: discord.Member, *, reason = None):  #КИК
 
     await channel.send(f'{author.mention} **кикнул пользователя** `{member.name}#{member.discriminator}` **по причине:** `{reason}`.')
 
-
 @Bot.command(aliases = ['tb', 'TEMPBAN'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "moder")
 async def tempban(ctx, user: discord.User, duration: int, timeban = None, *, reason = None):  #ВРЕМЕННЫЙ БАН
@@ -1454,7 +1453,6 @@ async def tempban_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         await ctx.send('Вы забыли указать аргумент!')
 
-
 @Bot.command(aliases = ['b', 'BAN'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
 async def ban(ctx, member: discord.Member, reason = None, *, court = None):  #ПЕРМАНЕНТНЫЙ БАН
@@ -1480,7 +1478,6 @@ async def ban(ctx, member: discord.Member, reason = None, *, court = None):  #П
 async def ban_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         await ctx.send('Вы забыли указать аргумент!')
-
 
 @Bot.command(aliases = ['m', 'MUTE'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "dmoder", "moder")
@@ -1576,6 +1573,7 @@ async def ping(ctx):
     message = await ctx.send(embed = embed)
     await message.add_reaction('👌')
 
+    
 
 #СТАРТ БОТА
 
