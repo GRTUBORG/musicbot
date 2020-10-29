@@ -1058,13 +1058,7 @@ async def math(ctx,  a:  int,  b:  int):
 
 @Bot.command(aliases = ['i', 'information', 'INFO', 'INFORMATION'])
 async def info(ctx, member: discord.Member = None):
-    user = user or ctx.author
-    delta_msk = datetime.timedelta(hours = 3, minutes = 0)
-    for activity in user.activities:
-        if isinstance(activity):
-            name = activity.name
-            state = member.state
-    delta1 = datetime.timedelta(hours=3, minutes=0)
+    delta1 = datetime.timedelta(hours = 3, minutes = 0)
     mesinf = ctx.message.created_at + delta1
     nowtime1 = mesinf.strftime("%X")
 
@@ -1082,7 +1076,7 @@ async def info(ctx, member: discord.Member = None):
     embed.add_field(name = "Когда присоединился: ", value = f'`{info1_format}`', inline = False)
     embed.add_field(name = "Имя юзера и его тег: ", value = f'`{member.name}#{member.discriminator}`', inline = False)
     embed.add_field(name = "Никнейм на Dark Neon City: ", value = f'`{member.display_name}`', inline = False)
-    embed.add_field(name = "Текущая активность: ", value = f'`{state} {name}`', inline = False)
+    embed.add_field(name = "Текущая активность: ", value = f'`{activity.state} {activity.name}`', inline = False)
     embed.add_field(name = f"Роли [{len(member.roles) - 1}]: ", value = ' '.join(reversed(roles)), inline = False)
     embed.set_thumbnail(url = avatar)
     embed.set_footer(text = f"supports by quantprod | Сегодня, в {nowtime1}")
