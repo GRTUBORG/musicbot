@@ -766,7 +766,7 @@ async def upper(ctx, *, text):
     s = str(text)
     r = ""
     for i, c in enumerate(s):
-      r += c if i % 2 else c.upper()
+        r += c if i % 2 else c.upper()
     await ctx.message.delete()
     await ctx.send(f'`{r}`')
 
