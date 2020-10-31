@@ -96,6 +96,11 @@ ladno_for_satoemari = ['ладно',
 
 prancs_words = ['я для тебя шутка какая-то?']
 
+layout = dict(zip(map(ord, "qwertyuiop[]asdfghjkl;'zxcvbnm,./`"
+                           'QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>?~'),
+                           "йцукенгшщзхъфывапролджэячсмитьбю.ё"
+                           'ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ,Ё'))
+
 
 
 #РАБОТАЕТ ЛИ БОТ?
@@ -209,7 +214,7 @@ async def weather(ctx, *, city = None):
     await ctx.message.delete()
     if city == None:
         city = 'Москва'
-    city = str(city)
+    city = str(city).translate(layout)
     city = city.capitalize()
     author = ctx.message.author
     try:
