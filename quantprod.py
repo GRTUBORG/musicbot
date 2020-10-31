@@ -1349,12 +1349,18 @@ async def avatar(ctx, *, user: discord.Member = None):
     delta1 = datetime.timedelta(hours = 3, minutes = 0)
     mesinf = ctx.message.created_at + delta1
     nowtime1 = mesinf.strftime("%X")
-
-    userAvatarUrl = user.avatar_url
-    embed = discord.Embed(description = f"Аватарка пользователя {user.mention}")
-    embed.set_image(url = userAvatarUrl)
-    embed.set_footer(text = f"supports by quantprod | Сегодня, в {nowtime1} по МСК")
-    await ctx.send(embed = embed)
+    
+    if user.mention == '<@394858317572472832>' or '<@394850460420538389>' or '<@370248463604121602>':
+        embed = discord.Embed(description = f"Аватарка пользователя {user.mention}")
+        embed.set_image(url = 'https://web.archive.org/web/20190630140602if_/https://2ch.hk/b/src/199141387/15619021301230.png')
+        embed.set_footer(text = f"supports by quantprod | Сегодня, в {nowtime1} по МСК")
+        await ctx.send(embed = embed)
+    else:
+        userAvatarUrl = user.avatar_url
+        embed = discord.Embed(description = f"Аватарка пользователя {user.mention}")
+        embed.set_image(url = userAvatarUrl)
+        embed.set_footer(text = f"supports by quantprod | Сегодня, в {nowtime1} по МСК")
+        await ctx.send(embed = embed)
 
 
 
