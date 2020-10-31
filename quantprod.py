@@ -21,10 +21,10 @@ import pymorphy2
 from gtts import gTTS
 from bs4 import BeautifulSoup
 from pyowm import OWM
-from covid import Covid
 from pyowm.utils import config
 from pyowm.utils import timestamps
 from pyowm.utils.config import get_default_config
+from covid import Covid
 from requests import get 
 from discord.ext import commands
 from discord.ext.commands import Bot
@@ -222,6 +222,7 @@ async def weather(ctx, *, city = None):
         cloud = str(w.detailed_status)
         clouds = str(w.clouds) 
         temp = w.temperature('celsius')['temp']
+        temp = str(temp).replace(".", " ")[0]
         if temp >= 15.00:
             with open ('for_weather_from_15.txt', 'r') as file:
                 lines = file.readlines()
