@@ -227,7 +227,7 @@ async def weather(ctx, *, city = None):
         cloud = str(w.detailed_status)
         clouds = str(w.clouds) 
         temp = w.temperature('celsius')['temp']
-        temperature = str(temp).replace(".", " ")[0]
+        temperature = str(temp).rsplit(".")[0]
         if temp >= 15.00:
             with open ('for_weather_from_15.txt', 'r') as file:
                 lines = file.readlines()
