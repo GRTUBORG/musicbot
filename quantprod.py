@@ -222,13 +222,13 @@ async def weather(ctx, *, city = None):
         cloud = str(w.detailed_status)
         clouds = str(w.clouds) 
         temp = w.temperature('celsius')['temp']
-        temperature = str(temp).replace(".", " ")[0]
+        temperature = str(temp).replace(".", " ")
         if temp >= 15.00:
             with open ('for_weather_from_15.txt', 'r') as file:
                 lines = file.readlines()
             answer = random.choice(lines)
             embed = discord.Embed(title = f'Виджет погоды для города {city}', description = answer, color = 0x428325) 
-            embed.add_field(name = 'Температура:', value = f'Сейчас в твоём городе `{temp}°C`', inline = False)
+            embed.add_field(name = 'Температура:', value = f'Сейчас в твоём городе `{temptemperature[0]} °C`', inline = False)
             embed.add_field(name = 'Осадки:', value = f'Небо затянуто на `{clouds}%`, {cloud}', inline = False)
             embed.set_thumbnail(url = 'https://kindertravelguide.com/wp-content/uploads/2015/11/SUN-1200x1117.jpg')
             embed.set_footer(text = "supports by quantprod")
@@ -238,7 +238,7 @@ async def weather(ctx, *, city = None):
                 lines = file.readlines()
             answer = random.choice(lines)
             embed = discord.Embed(title = f'Виджет погоды для города {city}', description = answer, color = 0x428325) 
-            embed.add_field(name = 'Температура:', value = f'Сейчас в твоём городе `{temp}°C`', inline = False)
+            embed.add_field(name = 'Температура:', value = f'Сейчас в твоём городе `{temptemperature[0]} °C`', inline = False)
             embed.add_field(name = 'Осадки:', value = f'Небо затянуто на `{clouds}%`, {cloud}', inline = False)
             embed.set_thumbnail(url = 'https://kindertravelguide.com/wp-content/uploads/2015/11/SUN-1200x1117.jpg')
             embed.set_footer(text = "supports by quantprod")
@@ -248,7 +248,7 @@ async def weather(ctx, *, city = None):
                 lines = file.readlines()
             answer = random.choice(lines)
             embed = discord.Embed(title = f'Виджет погоды для города {city}', description = answer, color = 0x428325) 
-            embed.add_field(name = 'Температура:', value = f'Сейчас в твоём городе `{temp}°C`', inline = False)
+            embed.add_field(name = 'Температура:', value = f'Сейчас в твоём городе `{temptemperature[0]} °C`', inline = False)
             embed.add_field(name = 'Осадки:', value = f'Небо затянуто на `{clouds}%`, {cloud}', inline = False)
             embed.set_thumbnail(url = 'https://kindertravelguide.com/wp-content/uploads/2015/11/SUN-1200x1117.jpg')
             embed.set_footer(text = "supports by quantprod")
