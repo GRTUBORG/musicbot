@@ -1351,8 +1351,11 @@ async def avatar(ctx, *, user: discord.Member):
     nowtime1 = mesinf.strftime("%X")
     
     if user.mention == '<@394850460420538389>':  #исключение для Satoemari
+        with open ('avatars.txt', 'r') as file:
+            lines = file.readlines()
+        url = random.choice(lines)
         embed = discord.Embed(description = f"Аватарка пользователя {user.mention}")
-        embed.set_image(url = 'https://web.archive.org/web/20190630140602if_/https://2ch.hk/b/src/199141387/15619021301230.png')
+        embed.set_image(url = url)
         embed.set_footer(text = f"supports by quantprod | Сегодня, в {nowtime1} по МСК")
         await ctx.send(embed = embed)
     else:
