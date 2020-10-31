@@ -164,7 +164,7 @@ async def on_message(message):
     channel = Bot.get_channel(644599042869035019)  #фильтрация чата и отправка нарушителя в спец. чат
     author = message.author
     await Bot.process_commands(message)
-    msg = message.content.lower()
+    msg = message.content.lower().translate(layout)
     if msg in words_reaction:
         with open ('word_reaction_ratratrat.txt', 'r') as file:
             lines = file.readlines()
