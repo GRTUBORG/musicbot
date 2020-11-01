@@ -860,12 +860,14 @@ async def spotify(ctx, user: discord.Member = None):
                 album_jpg = activity.album_cover_url
                 times = str(activity.duration).rsplit(".")[0]
                 times = times[2:]
+                avatar = user.avatar_url
                 
                 embed = discord.Embed(color = 0x428325)
-                embed.set_thumbnail(url = album_jpg)
-                embed.add_field(name = 'Трек:', value = f'{user.mention} слушает **«{activity.title}»** `{times}`', inline = False)
+                embed.set_author(name = f'{user.name}#{user.discriminator} слушает:', icon_url = avatar)
+                embed.add_field(name = 'Трек:', value = f'**«{activity.title}»** `{times}`', inline = False)
                 embed.add_field(name = 'Исполнитель:', value = f'`{new_correct_artist}`', inline = False)
                 embed.add_field(name = 'Начало и конец текущей песни:', value = f'`{nowtime1}` / `{nowtime2}`', inline = False)
+                embed.set_thumbnail(url = album_jpg)
                 embed.set_footer(text = "supports by quantprod")
                 message = await ctx.send(embed = embed)
                 await asyncio.sleep(15)
