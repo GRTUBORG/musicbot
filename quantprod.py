@@ -1051,6 +1051,7 @@ async def math(ctx,  a:  int,  b:  int):
 
 @Bot.command(aliases = ['i', 'information', 'INFO', 'INFORMATION'])
 async def info(ctx, member: discord.Member = None):
+    member = member or ctx.author
     delta1 = datetime.timedelta(hours = 3, minutes = 0)
     mesinf = ctx.message.created_at + delta1
     nowtime1 = mesinf.strftime("%X")
@@ -1331,7 +1332,8 @@ async def court(ctx, member: discord.Member, duration: int, timecourt = None, *,
 
 @Bot.command(aliases = ['ava', 'AVATAR'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "Vip")
-async def avatar(ctx, *, user: discord.Member):
+async def avatar(ctx, *, user: discord.Member = None):
+    user = user or ctx.author
     delta1 = datetime.timedelta(hours = 3, minutes = 0)
     mesinf = ctx.message.created_at + delta1
     nowtime1 = mesinf.strftime("%X")
