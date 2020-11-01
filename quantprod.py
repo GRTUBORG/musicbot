@@ -862,8 +862,9 @@ async def spotify(ctx, user: discord.Member = None):
                 times = str(activity.duration).rsplit(".")[0]
                 times = times[2:]
                 avatar = user.avatar_url
+                colour = activity.colour
                 
-                embed = discord.Embed(color = 0x428325)
+                embed = discord.Embed(color = colour)
                 embed.set_author(name = f'{user.name}#{user.discriminator} слушает:', icon_url = avatar)
                 embed.add_field(name = 'Альбом и трек:', value = f'**{album} — «{activity.title}»** `{times}`', inline = False)
                 embed.add_field(name = 'Исполнитель(и):', value = f'`{new_correct_artist}`', inline = False)
