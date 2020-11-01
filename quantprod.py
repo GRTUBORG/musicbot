@@ -1063,8 +1063,9 @@ async def info(ctx, member: discord.Member = None):
     info2 = member.joined_at + delta1
     info1_format = info2.strftime('%d.%m.%Y @ %X по МСК')
     roles = [role.mention for role in member.roles[1:]]
+    status = str(member.status)
 
-    embed = discord.Embed(color = 0x428325)
+    embed = discord.Embed(description = f'Сейчас {status}', color = 0x428325)
     embed.set_author(name = f'Информация о {member.name}#{member.discriminator}', icon_url = avatar)
     embed.add_field(name = "Аккаунт создан: ", value = f'`{info_format}`', inline = False)
     embed.add_field(name = "Когда присоединился: ", value = f'`{info1_format}`', inline = False)
