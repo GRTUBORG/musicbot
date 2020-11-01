@@ -871,7 +871,7 @@ async def spotify(ctx, user: discord.Member = None):
                 embed = discord.Embed(color = colour)
                 embed.set_author(name = f'{user.name}#{user.discriminator} слушает:', icon_url = avatar)
                 embed.add_field(name = 'Альбом и трек:', value = f'**{album} — «{activity.title}»** `{times}`', inline = False)
-                embed.add_field(name = 'Исполнитель(и):', value = f'`{new_correct_artist}`', inline = False)
+                embed.add_field(name = actors, value = f'`{new_correct_artist}`', inline = False)
                 embed.add_field(name = 'Начало и конец текущей песни:', value = f'`{nowtime1}` / `{nowtime2}`', inline = False)
                 embed.set_thumbnail(url = album_jpg)
                 embed.set_footer(text = "supports by quantprod")
