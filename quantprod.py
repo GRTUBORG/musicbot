@@ -854,9 +854,9 @@ async def spotify(ctx, user: discord.Member = None):
                 nowtime1 = time_current.strftime("`%H:%M по МСК`") #поправка по часовому поясу для time_current
                 nowtime2 = time_start.strftime("`%H:%M по МСК`")
 
-                artist_correct = activity.artist.rsplit(';')
-                correct_lines = ','
-                new_correct_artist = correct_lines.join(artist_correct)
+                artist_correct = activity.artists
+                delimiter = ', '
+                new_correct_artist = delimiter.join(artist_correct)
                 album_jpg = activity.album_cover_url
                 album = activity.album
                 times = str(activity.duration).rsplit(".")[0]
