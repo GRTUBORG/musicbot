@@ -866,7 +866,7 @@ async def spotify(ctx, user: discord.Member = None):
                 artist_correct = activity.artists
                 if len(artist_correct) > 1:
                     actors = 'Исполнители:'
-                else:
+                elif len(artist_correct) == 1:
                     actors = 'Исполнитель:'
                 delimiter = ', '
                 new_correct_artist = delimiter.join(artist_correct)
