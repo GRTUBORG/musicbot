@@ -885,7 +885,23 @@ async def spotify(ctx, user: discord.Member = None):
                 nowtime1 = time_current.strftime("`%H:%M по МСК`") #поправка по часовому поясу для time_current
                 nowtime2 = time_start.strftime("`%H:%M по МСК`")
 
-                artist_correct = activity.artists
+                try:
+                    wikipedia.set_lang("ru")
+                    artist_correct = activity.artists
+                    artists_length = 0
+                    info = []
+                    for artist_print in artist_correct:
+                        print(artist_print)
+                        pages = wikipedia.page(artist_correct[artists_length])
+                        pages = pages.url
+                        url = unquote(str(pages))
+                        info.append(url)
+                        artists_length += 1
+                    delimiter = '\n'
+                    new_info = delimiter.join(info)
+                except:
+                    new_info = '`Информация не найдена!`'
+
                 if len(artist_correct) > 1:
                     actors = 'Исполнители:'
                 elif len(artist_correct) == 1:
@@ -904,6 +920,7 @@ async def spotify(ctx, user: discord.Member = None):
                 embed.add_field(name = 'Альбом и трек:', value = f'**{album} — «{activity.title}»** `{times}`', inline = False)
                 embed.add_field(name = actors, value = f'`{new_correct_artist}`', inline = False)
                 embed.add_field(name = 'Начало и конец текущей песни:', value = f'`{nowtime1}` / `{nowtime2}`', inline = False)
+                embed.add_field(name = 'Информация об артистах (возможны сбои):', value = new_info, inline = False)
                 embed.set_thumbnail(url = album_jpg)
                 embed.set_footer(text = "supports by quantprod")
                 message = await ctx.send(embed = embed)
@@ -912,9 +929,9 @@ async def spotify(ctx, user: discord.Member = None):
                 await ctx.message.delete()
     except Exception as e:
         await ctx.send(f'Возникла ошибка "{e}"')
-       
 
-
+        
+        
 #ТЕКУЩЕЕ ВРЕМЯ И ДАТА
 
 @Bot.command(aliases = ["time", "время"])
