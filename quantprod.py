@@ -16,6 +16,7 @@ import feedparser
 import vk
 import io
 import pymorphy2
+import wikipedia
 
 
 from gtts import gTTS
@@ -37,6 +38,7 @@ from datetime import date, time, timedelta
 from Cybernator import Paginator as pag
 from random import choice
 from translate import Translator
+from urllib.parse import unquote
 
 #-----------------------------license------------------------------#
 #------------------------------------------------------------------#
@@ -603,7 +605,27 @@ async def heads_tails(ctx):
         await ctx.send('Тебе выпала `решка`!')
     else:
         await ctx.send('Тебе выпал `орёл`!')
-        
+ 
+
+
+#ПОИСК ИНФОРМАЦИИ В ВИКИПЕДИИ
+
+@Bot.command()
+async def wiki(ctx, *, query):
+    await ctx.message.delete()
+    wikipedia.set_lang("ru")
+    results = wikipedia.summary(query)
+    if len(results) > 2000:
+        results = results[:1950]
+        results = f'`{results}...` *Более подробно - по ссылке ниже*'
+    else:
+        results = f'`{results}`'
+    pages = wikipedia.page(query)
+    pages = pages.url
+    url = unquote(str(pages))
+    await ctx.author.send(f'{results}')
+    await ctx.author.send(f'**Страница с подробным материалом:** {url}')
+     
         
                  
 #ПОМОЩЬ USER
