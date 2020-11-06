@@ -822,7 +822,29 @@ async def ping_bot(ctx, url, timesecond: int):
             await ctx.send(e)
     except Exception as e:
         await ctx.send(e)
+
         
+        
+#ПОИСК АДРЕСА
+
+@Bot.command()
+async def adress(ctx, *, coords):
+    PARAMS = {
+        "apikey":"bed33b20-a4cb-4cd8-848e-18235e6480c5",
+        "format":"json",
+        "lang":"ru_RU",
+        "kind":"house",
+        "geocode": coords
+    }
+        
+    try:
+        r = requests.get(url = "https://geocode-maps.yandex.ru/1.x/", params = PARAMS)
+        json_data = r.json()
+        print(json_data)
+        address_str = json_data["response"]["GeoObjectCollection"]["featureMember"][0]["GeoObject"]["metaDataProperty"]["GeocoderMetaData"]["AddressDetails"]["Country"]["AddressLine"]
+        await ctx.send(address_str)
+    except:
+        await ctx.send("Возникла ошибка! Пожалуйста, попробуйте другой адрес!")
 
 
 #СПАСИБО)
