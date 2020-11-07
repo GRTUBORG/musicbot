@@ -829,8 +829,10 @@ async def ping_bot(ctx, url, timesecond: int):
 
 @Bot.command()
 async def adress(ctx, *, coords):
+    apikey = os.environ.get('yandex_apikey')
+    apikey = str(apikey)
     PARAMS = {
-        "apikey":"bed33b20-a4cb-4cd8-848e-18235e6480c5",
+        "apikey":apikey,
         "format":"json",
         "lang":"ru_RU",
         "kind":"house",
