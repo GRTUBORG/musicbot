@@ -842,7 +842,6 @@ async def adress(ctx, *, coords):
     try:
         r = requests.get(url = "https://geocode-maps.yandex.ru/1.x/", params = PARAMS)
         json_data = r.json()
-        print(json_data)
         address_str = json_data["response"]["GeoObjectCollection"]["featureMember"][0]["GeoObject"]["metaDataProperty"]["GeocoderMetaData"]["AddressDetails"]["Country"]["AddressLine"]
         await ctx.send(address_str)
     except:
