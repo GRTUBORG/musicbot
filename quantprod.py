@@ -336,7 +336,7 @@ async def play(ctx, *, url, volume = 0.5):  #КОМАНДА ПРОИГРЫВАН
         ydl_opts = {
             'format' : 'bestaudio/best',
             'noplaylist' : True, 
-            'quiet' : False, #логи загрузки, если true, то их нет
+            'quiet' : True, #логи загрузки, если true, то их нет
             'verbose' : True,
             'no_warnings': True,
             'writethumbnail' : True,
