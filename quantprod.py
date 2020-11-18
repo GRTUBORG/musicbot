@@ -459,6 +459,7 @@ async def play(ctx, *, url, volume = 0.5):  #КОМАНДА ПРОИГРЫВАН
                     await asyncio.sleep(60)
 
     except Exception as e:
+        print(e)
         e = str(e)[:5]
         if e == 'query':  
             await ctx.send('Слишком частые запросы по одной и той же песне. Может послушаем что-нибудь другое?.')
