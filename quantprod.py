@@ -269,8 +269,14 @@ async def translate(ctx, lang = None, to_lang = None, *, arg = None):
         if lang == '--Help' or lang == '--help':
             to_lang = None
             arg = None
-            message = await ctx.send('**Список доступных языков на данный момент:** ///загружаю список///')
-            await asyncio.sleep(2)
+            message = await ctx.send('**Список доступных языков на данный момент:** \\')
+            await asyncio.sleep(0.5)
+            await message.edit(content = f'**Список доступных языков на данный момент:** |')
+            await asyncio.sleep(0.5)
+            await message.edit(content = f'**Список доступных языков на данный момент:** /')
+            await asyncio.sleep(0.5)
+            await message.edit(content = f'**Список доступных языков на данный момент:** -')
+            await asyncio.sleep(0.5)
             await message.edit(content = f'**Список доступных языков на данный момент:** {language}')
             await asyncio.sleep(20)
             await ctx.message.delete()
