@@ -9,6 +9,7 @@ import typing
 import datetime
 import time
 import re
+import psycopg2
 import lib
 import const
 import functools
@@ -48,6 +49,13 @@ from urllib.parse import unquote
 #------------------------------------------------------------------#
 
 intents = discord.Intents.all()
+
+try:
+    DATABASE_URL = os.environ['DATABASE_URL']
+    conn = psycopg2.connect(DATABASE_URL, sslmode = 'require')
+    print('DONE!')
+except Exception as e:
+    print(f'ERROR: [{e}]')
 
 #ТЕКУЩЕЕ ВРЕМЯ (СТРОГО ДЛЯ КОНСОЛИ)
 
