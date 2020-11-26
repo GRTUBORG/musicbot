@@ -50,12 +50,6 @@ from urllib.parse import unquote
 
 intents = discord.Intents.all()
 
-try:
-    DATABASE_URL = os.environ['DATABASE_URL']
-    conn = psycopg2.connect(DATABASE_URL, sslmode = 'require')
-    print('DONE!')
-except Exception as e:
-    print(f'ERROR: [{e}]')
 
 #ТЕКУЩЕЕ ВРЕМЯ (СТРОГО ДЛЯ КОНСОЛИ)
 
@@ -301,6 +295,17 @@ async def translate(ctx, lang = None, to_lang = None, *, arg = None):
     except: 
         await ctx.send('Не смог перевести :с')
 
+        
+        
+@Bot.command()
+async def connect(ctx):
+    try:
+        DATABASE_URL = os.environ['DATABASE_URL']
+        conn = psycopg2.connect(DATABASE_URL, sslmode = 'require')
+        await ctx.send(conn)
+        await ctx.send('DONE!')
+    except Exception as e:
+        await ctx.send(f'ERROR: [{e}]')
 
         
 #МУЗЫКА С ЮТУБА
