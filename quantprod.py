@@ -302,17 +302,16 @@ async def connect(ctx):
     try:
         DATABASE_URL = os.environ['DATABASE_URL']
         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+        
         cur = conn.cursor()
-        cur.execute('''CREATE TABLE BAN 
-             (DATES DATE NOT NULL, USER ID INT NOT NULL;''')
+        tables = "create table people (discord_id, term)"
+        cur.execute(tables)
         conn.commit()
-        cur.execute("SELECT dates, user id from STUDENT")
         rows = cur.fetchall()
-        for row in rows:  
-           print("DATES = ", row[0])
-           print("USER ID = ", row[1])
+        print(rows)
         await ctx.send('DONE! Посмотри консоль для проверки вывода данных!')
         conт.close()
+        
     except Exception as e:
         await ctx.send(f'ERROR: [{e}]')
 
