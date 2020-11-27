@@ -304,8 +304,7 @@ async def connect(ctx):
         conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
         cur.execute('''CREATE TABLE BAN 
-             (DATES DATE NOT NULL,
-             USER ID INT NOT NULL;''')
+             (DATES DATE NOT NULL, USER ID INT NOT NULL;''')
         conn.commit()
         cur.execute("SELECT dates, user id from STUDENT")
         rows = cur.fetchall()
