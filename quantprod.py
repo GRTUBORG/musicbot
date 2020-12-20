@@ -123,7 +123,7 @@ async def on_ready():
 
 @Bot.event
 async def on_member_join(member):
-    await member.add_roles(discord.utils.get(member.guild.roles, name = "Unit"))
+    await member.add_roles(discord.utils.get(member.guild.roles, name = "admin"))
     await member.send("Добро пожаловать на ламповый сервер Dark Neon City!\n"
                       "Перед тем, как пользоваться сервером, прочитай <#526099119874375710>. Это обязательно, а то атата!)\n"
                       'Тебе дана роль `@Unit`, поэтому, пока что, тебе доступны не все функции сервера. Но ты можешь участвовать в ивентах, чтобы повысить свой ранг!\n'
