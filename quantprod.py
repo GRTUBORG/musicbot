@@ -1431,7 +1431,7 @@ async def avatar(ctx, *, user: discord.Member = None):
     mesinf = ctx.message.created_at + delta1
     nowtime1 = mesinf.strftime("%X")
     
-    if user.mention == '<@394850460420538389>':  #исключение для Satoemari
+    if user.mention == '<@394850460420538389>' or user.mention == '<@!394850460420538389>':  #исключение для Satoemari
         with open ('avatars.txt', 'r') as file:
             lines = file.readlines()
         url = random.choice(lines)
