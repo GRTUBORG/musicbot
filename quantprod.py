@@ -1572,7 +1572,7 @@ async def ban(ctx, member: discord.Member, reason = None, *, court = None):  #П
 @ban.error
 async def ban_error(ctx, error):
     if isinstance(error, commands.BadArgument):
-        await ctx.send('Вы забыли указать аргумент!')
+        await ctx.send('**Вы ошиблись в написании никнейма, либо же участника нет на сервере!**')
 
 @Bot.command(aliases = ['m', 'MUTE'])
 @commands.has_any_role("admin", "Смотрящий", "elite", "dmoder", "moder")
