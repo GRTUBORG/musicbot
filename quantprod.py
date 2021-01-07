@@ -57,10 +57,6 @@ delta = datetime.timedelta(hours = 3, minutes = 0)
 t = (datetime.datetime.now(datetime.timezone.utc) + delta)
 nowtime = t.strftime("%d.%m в %X")
 
-async def greatSender():
-    channel = Bot.get_channel(756990788516446280)
-    await channel.send(f'Я перезапустился {nowtime}')
-
 Bot = commands.Bot(command_prefix = ["/", "qp!", "quantprod ", "quant ", "<@&734445461360082994> ", "<@734443917130465420> "], intents = discord.Intents.all())
 Bot.remove_command('help')
 
@@ -115,7 +111,6 @@ async def on_ready():
     await Bot.change_presence(activity = discord.Activity(type = discord.ActivityType.watching, name = "за Dark Neon City 👀"))
     print('{0.user} в онлайне!'.format(Bot))
     print('Деплой бота был', nowtime)
-    await greatSender()
 
     
 
