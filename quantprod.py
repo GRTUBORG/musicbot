@@ -313,7 +313,7 @@ async def connect(ctx):
         
 #МУЗЫКА С ЮТУБА
 
-@Bot.command(aliases = ['p', 'PLAY'])
+"""@Bot.command(aliases = ['p', 'PLAY'])
 async def play(ctx, *, url, volume = 0.5):  #КОМАНДА ПРОИГРЫВАНИЯ ЗВУКОВОЙ ДОРОЖКИ
     try:
         global voice
@@ -481,7 +481,7 @@ async def play(ctx, *, url, volume = 0.5):  #КОМАНДА ПРОИГРЫВАН
         if e == 'query':  
             await ctx.send('Слишком частые запросы по одной и той же песне. Может послушаем что-нибудь другое?.')
         else:
-            print(e)
+            print(e)"""
 
 @Bot.command()
 async def tts_bot(ctx, *, text = None):
