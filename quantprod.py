@@ -1406,20 +1406,17 @@ async def avatar(ctx, *, user: discord.Member = None):
     mesinf = ctx.message.created_at + delta1
     nowtime1 = mesinf.strftime("%X")
     
-    if user.mention == '<@394850460420538389>' or user.mention == '<@!394850460420538389>':  #исключение для Satoemari
+    if user.mention == '<@394850460420538389>' or user.mention == '<@!394850460420538389>' or user.mention == '<@370248463604121602>' or user.mention == '<@!370248463604121602>':
         with open ('avatars.txt', 'r') as file:
             lines = file.readlines()
-        url = random.choice(lines)
-        embed = discord.Embed(description = f"Аватарка пользователя {user.mention}")
-        embed.set_image(url = url)
-        embed.set_footer(text = f"supports by quantprod | Сегодня, в {nowtime1} по МСК")
-        await ctx.send(embed = embed)
+        userAvatarUrl = random.choice(lines)
     else:
         userAvatarUrl = user.avatar_url
-        embed = discord.Embed(description = f"Аватарка пользователя {user.mention}")
-        embed.set_image(url = userAvatarUrl)
-        embed.set_footer(text = f"supports by quantprod | Сегодня, в {nowtime1} по МСК")
-        await ctx.send(embed = embed)
+        
+    embed = discord.Embed(description = f"Аватарка пользователя {user.mention}")
+    embed.set_image(url = userAvatarUrl)
+    embed.set_footer(text = f"supports by quantprod | Сегодня, в {nowtime1} по МСК")
+    await ctx.send(embed = embed)
 
 
 
