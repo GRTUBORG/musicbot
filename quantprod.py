@@ -872,9 +872,15 @@ async def sanq(ctx):
 
 @Bot.command(aliases = ['hent'])
 async def hentai(ctx):
-    with open ('hentai.txt', 'r') as file:
-        lines = file.readlines()
-    await ctx.send(random.choice(lines))
+    author = ctx.message.author
+    if ctx.message.channel.is_nsfw():
+        with open ('hentai.txt', 'r') as file:
+            lines = file.readlines()
+        await ctx.send(random.choice(lines))
+    else:
+        message = await ctx.send(f'{author.mention}, ты не в NSFW-канале, чтобы такое смотреть!')
+        await asyncio.sleep(5)
+        await message.delete()
     
 
 
@@ -882,9 +888,15 @@ async def hentai(ctx):
 
 @Bot.command(aliases = ['ns', 'порево', 'прон'])
 async def nsfw(ctx):
-    with open ('nsfw.txt', 'r') as file:
-        lines = file.readlines()
-    await ctx.send(random.choice(lines))
+    author = ctx.message.author
+    if ctx.message.channel.is_nsfw():
+        with open ('nsfw.txt', 'r') as file:
+            lines = file.readlines()
+        await ctx.send(random.choice(lines))
+    else:
+        message = await ctx.send(f'{author.mention}, ты не в NSFW-канале, чтобы такое смотреть!')
+        await asyncio.sleep(5)
+        await message.delete()
     
 
         
