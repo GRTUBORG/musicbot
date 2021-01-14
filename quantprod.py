@@ -9,7 +9,6 @@ import typing
 import datetime
 import time
 import re
-import psycopg2
 import lib
 import const
 import functools
@@ -269,26 +268,6 @@ async def translate(ctx, lang = None, to_lang = None, *, arg = None):
                            f'**Результат:** `{translation}`')
     except: 
         await ctx.send('Не смог перевести :с')
-
-        
-        
-@Bot.command()
-async def connect(ctx):
-    try:
-        DATABASE_URL = os.environ['DATABASE_URL']
-        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-        
-        cur = conn.cursor()
-        tables = "create table people (discord_id, term)"
-        cur.execute(tables)
-        conn.commit()
-        rows = cur.fetchall()
-        print(rows)
-        await ctx.send('DONE! Посмотри консоль для проверки вывода данных!')
-        conт.close()
-        
-    except Exception as e:
-        await ctx.send(f'ERROR: [{e}]')
 
         
 #МУЗЫКА С ЮТУБА
@@ -701,28 +680,13 @@ async def help(ctx):
                         '\n'
                         '6) `/random [первое_число] [второе_число]` - рандомайзер двух целых чисел;\n'
                         '\n'
-                        '7) `/upper [текст]` - выведет Вам `ВоТ ТаКоЙ ВоТ ТеКсТ`;'
+                        '7) `/upper [текст]` - выведет Вам `ВоТ ТаКоЙ ВоТ ТеКсТ`;\n'
+                        '\n'
+                        '8) `/time` - время в трёх основных городах планеты.\n'
                         )
-    embed4 = discord.Embed(title = 'Помощь, страница 4', description = 
-                        '1) `/play [ссылка_на_видео_из_ютуб]` - проигрывание звуковой дорожки из видео\n'
-                        '*сокращения/синонимы*: `/p`;\n'
-                        '\n'
-                        '2) `/volume [громкость]` - устаналивает нужную громкость;\n'
-                        '\n'
-                        '3) `/leave` - кикает бота с гс канала, для использования, Вы должны быть в канале с ботом.\n'
-                        '*сокращения/синонимы*: `/l`;\n'
-                        '\n'
-                        '4) `/stop` - ну вы поняли, короче говоря :)\n'
-                        '\n'
-                        '5) `/pause` - пауза текущей песни;\n'
-                        '\n'
-                        '6) `/resume` - возобновление текущей песни;\n'
-                        '\n'
-                        '7) `/time` - время в трёх основных городах планеты.\n'
-                        )
-    embed5 = discord.Embed(title = 'Помощь, страница 4, команды в стадии разработки', description = 
+    embed4 = discord.Embed(title = 'Помощь, страница 4, команды в стадии разработки', description = 
                         '*Увы, но пока таких команд нет, ожидайте выходов новых обновлений бота*')
-    embeds = [embed1, embed2, embed3, embed4, embed5]
+    embeds = [embed1, embed2, embed3, embed4]
     message = await ctx.send(embed = embed1)
     page = pag(Bot, message, only = ctx.author, use_more = False, timeout = 3*60, embeds = embeds)
     await page.start()
