@@ -180,7 +180,8 @@ async def on_message(message):
 
 @Bot.command(aliases = ['who'])
 async def phone(ctx, phone = None):
-    if len(phone) == 12 and phone != None:
+    author = ctx.message.author
+    if len(phone) == 12 or len(phone) == 16 and phone != None:
         phone = phone
         getInfo = 'https://htmlweb.ru/geo/api.php?json&telcod={}'.format(phone)
         infoPhone = requests.get(getInfo)
@@ -191,18 +192,21 @@ async def phone(ctx, phone = None):
             region = infoPhone["region"]["name"]
             operator = infoPhone["0"]["oper"]
             oper_brand = infoPhone["0"]["oper_brand"]
-
-            write = (f'*Результаты для номера телефона* `{phone}`\n\n'
+            
+            write = (f'{author.mention}, **результаты для номера телефона** `{phone}`\n\n'
                      f'• Страна: `{country}`,\n'
                      f'• Регион: `{region}`,\n'
                      f'• Оператор: {operator} ({oper_brand}).\n\n'
                      '[Поиск по объявлениям](https://big-bro.su/searh_by_phone.aspx)')
-        except:
-           write = 'Ошибка при распознавании номера телефона! \nПопробуйте ввести номер телефона через `+`, с другим кодом, или же проверьте код области!' 
+            embed = discord.Embed(description = write, color = 0x428325)
+            embed.set_footer(text = "supports by quantprod")
         
-        await ctx.send(write)
+        except:
+            write = 'Ошибка при распознавании номера телефона! \nПопробуйте ввести номер телефона через `+`, с другим кодом, или же проверьте код области!' 
+        
+        await ctx.send(embed = embed)
     else:
-        await ctx.send('Пожалуйста, *проверьте длину номера* телефона и попробуйте заново!')
+        await ctx.send('Пожалуйста, **проверьте длину номера** телефона и попробуйте заново!')
 
 
 #ПОГОДА
