@@ -176,6 +176,34 @@ async def on_message(message):
         await asyncio.sleep(6 * 3600)
         await message.delete()
   
+#НОМЕР ТЕЛЕФОНА
+
+@Bot.command(aliases = ['who'])
+async def phone(ctx, phone = None):
+    if len(phone) == 12 and phone != None:
+        phone = phone
+        getInfo = 'https://htmlweb.ru/geo/api.php?json&telcod={}'.format(phone)
+        infoPhone = requests.get(getInfo)
+    
+        try:
+            infoPhone = infoPhone.json()
+            country = infoPhone["country"]["name"]
+            region = infoPhone["region"]["name"]
+            operator = infoPhone["0"]["oper"]
+            oper_brand = infoPhone["0"]["oper_brand"]
+
+            write = (f'*Результаты для номера телефона* `{phone}`\n\n'
+                     f'• Страна: `{country}`,\n'
+                     f'• Регион: `{region}`,\n'
+                     f'• Оператор: {operator} ({oper_brand}).\n\n'
+                     '[Поиск по объявлениям](https://big-bro.su/searh_by_phone.aspx)')
+        except:
+           write = 'Ошибка при распознавании номера телефона! \nПопробуйте ввести номер телефона через `+`, с другим кодом, или же проверьте код области!' 
+        
+        await ctx.send(write)
+    else:
+        await ctx.send('Пожалуйста, *проверьте длину номера* телефона и попробуйте заново!')
+
 
 #ПОГОДА
 
@@ -664,7 +692,11 @@ async def help(ctx):
                         '7) `/translate [исходный_язык] [нужный_язык] [текст]` - переводчик с исходного языка на нужный и наоборот.\n'
                         '*сокращения/синонимы*: `/переведи`,\n'
                         'Пример: `/translate ru en здравствуйте`,\n'
-                        'Список доступных языков можно посмотреть через `/translate --help`;'
+                        'Список доступных языков можно посмотреть через `/translate --help`;\n'
+                        '\n'
+                        '8) `/adress [адрес]` - узнать местоположения объекта. Принимаются как координаты, так и название города, села, и так далее;\n'
+                        '\n'
+                        '9) `/phone [номер телефона через +]` - откуда номер телефона?'
                         )
     embed3 = discord.Embed(title = 'Помощь, страница 3', description = 
                         '1) `/hello` - ну-ка быстро посмотри :)\n'
