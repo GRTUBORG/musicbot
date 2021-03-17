@@ -194,9 +194,10 @@ async def phone(ctx, phone = None):
             oper_brand = infoPhone["0"]["oper_brand"]
             
             write = (f'{author.mention}, **результаты для номера телефона** `{phone}`\n\n'
-                     f'• Страна: `{country}`,\n'
-                     f'• Регион: `{region}`,\n'
-                     f'• Оператор: {operator} ({oper_brand}).\n\n'
+                     '☎️\n'
+                     f'├ Страна: `{country}`,\n'
+                     f'├ Регион: `{region}`,\n'
+                     f'└ Оператор: {operator} ({oper_brand}).\n\n'
                      '[Поиск по объявлениям](https://big-bro.su/searh_by_phone.aspx)')
             embed = discord.Embed(description = write, color = 0x428325)
             embed.set_footer(text = "supports by quantprod")
