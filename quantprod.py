@@ -179,9 +179,9 @@ async def on_message(message):
 #НОМЕР ТЕЛЕФОНА
 
 @Bot.command(aliases = ['who'])
-async def phone(ctx, phone = None):
+async def phone(ctx, *, phone = None):
     author = ctx.message.author
-    if len(phone) == 12 or len(phone) == 16 and phone != None:
+    if len(phone) == 12 or len(phone) == 16 or len(phone) == 15 and phone != None:
         phone = phone
         getInfo = 'https://htmlweb.ru/geo/api.php?json&telcod={}'.format(phone)
         infoPhone = requests.get(getInfo)
