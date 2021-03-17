@@ -182,7 +182,8 @@ async def on_message(message):
 async def phone(ctx, *, phone = None):
     author = ctx.message.author
     if len(phone) == 12 or len(phone) == 16 or len(phone) == 15 and phone != None:
-        phone = phone
+        if phone[:1] != '+':
+            phone = f'+7{phone[3:]}'
         getInfo = 'https://htmlweb.ru/geo/api.php?json&telcod={}'.format(phone)
         infoPhone = requests.get(getInfo)
     
