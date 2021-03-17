@@ -175,13 +175,14 @@ async def on_message(message):
         message = await channel.send(embed = embed)
         await asyncio.sleep(6 * 3600)
         await message.delete()
-  
+ 
+
 #НОМЕР ТЕЛЕФОНА
 
 @Bot.command(aliases = ['who'])
 async def phone(ctx, *, phone = None):
     author = ctx.message.author
-    if len(phone) == 12 or len(phone) == 16 or len(phone) == 15 and phone != None:
+    if len(phone) == 12 or len(phone) == 16 or len(phone) == 15 or len(phone) == 18 or len(phone) == 11 and phone != None:
         if phone[:1] != '+':
             phone = f'+7{phone[3:]}'
         getInfo = 'https://htmlweb.ru/geo/api.php?json&telcod={}'.format(phone)
@@ -194,7 +195,7 @@ async def phone(ctx, *, phone = None):
             operator = infoPhone["0"]["oper"]
             oper_brand = infoPhone["0"]["oper_brand"]
             
-            write = (f'{author.mention}, **результаты для номера телефона** `{phone}`\n\n'
+            write = (f'{author.mention}, **результат для номера телефона** `{phone}`\n\n'
                      '☎️\n'
                      f'├ Страна: `{country}`,\n'
                      f'├ Регион: `{region}`,\n'
