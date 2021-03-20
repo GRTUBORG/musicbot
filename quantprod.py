@@ -207,9 +207,14 @@ async def phone(ctx, *, phone = None):
         except:
             write = 'Ошибка при распознавании номера телефона! \nПопробуйте ввести номер телефона через `+`, с другим кодом, или же проверьте код области!' 
         
-        await ctx.send(embed = embed)
+        await ctx.message.delete()
+        await ctx.author.send(embed = embed)
+        
     else:
-        await ctx.send('Пожалуйста, **проверьте длину номера** телефона и попробуйте заново!')
+        message = await ctx.send('Пожалуйста, **проверьте длину номера** телефона и попробуйте заново!')
+        await asyncio.sleep(7)
+        await ctx.message.delete()
+        await message.delete()
 
 
 #ПОГОДА
