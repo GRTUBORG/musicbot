@@ -764,7 +764,7 @@ async def help_adm(ctx):
                         '5) `/tempban [@пользователь] [время] [единицы_измерения*] [причина_выдачи]` - временный бан пользователя.\n'
                         '*сокращения/синонимы*: `/tb`;\n'
                         '\n'
-                        '6) `/ban [@пользователь] [причина_выдачи] [суд (был/не был)]` - пермабан.\n'
+                        '6) `/ban [@пользователь] [причина_выдачи и суд (был/не был)]` - пермабан.\n'
                         '*сокращения/синонимы*: `/b`;\n'
                         '\n'
                         '7) `/mute [@пользователь] [время] [единицы_измерения*] [причина_выдачи]` - мут пользователя.\n'
@@ -1542,20 +1542,16 @@ async def tempban_error(ctx, error):
 
 @Bot.command(aliases = ['b', 'BAN'])
 @commands.has_any_role("admin", "Смотрящий", "elite")
-async def ban(ctx, member: discord.Member, reason = None, *, court = None):  #ПЕРМАНЕНТНЫЙ БАН
+async def ban(ctx, member: discord.Member, *, reason = None):  #ПЕРМАНЕНТНЫЙ БАН
     channel = Bot.get_channel(526464840672346112) #логи
     await member.send(f'**Увы, но ты был навсегда забанен на сервере Dark Neon City по причне:** {reason}')
     
     await member.ban(reason = reason)
     await ctx.message.delete()
     author = ctx.message.author
-
-    if court == None:
-        court = '`Причина суда не указана!`'
     
     embed = discord.Embed(description = f'{author.mention} выдал `{member.name}#{member.discriminator}` перманент', color= 0x428325)
-    embed.add_field(name = "Причина:", value = f'`{reason}`', inline = False)
-    embed.add_field(name = "Суд:", value = f'{court}', inline = False)
+    embed.add_field(name = "Причина и суд:", value = f'`{reason}`', inline = False)
     embed.set_footer(text = "supports by quantprod")
     await ctx.send(embed = embed)
 
