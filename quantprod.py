@@ -686,47 +686,41 @@ async def help(ctx):
     embed2 = discord.Embed(title = 'Помощь, cтраница 2', description =
                         '1) `/length [сообщение]` - узнать длину нужного сообщения.\n'
                         '\n'
-                        '2) `/pizdec` - не, ну это бан!\n'
-                        '*сокращения/синонимы*: `/pzdc`;\n'
-                        '\n'
-                        '3) `/avatar [@пользователь]` - аватарка пользователя.\n'
+                        '2) `/avatar [@пользователь]` - аватарка пользователя.\n'
                         '*сокращения/синонимы*: `/ava`;\n'
                         '\n'
-                        '4) `/say [ваш_текст]` - бот повторит за вами всё то, что вы ему напишете.\n'
+                        '3) `/say [ваш_текст]` - бот повторит за вами всё то, что вы ему напишете.\n'
                         '*сокращения/синонимы*: `/repeat`;\n'
                         '\n'
-                        '5) `/hentai` - ну тут сами понимаете что :D\n'
+                        '4) `/hentai` - ну тут сами понимаете что :D\n'
                         '*сокращения/синонимы*: `/hent`;\n'
                         '\n'
-                        '6) `/монетка` - бот подбросит монетку и выдаст либо орла, либо решку.\n'
+                        '5) `/монетка` - бот подбросит монетку и выдаст либо орла, либо решку.\n'
                         '*сокращения/синонимы*: `/монета`, `/орёл`, `/решка` (и куча других, мне лень их вписывать);\n'
                         '\n'
-                        '7) `/translate [исходный_язык] [нужный_язык] [текст]` - переводчик с исходного языка на нужный и наоборот.\n'
+                        '6) `/translate [исходный_язык] [нужный_язык] [текст]` - переводчик с исходного языка на нужный и наоборот.\n'
                         '*сокращения/синонимы*: `/переведи`,\n'
                         'Пример: `/translate ru en здравствуйте`,\n'
                         'Список доступных языков можно посмотреть через `/translate --help`;\n'
                         '\n'
-                        '8) `/adress [адрес]` - узнать местоположения объекта. Принимаются как координаты, так и название города, села, и так далее;\n'
+                        '7) `/adress [адрес]` - узнать местоположения объекта. Принимаются как координаты, так и название города, села, и так далее;\n'
                         '\n'
-                        '9) `/phone [номер телефона через +]` - откуда номер телефона?'
+                        '8) `/phone [номер телефона через +]` - откуда номер телефона?'
                         )
     embed3 = discord.Embed(title = 'Помощь, страница 3', description = 
-                        '1) `/hello` - ну-ка быстро посмотри :)\n'
+                        '1) `/info [@пользователь]` - узнай дату входа пользователя на сервер!\n'
                         '\n'
-                        '2) `/info [@пользователь]` - узнай дату входа пользователя на сервер!\n'
+                        '2) `/message [@пользователь] [текст_сообщения]` - отправка сообщения любому юзеру с помощью бота;\n'
                         '\n'
-                        '3) `/message [@пользователь] [текст_сообщения]` - отправка сообщения любому юзеру с помощью бота;\n'
+                        '3) `/ping` - проверка скорости реакции бота;\n'
                         '\n'
-                        '4) `/ping` - проверка скорости реакции бота;\n'
-                        '\n'
-                        '5) `/sanq` - команда благодарности боту.\n'
+                        '4) `/sanq` - команда благодарности боту.\n'
                         '*сокращения/синонимы*: `/спасибо`, `/thx`, `/пасибо`, `/пасиба`, `/спс`;\n'
                         '\n'
-                        '6) `/random [первое_число] [второе_число]` - рандомайзер двух целых чисел;\n'
+                        '5) `/random [первое_число] [второе_число]` - рандомайзер двух целых чисел;\n'
                         '\n'
-                        '7) `/upper [текст]` - выведет Вам `ВоТ ТаКоЙ ВоТ ТеКсТ`;\n'
+                        '6) `/upper [текст]` - выведет Вам `ВоТ ТаКоЙ ВоТ ТеКсТ`;\n'
                         '\n'
-                        '8) `/time` - время в трёх основных городах планеты.\n'
                         )
     embed4 = discord.Embed(title = 'Помощь, страница 4, команды в стадии разработки', description = 
                         '*Увы, но пока таких команд нет, ожидайте выходов новых обновлений бота*')
@@ -905,21 +899,7 @@ async def nsfw(ctx):
         message = await ctx.send(f'{author.mention}, ты не в NSFW-канале, чтобы такое смотреть!')
         await asyncio.sleep(5)
         await message.delete()
-    
-
         
-#НЕ, НУ ЭТО БАН!
-
-@Bot.command(aliases = ['pzdc', 'PIZDEC'])
-async def pizdec(ctx):
-    await ctx.message.delete()
-    await ctx.send(':regional_indicator_p: '
-                   ':regional_indicator_i: ' 
-                   ':regional_indicator_z: ' 
-                   ':regional_indicator_d: ' 
-                   ':regional_indicator_e: ' 
-                   ':regional_indicator_c: ')
-
 
 
 #SPOTIFY, КТО ЧТО СЛУШАЕТ
@@ -964,31 +944,6 @@ async def spotify(ctx, user: discord.Member = None):
     except Exception as e:
         await ctx.send(f'Возникла ошибка "{e}"')
 
-        
-        
-#ТЕКУЩЕЕ ВРЕМЯ И ДАТА
-
-@Bot.command(aliases = ["time", "время"])
-async def time_bot(ctx):
-    delta_msk = datetime.timedelta(hours = 3, minutes = 0)
-    mesinf = ctx.message.created_at + delta_msk
-    nowtime1 = mesinf.strftime("**Время:** `%X (UTC +3)`\n**Дата:** `%d.%m.%Y`")
-
-    delta_ny = datetime.timedelta(hours = -4, minutes = 0)
-    mesinf1 = ctx.message.created_at + delta_ny
-    nowtime2 = mesinf1.strftime("**Время:** `%X (UTC −4)`\n**Дата:** `%d.%m.%Y`")
-
-    delta_jp = datetime.timedelta(hours = 9, minutes = 0)
-    mesinf2 = ctx.message.created_at + delta_jp
-    nowtime3 = mesinf2.strftime("**Время:** `%X (UTC +9)`\n**Дата:** `%d.%m.%Y`")
-
-    embed = discord.Embed(color = 0x428325)
-    embed.set_thumbnail(url = "https://i.gifer.com/LUjT.gif")
-    embed.add_field(name = 'Текущее время и дата в Москве :flag_ru:', value = nowtime1, inline = False)
-    embed.add_field(name = 'Текущее время и дата в Нью-Йорке :flag_us:', value = nowtime2, inline = False)
-    embed.add_field(name = 'Текущее время и дата в Токио :flag_jp:', value = nowtime3, inline = False)
-    embed.set_footer(text = "supports by quantprod")
-    await ctx.send(embed = embed)
 
 
 
@@ -1045,29 +1000,6 @@ async def covid(ctx, country = None):
         except Exception as e:
             await ctx.send(f'Возникла ошибка {e}. Обратитесь к <@!394858317572472832>')
 
-
-
-#NSFW-ИНФО (ПОПОЛНЕНИЕ)
-
-@Bot.command(aliases = ['updatebases', 'base', 'bases'])
-async def nsfw_info(ctx):
-    with open('nsfw_version.txt', 'r') as f:
-        for i in range(0):
-            f.readline()
-        x = f.readline()
-    await ctx.send(x)
-
-
-
-#ЬЕЬ-ПОПОЛНЕНИЕ  
-
-@Bot.command(aliases = ['updatememes', 'base_memes'])
-async def memes_info(ctx):
-    with open('update_memes.txt', 'r') as f:
-        for i in range(0):
-            f.readline()
-        x = f.readline()
-    await ctx.send(x)
 
    
   
@@ -1160,22 +1092,6 @@ async def info(ctx, member: discord.Member = None):
     embed.add_field(name = "Никнейм на Dark Neon City: ", value = f'`{member.display_name}`', inline = False)
     embed.add_field(name = f"Роли [{len(member.roles) - 1}]: ", value = ' '.join(reversed(roles)), inline = False)
     embed.set_thumbnail(url = avatar)
-    embed.set_footer(text = f"supports by quantprod | Сегодня, в {nowtime1} по МСК")
-    await ctx.send(embed = embed)
-
-
-
-#ПРИВЕТСТВИЕ
-
-@Bot.command(aliases = ['HELLO'])
-async def hello(ctx):
-    delta1 = datetime.timedelta(hours = 3, minutes = 0)
-    mesinf = ctx.message.created_at + delta1
-    nowtime1 = mesinf.strftime("%X")
-    
-    await ctx.message.delete()
-    author = ctx.message.author
-    embed = discord.Embed(title = 'Dark Neon City', description = f'👋 Васап, {author.mention}! Рад видеть тебя на Dark Neon City!', color = 0x428325)
     embed.set_footer(text = f"supports by quantprod | Сегодня, в {nowtime1} по МСК")
     await ctx.send(embed = embed)
 
@@ -1555,7 +1471,7 @@ async def ban(ctx, member: discord.Member, *, reason = None):  #ПЕРМАНЕН
     embed.set_footer(text = "supports by quantprod")
     await ctx.send(embed = embed)
 
-    await channel.send(f'{author.mention} **выдал перманентный бан** `{member.name}#{member.discriminator}`. **Причина:** {reason}, **суд:** {court}')
+    await channel.send(f'{author.mention} **выдал перманентный бан** `{member.name}#{member.discriminator}`. **Причина м суд:** {reason}')
 
 @ban.error
 async def ban_error(ctx, error):
