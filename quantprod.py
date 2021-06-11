@@ -1401,9 +1401,9 @@ async def tempban(ctx, user: discord.User, duration: int, timeban = None, *, rea
         '**По вопросам разбана писать** *•Satoemari•#0001*')
 
         await ctx.guild.ban(user, reason = reason)
-        embed = discord.Embed(description = f"{author.mention} забанил `@{user.name}#{user.discriminator}` сроком на `{duration}{timeban}`", color = 0x428325)
-        embed.add_field(name = "Разбан будет:", value = duration_current1)
-        embed.add_field(name = "По причине:", value = f'`{reason}`')
+        embed = discord.Embed(description = f"{author.mention} выдал бан `{user.name}#{user.discriminator}` сроком на `{duration}{timeban}`", color = 0x428325)
+        embed.add_field(name = "Разбан будет:", value = duration_current1, inline = False)
+        embed.add_field(name = "Причина:", value = f'`{reason}`', inline = False)
         embed.set_footer(text = "supports by quantprod")
         await ctx.send(embed = embed)
         await channel.send(f'{author.mention} выдал временный бан `{user.name}#{user.discriminator}` на {duration}{timeban} по причине `{reason}` .')
@@ -1421,9 +1421,9 @@ async def tempban(ctx, user: discord.User, duration: int, timeban = None, *, rea
         '**По вопросам разбана писать** *•Satoemari•#0001*')
 
         await ctx.guild.ban(user, reason = reason)
-        embed = discord.Embed(description = f"{author.mention} забанил `@{user.name}#{user.discriminator}` сроком на `{duration}{timeban}`", color = 0x428325)
-        embed.add_field(name = "Разбан будет:", value = duration_current1)
-        embed.add_field(name = "По причине:", value = f'`{reason}`')
+        embed = discord.Embed(description = f"{author.mention} выдал бан `{user.name}#{user.discriminator}` сроком на `{duration}{timeban}`", color = 0x428325)
+        embed.add_field(name = "Разбан будет:", value = duration_current1, inline = False)
+        embed.add_field(name = "Причина:", value = f'`{reason}`', inline = False)
         embed.set_footer(text = "supports by quantprod")
         await ctx.send(embed = embed)
         await channel.send(f'{author.mention} выдал временный бан `{user.name}#{user.discriminator}` на {duration}{timeban} по причине `{reason}` .')
@@ -1441,9 +1441,9 @@ async def tempban(ctx, user: discord.User, duration: int, timeban = None, *, rea
         '**По вопросам разбана писать** *•Satoemari•#0001*')
 
         await ctx.guild.ban(user, reason = reason)
-        embed = discord.Embed(description = f"{author.mention} забанил `@{user.name}#{user.discriminator}` сроком на `{duration}{timeban}`", color = 0x428325)
-        embed.add_field(name = "Разбан будет:", value = duration_current1)
-        embed.add_field(name = "По причине:", value = f'`{reason}`')
+        embed = discord.Embed(description = f"{author.mention} выдал бан `{user.name}#{user.discriminator}` сроком на `{duration}{timeban}`", color = 0x428325)
+        embed.add_field(name = "Разбан будет:", value = duration_current1, inline = False)
+        embed.add_field(name = "Причина:", value = f'`{reason}`', inline = False)
         embed.set_footer(text = "supports by quantprod")
         await ctx.send(embed = embed)
         await channel.send(f'{author.mention} выдал временный бан `{user.name}#{user.discriminator}` на {duration}{timeban} по причине `{reason}` .')
@@ -1467,11 +1467,11 @@ async def ban(ctx, member: discord.Member, *, reason = None):  #ПЕРМАНЕН
     author = ctx.message.author
     
     embed = discord.Embed(description = f'{author.mention} выдал `{member.name}#{member.discriminator}` перманент', color= 0x428325)
-    embed.add_field(name = "Причина и суд:", value = f'`{reason}`', inline = False)
+    embed.add_field(name = "Причина:", value = f'`{reason}`', inline = False)
     embed.set_footer(text = "supports by quantprod")
     await ctx.send(embed = embed)
 
-    await channel.send(f'{author.mention} **выдал перманентный бан** `{member.name}#{member.discriminator}`. **Причина м суд:** {reason}')
+    await channel.send(f'{author.mention} **выдал перманентный бан** `{member.name}#{member.discriminator}`. **Причина:** {reason}')
 
 @ban.error
 async def ban_error(ctx, error):
